@@ -4,9 +4,9 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    url(r'^$', 'bootstraptenants.views.index', name='index'),
-    # url(r'^blog/', include('blog.urls')),
+    # Index
+    url(r'^$', 'index.views.list', name='index'),
 
+    # Admin
     url(r'^admin/', include(admin.site.urls)),
 )

@@ -22,11 +22,6 @@ SECRET_KEY = '=vzzml7lofbwe_ob-&gi1#ci$_vng+x(zo!fcifq5-0)bh8i5b'
 DEBUG = True
 TEMPLATE_DEBUG = True
 
-# Use app dir for now
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'bootstraptenants/templates'),
-)
-
 # Application definition
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -35,6 +30,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'index',
 )
 
 MIDDLEWARE_CLASSES = (
