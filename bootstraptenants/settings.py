@@ -58,6 +58,9 @@ DATABASES = {
 import dj_database_url
 # DATABASES['default'] =  dj_database_url.config()
 
+# Auth profile
+AUTH_PROFILE_MODULE = 'index.UserProfile'
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 LANGUAGE_CODE = 'en-us'
