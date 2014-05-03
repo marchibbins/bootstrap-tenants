@@ -5,11 +5,26 @@
 {% block content %}
     <h1>Users</h1>
     {% if users %}
-        <ul>
-            {% for user in users %}
-                <li>{{ user.first_name }} {{ user.last_name }} ({{ user.email }}) {{ user.get_profile.company }}</li>
-            {% endfor %}
-        </ul>
+        <table>
+            <thead>
+                <tr>
+                    <th>First name <a href="?sort=first_name" title="Sort by first name">▾</a> <a href="?sort=-first_name" title="Sort by first name">▴</a>  </th>
+                    <th>Last name <a href="?sort=last_name" title="Sort by last name">▾</a> <a href="?sort=-last_name" title="Sort by last name">▴</a>  </th>
+                    <th>Email <a href="?sort=email" title="Sort by email">▾</a> <a href="?sort=-email" title="Sort by email">▴</a>  </th>
+                    <th>Company</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.first_name }}</td>
+                        <td>{{ user.last_name }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.get_profile.company }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     {% else %}
         <p>No users found.</p>
     {% endif %}
