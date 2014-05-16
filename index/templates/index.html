@@ -1,17 +1,36 @@
 {% extends 'base.html' %}
 
-{% block title %}Users{% endblock %}
+
+{% block title %}Tenant Index{% endblock %}
 
 {% block content %}
-    <h1>Users</h1>
+<div class="container">
+    <div class="page-header">
+        <h1>Tenant Index</h1>
+        <p class="lead">Search, filter and sort tenants...right here!</p>
+    </div>
+    <form role="form" class="form-inline">
+        <div class="form-group">
+            <label class="sr-only" for="index__search">Email address</label>
+            <input class="form-control input-lg index__search" type="search" id="index__search" placeholder="Search name or company..." />
+        </div>
+        <div class="form-group">
+            <button class="btn btn-lg btn-default" type="submit">
+              Search
+            </button>
+        </div>
+    </form>
     {% if users %}
-        <table>
+        <table class="table table-striped table-hover">
             <thead>
                 <tr>
                     <th>First name <a href="?sort=first_name" title="Sort by first name">▾</a> <a href="?sort=-first_name" title="Sort by first name">▴</a>  </th>
                     <th>Last name <a href="?sort=last_name" title="Sort by last name">▾</a> <a href="?sort=-last_name" title="Sort by last name">▴</a>  </th>
                     <th>Email <a href="?sort=email" title="Sort by email">▾</a> <a href="?sort=-email" title="Sort by email">▴</a>  </th>
                     <th>Company</th>
+                    <th>Industry/Sector</th>
+                    <th>Date Joined</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -21,6 +40,9 @@
                         <td>{{ user.last_name }}</td>
                         <td>{{ user.email }}</td>
                         <td>{{ user.get_profile.company }}</td>
+                        <td>{{ user.get_profile.industry|default:"TODO" }}</td>
+                        <td>{{ user.get_profile.joined_date|default:"TODO" }}</td>
+                        <td><a href="">Open</a></button></td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -28,4 +50,6 @@
     {% else %}
         <p>No users found.</p>
     {% endif %}
+</div>
 {% endblock %}
+
