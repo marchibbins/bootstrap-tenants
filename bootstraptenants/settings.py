@@ -54,7 +54,7 @@ DATABASES = {
 }
 
 # Auth profile
-AUTH_PROFILE_MODULE = 'index.UserProfile'
+# AUTH_PROFILE_MODULE = 'index.UserProfile'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
