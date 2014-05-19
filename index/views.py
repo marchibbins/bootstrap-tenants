@@ -15,6 +15,5 @@ def list(request):
         if reverse == True:
             sort = '-'+sort
 
-    # import pdb; pdb.set_trace()
     tenants = Tenant.objects.order_by(sort)
     return render(request, 'index.html', {'tenants': tenants})

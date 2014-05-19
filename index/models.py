@@ -11,7 +11,6 @@ class Tenant(models.Model):
 
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        # import pdb; pdb.set_trace()
         Tenant.objects.create(user_id=instance.id)
 
 post_save.connect(create_user_profile, sender=User)
