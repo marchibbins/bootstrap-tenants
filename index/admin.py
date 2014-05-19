@@ -1,20 +1,17 @@
 from django.contrib import admin
-from index.models import UserProfile
+from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.models import User
 
+from index.models import Tenant
 
-class UserProfileAdmin(admin.ModelAdmin):
-    """ Admin class for UserProfile. """
-    list_display = ('user', 'user_first_name', 'user_last_name', 'company')
+class TenantInline(admin.StackedInline):
+    model = Tenant
+    can_delete = False
+    verbose_name_plural = 'tenants'
 
-    def user_first_name(self, obj):
-            return obj.user.first_name
+class UserAdmin(UserAdmin):
+    inlines = (TenantInline,)
 
-    user_first_name.short_description = 'First name'
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)
 
-    def user_last_name(self, obj):
-            return obj.user.last_name
-
-    user_last_name.short_description = 'Last name'
-
-
-admin.site.register(UserProfile, UserProfileAdmin)
