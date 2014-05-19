@@ -20,7 +20,7 @@
             </button>
         </div>
     </form>
-    {% if users %}
+    {% if tenants %}
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
@@ -28,20 +28,20 @@
                     <th>Last name <a href="?sort=last_name" title="Sort by last name">▾</a> <a href="?sort=-last_name" title="Sort by last name">▴</a>  </th>
                     <th>Email <a href="?sort=email" title="Sort by email">▾</a> <a href="?sort=-email" title="Sort by email">▴</a>  </th>
                     <th>Company</th>
-                    <th>Industry/Sector</th>
                     <th>Date Joined</th>
+                    <th>Industry/Sector</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                {% for user in users %}
+                {% for tenant in tenants %}
                     <tr>
-                        <td>{{ user.first_name }}</td>
-                        <td>{{ user.last_name }}</td>
-                        <td>{{ user.email }}</td>
-                        <td>{{ user.get_profile.company }}</td>
-                        <td>{{ user.get_profile.industry|default:"TODO" }}</td>
-                        <td>{{ user.get_profile.joined_date|default:"TODO" }}</td>
+                        <td>{{ tenant.user.first_name }}</td>
+                        <td>{{ tenant.user.last_name }}</td>
+                        <td>{{ tenant.user.email }}</td>
+                        <td>{{ tenant.company }}</td>
+                        <td>{{ tenant.industry|default:"TODO" }}</td>
+                        <td>{{ tenant.moved_in_date|default:"TODO" }}</td>
                         <td><a href="">Open</a></button></td>
                     </tr>
                 {% endfor %}
