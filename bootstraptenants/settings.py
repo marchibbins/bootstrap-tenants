@@ -56,6 +56,11 @@ DATABASES = {
 # Auth profile
 # AUTH_PROFILE_MODULE = 'index.UserProfile'
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.request',
+    'django.contrib.auth.context_processors.auth',
+)
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 LANGUAGE_CODE = 'en-us'
