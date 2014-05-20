@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 
-
 {% block title %}Tenant Index{% endblock %}
 
 {% block content %}
@@ -40,9 +39,9 @@
                         <td>{{ tenant.user.last_name }}</td>
                         <td>{{ tenant.user.email }}</td>
                         <td>{{ tenant.company }}</td>
-                        <td>{{ tenant.industry|default:"TODO" }}</td>
-                        <td>{{ tenant.moved_in_date|default:"TODO" }}</td>
-                        <td><a href="">Open</a></button></td>
+                        <td>{{ tenant.moved_in_date }}</td>
+                        <td>{{ tenant.industries.all|join:", " }}</td>
+                        <td><a href="{% url 'profile' tenant.user.id %}">Open</a></button></td>
                     </tr>
                 {% endfor %}
             </tbody>
