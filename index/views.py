@@ -42,6 +42,9 @@ def list(request):
         'tenants': tenants,
         'industries': industries,
         'locations': locations,
+        'selected_industry_id': int(industry_id),
+        'selected_location_id': int(location_id),
+        'search_term': search_term,
     })
 
 def profile(request, tenant_id):
