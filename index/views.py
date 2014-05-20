@@ -17,3 +17,9 @@ def list(request):
 
     tenants = Tenant.objects.order_by(sort)
     return render(request, 'index.html', {'tenants': tenants})
+
+def profile(request, tenant_id):
+    """ Render full profile of tenant. """
+
+    tenant = Tenant.objects.get(user__id=tenant_id)
+    return render(request, 'profile.html', {'tenant': tenant})
