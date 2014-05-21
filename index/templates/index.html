@@ -42,7 +42,6 @@
                     {% load add_get_parameter %}
                     <th>First name <a href="{% add_get sort='first_name' %}" title="Sort by first name">▾</a> <a href="{% add_get sort='-first_name' %}" title="Sort by first name">▴</a>  </th>
                     <th>Last name <a href="{% add_get sort='last_name' %}" title="Sort by last name">▾</a> <a href="{% add_get sort='-last_name' %}" title="Sort by last name">▴</a>  </th>
-                    <th>Email <a href="{% add_get sort='email_name' %}" title="Sort by email">▾</a> <a href="{% add_get sort='-email' %}" title="Sort by email">▴</a>  </th>
                     <th>Company</th>
                     <th>Date Joined</th>
                     <th>Industry/Sector</th>
@@ -55,9 +54,8 @@
                     <tr>
                         <td>{{ tenant.user.first_name }}</td>
                         <td>{{ tenant.user.last_name }}</td>
-                        <td>{{ tenant.user.email }}</td>
                         <td>{{ tenant.company }}</td>
-                        <td>{{ tenant.moved_in_date }}</td>
+                        <td>{{ tenant.moved_in_date |date:"d M Y" }}</td>
                         <td>{{ tenant.industries.all|join:", " }}</td>
                         <td>{{ tenant.location }}</td>
                         <td><a href="{% url 'profile' tenant.user.id %}">Open</a></button></td>
@@ -66,7 +64,7 @@
             </tbody>
         </table>
     {% else %}
-        <p>No users found.</p>
+        <p>No tenants found.</p>
     {% endif %}
 </div>
 {% endblock %}
