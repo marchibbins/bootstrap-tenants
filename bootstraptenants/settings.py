@@ -31,6 +31,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'index',
+    'debug_toolbar',
+    'inspector_panel',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -44,6 +46,16 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'bootstraptenants.urls'
 WSGI_APPLICATION = 'bootstraptenants.wsgi.application'
+
+DEBUG_TOOLBAR_PANELS = (
+    'debug_toolbar.panels.redirects.RedirectsPanel',
+    'debug_toolbar.panels.signals.SignalsPanel',
+    'debug_toolbar.panels.logging.LoggingPanel',
+    'debug_toolbar.panels.settings.SettingsPanel',
+    'debug_toolbar.panels.headers.HeadersPanel',
+    'inspector_panel.panels.inspector.InspectorPanel',
+)
+
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases

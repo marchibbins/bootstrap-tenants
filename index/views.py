@@ -4,6 +4,8 @@ from django.db.models import Q
 
 from index.models import Tenant, Industry, Location
 
+from inspector_panel import debug
+
 def list(request):
     """ Renders sortable list of Users. """
 
@@ -36,7 +38,8 @@ def list(request):
 
     tenants = tenants.order_by(sort)
 
-    # import pdb; pdb.set_trace()
+    debug("tenants")
+    debug([1,2,3])
 
     return render(request, 'index.html', {
         'tenants': tenants,
