@@ -1,6 +1,10 @@
 from django.contrib.auth.models import User
 from django.db import models
-from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.db.models.signals import post_save, pre_save
+
+import logging
+from inspector_panel import debug
 
 class Industry(models.Model):
     name = models.CharField(max_length=50)
@@ -45,8 +49,15 @@ class Tenant(models.Model):
     def __unicode__(self):
         return self.user.first_name + ' ' + self.user.last_name
 
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Tenant.objects.create(user=instance)
+# def create_user_profile(sender, instance, created, **kwargs):
+#     if created:
+#         Tenant.objects.create(user=instance)
 
-post_save.connect(create_user_profile, sender=User)
+def create_user(sender, instance, **kwargs):
+    # user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
+    logging.warning('Attempt to create User.')
+    debug([1,2,3])
+    # if True:
+    #     Tenant.objects.create(user=instance)
+
+pre_save.connect(create_user, sender=Tenant)
