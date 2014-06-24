@@ -53,9 +53,10 @@ class Tenant(models.Model):
 #     if created:
 #         Tenant.objects.create(user=instance)
 
-def create_user(sender, instance, **kwargs):
+def create_user(sender, **kwargs):
     # user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
-    logging.warning('Attempt to create User.')
+    logging.debug(type(kwargs['instance']))
+    logging.debug(kwargs['instance'])
     debug([1,2,3])
     # if True:
     #     Tenant.objects.create(user=instance)
