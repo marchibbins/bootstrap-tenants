@@ -72,8 +72,8 @@ DATABASES = {
     'default': dj_database_url.config(default='sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite'))
 }
 
-# Auth profile
-# AUTH_PROFILE_MODULE = 'index.UserProfile'
+# Custom User model
+AUTH_USER_MODEL = 'index.CustomUser'
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',

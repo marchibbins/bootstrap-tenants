@@ -1,65 +1,50 @@
-from django.contrib.auth import get_user_model
 from django.db import models
-from django.db.models.signals import pre_save
-from inspector_panel import debug
-import logging
+from django.utils import timezone
+from django.utils.translation import ugettext_lazy as _
+from django.core.mail import send_mail
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+from index.managers import CustomUserManager
 
 
-class Industry(models.Model):
-    name = models.CharField(max_length=50)
+class CustomUser(AbstractBaseUser, PermissionsMixin):
 
-    def __unicode__(self):
-        return self.name
+    """ Mostly duplicates built-in Django User model, with required unique email as username field,
+    removing username actual, also requiring first_name and last_name. """
 
+    email = models.EmailField(_('email address'), unique=True)
+    first_name = models.CharField(_('first name'), max_length=30)
+    last_name = models.CharField(_('last name'), max_length=30)
+    date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
 
-class Location(models.Model):
-    building = models.CharField(max_length=50)
-    floor = models.IntegerField(default=0)
+    is_staff = models.BooleanField(_('staff status'), default=False,
+        help_text=_('Designates whether the user can log into this admin site.'))
+    is_active = models.BooleanField(_('active'), default=True,
+        help_text=_('Designates whether this user should be treated as active. Unselect this instead of deleting accounts.'))
 
-    def get_floor_suffix(self, floor):
-        nth = {
-            1: "st",
-            2: "nd",
-            3: "rd"
-        }
-        return nth.get(floor % 10, 'th')
+    objects = CustomUserManager()
 
-    def floor_human_readable(self):
-        floor_suffixed = ''
-        if self.floor > 0:
-            floor_suffixed = ''.join(
-                [str(self.floor), self.get_floor_suffix(self.floor)])
-        else:
-            floor_suffixed = 'Ground'
-        return floor_suffixed + ' floor'
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['first_name', 'last_name']
 
-    def __unicode__(self):
-        return self.floor_human_readable() + ', ' + self.building
+    class Meta:
+        verbose_name = _('user')
+        verbose_name_plural = _('users')
 
+    def get_full_name(self):
+        """
+        Returns the first_name plus the last_name, with a space in between.
+        """
+        full_name = '%s %s' % (self.first_name, self.last_name)
+        return full_name.strip()
 
-class Tenant(models.Model):
-    user = models.OneToOneField(get_user_model(), primary_key=True)
-    bio = models.CharField(null=True, blank=True, max_length=255)
-    company = models.CharField(max_length=50, null=True, blank=True)
-    moved_in_date = models.DateTimeField(verbose_name='date moved in',
-                                         null=True, blank=True)
-    industries = models.ManyToManyField(Industry, null=True, blank=True)
-    location = models.ForeignKey(Location, null=True, blank=True)
+    def get_short_name(self):
+        """
+        Returns the short name for the user.
+        """
+        return self.first_name
 
-    def __unicode__(self):
-        return self.user.first_name + ' ' + self.user.last_name
-
-# def create_user_profile(sender, instance, created, **kwargs):
-#     if created:
-#         Tenant.objects.create(user=instance)
-
-
-def create_user(sender, **kwargs):
-    # user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
-    logging.debug(type(kwargs['instance']))
-    logging.debug(kwargs['instance'])
-    debug([1, 2, 3])
-    # if True:
-    #     Tenant.objects.create(user=instance)
-
-pre_save.connect(create_user, sender=Tenant)
+    def email_user(self, subject, message, from_email=None):
+        """
+        Sends an email to this User.
+        """
+        send_mail(subject, message, from_email, [self.email])
