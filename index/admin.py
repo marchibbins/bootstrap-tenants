@@ -15,7 +15,7 @@ class CustomUserAdmin(UserAdmin):
             'fields': ('email', 'first_name', 'last_name', 'password')
         }),
         (_('Information'), {
-            'fields': ('industries', 'location')
+            'fields': ('bio', 'company', 'date_moved_in', 'industries', 'location')
         }),
         (_('Permissions'), {
             'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')
