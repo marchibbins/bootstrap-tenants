@@ -11,7 +11,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     """ Mostly duplicates built-in Django User model, with required unique email as username field,
     removing username actual, also requiring first_name and last_name. """
 
-    # Authentication and control
     email = models.EmailField(_('email address'), unique=True)
     first_name = models.CharField(_('first name'), max_length=30)
     last_name = models.CharField(_('last name'), max_length=30)
@@ -22,7 +21,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(_('active'), default=True,
         help_text=_('Designates whether this user should be treated as active. Unselect this instead of deleting accounts.'))
 
-    # Additional information
     bio = models.CharField(_('bio'), max_length=255, null=True, blank=True)
     company = models.CharField(_('company'), max_length=50, null=True, blank=True)
     date_moved_in = models.DateTimeField(_('date moved in'), null=True, blank=True)
@@ -79,6 +77,9 @@ class Location(models.Model):
     floor = models.IntegerField(_('floor'), default=0, help_text=_('Use zero for ground floor.'))
 
     def floor_readable(self):
+        """
+        Returns readable floor description from integer.
+        """
         if self.floor > 0:
             nth = {
                 1: "st",

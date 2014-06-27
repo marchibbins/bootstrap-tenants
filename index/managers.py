@@ -29,7 +29,13 @@ class CustomUserManager(BaseUserManager):
         return user
 
     def create_user(self, email, first_name, last_name, password=None, **extra_fields):
+        """
+        Creates User without staff permissions.
+        """
         return self._create_user(email, first_name, last_name, password, False, False, **extra_fields)
 
     def create_superuser(self, email, first_name, last_name, password, **extra_fields):
+        """
+        Creates User with superuser (and staff) permissions.
+        """
         return self._create_user(email, first_name, last_name, password, True, True, **extra_fields)

@@ -44,6 +44,9 @@ class CustomUserAdmin(UserAdmin):
     ordering = ('last_name', 'email')
 
     def get_industries(self, obj):
+        """
+        Joins M2M industries field for reading.
+        """
         return ', '.join([industry.name for industry in obj.industries.all()])
 
     get_industries.short_description = _('Industries')
