@@ -24,6 +24,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     # Additional information
     industries = models.ManyToManyField('Industry', null=True, blank=True)
+    location = models.ForeignKey('Location', null=True, blank=True)
 
     objects = CustomUserManager()
 
@@ -62,3 +63,30 @@ class Industry(models.Model):
 
     def __unicode__(self):
         return self.name
+
+
+class Location(models.Model):
+
+    """ Simple representation of a Location, related FK of index.CustomUser. """
+
+    building = models.CharField(max_length=50)
+    floor = models.IntegerField(default=0)
+
+    def get_floor_suffix(self, floor):
+        nth = {
+            1: "st",
+            2: "nd",
+            3: "rd"
+        }
+        return nth.get(floor % 10, 'th')
+
+    def floor_human_readable(self):
+        floor_suffixed = ''
+        if self.floor > 0:
+            floor_suffixed = ''.join([str(self.floor), self.get_floor_suffix(self.floor)])
+        else:
+            floor_suffixed = 'Ground'
+        return floor_suffixed + ' floor'
+
+    def __unicode__(self):
+        return self.floor_human_readable() + ', ' + self.building

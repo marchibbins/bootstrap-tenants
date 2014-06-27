@@ -36,5 +36,21 @@
         "fields": {
             "name": "Web Development"
         }
+    },
+    {
+        "pk": 1,
+        "model": "index.location",
+        "fields": {
+            "building": "Fitzroy House",
+            "floor": 0
+        }
+    },
+    {
+        "pk": 2,
+        "model": "index.location",
+        "fields": {
+            "building": "Fitzroy House",
+            "floor": 1
+        }
     }
 ]
