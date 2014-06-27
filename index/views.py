@@ -1,10 +1,8 @@
-from django.contrib.auth.models import User
-from django.shortcuts import render
 from django.db.models import Q
-
+from django.shortcuts import render
 from index.models import Tenant, Industry, Location
-
 from inspector_panel import debug
+
 
 def list(request):
     """ Renders sortable list of Users. """
@@ -13,9 +11,9 @@ def list(request):
     sort = request.GET.get('sort', 'last_name')
     reverse = (sort[0:1] == '-')
     if sort.split('-').pop() in user_fields:
-        sort = 'user__'+sort.split('-').pop()
+        sort = 'user__' + sort.split('-').pop()
         if reverse == True:
-            sort = '-'+sort
+            sort = '-' + sort
 
     industries = Industry.objects.all()
     locations = Location.objects.all()
@@ -31,15 +29,15 @@ def list(request):
         tenants = tenants.filter(location_id=location_id)
     if search_term != '':
         tenants = tenants.filter(
-                        Q(user__first_name__icontains=search_term)|
-                        Q(user__last_name__icontains=search_term)|
-                        Q(company__icontains=search_term)
-                )
+            Q(user__first_name__icontains=search_term) |
+            Q(user__last_name__icontains=search_term) |
+            Q(company__icontains=search_term)
+        )
 
     tenants = tenants.order_by(sort)
 
     debug("tenants")
-    debug([1,2,3])
+    debug([1, 2, 3])
 
     return render(request, 'index.html', {
         'tenants': tenants,
@@ -49,6 +47,7 @@ def list(request):
         'selected_location_id': int(location_id),
         'search_term': search_term,
     })
+
 
 def profile(request, tenant_id):
     """ Render full profile of tenant. """
