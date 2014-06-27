@@ -15,5 +15,26 @@
             "email": "admin@localhost",
             "date_joined": "2014-06-27T13:00:00.000Z"
         }
+    },
+    {
+        "pk": 1,
+        "model": "index.industry",
+        "fields": {
+            "name": "Video Editing"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "index.industry",
+        "fields": {
+            "name": "Digital Design"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "index.industry",
+        "fields": {
+            "name": "Web Development"
+        }
     }
 ]

@@ -11,6 +11,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     """ Mostly duplicates built-in Django User model, with required unique email as username field,
     removing username actual, also requiring first_name and last_name. """
 
+    # Authentication and control
     email = models.EmailField(_('email address'), unique=True)
     first_name = models.CharField(_('first name'), max_length=30)
     last_name = models.CharField(_('last name'), max_length=30)
@@ -20,6 +21,9 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         help_text=_('Designates whether the user can log into this admin site.'))
     is_active = models.BooleanField(_('active'), default=True,
         help_text=_('Designates whether this user should be treated as active. Unselect this instead of deleting accounts.'))
+
+    # Additional information
+    industries = models.ManyToManyField('Industry', null=True, blank=True)
 
     objects = CustomUserManager()
 
@@ -48,3 +52,13 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         Sends an email to this User.
         """
         send_mail(subject, message, from_email, [self.email])
+
+
+class Industry(models.Model):
+
+    """ Simple representation of an Industry, related M2M of index.CustomUser. """
+
+    name = models.CharField(max_length=50, unique=True)
+
+    def __unicode__(self):
+        return self.name
