@@ -1,0 +1,19 @@
+[
+    {
+        "pk": 1,
+        "model": "index.customuser",
+        "fields": {
+            "first_name": "Mr.",
+            "last_name": "Admin",
+            "is_active": true,
+            "is_superuser": true,
+            "is_staff": true,
+            "last_login": "2014-06-27T13:00:00.000Z",
+            "groups": [],
+            "user_permissions": [],
+            "password": "pbkdf2_sha256$12000$4gDerp1kSzq0$nFJ34iFTBfCe3/t6TQ2Lxlm/CrKxHGA6TttafWbi2nI=",
+            "email": "admin@localhost",
+            "date_joined": "2014-06-27T13:00:00.000Z"
+        }
+    }
+]
