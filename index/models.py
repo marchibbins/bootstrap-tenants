@@ -75,21 +75,16 @@ class Location(models.Model):
     building = models.CharField(_('building'), max_length=50)
     floor = models.IntegerField(_('floor'), default=0, help_text=_('Use zero for ground floor.'))
 
-    def get_floor_suffix(self, floor):
-        nth = {
-            1: "st",
-            2: "nd",
-            3: "rd"
-        }
-        return nth.get(floor % 10, 'th')
-
-    def floor_human_readable(self):
-        floor_suffixed = ''
+    def floor_readable(self):
         if self.floor > 0:
-            floor_suffixed = ''.join([str(self.floor), self.get_floor_suffix(self.floor)])
+            nth = {
+                1: "st",
+                2: "nd",
+                3: "rd"
+            }
+            return '%s%s floor' % (self.floor, nth.get(self.floor, 'th'))
         else:
-            floor_suffixed = 'Ground'
-        return floor_suffixed + ' floor'
+            return 'Ground floor'
 
     def __unicode__(self):
-        return self.floor_human_readable() + ', ' + self.building
+        return self.floor_readable() + ', ' + self.building
