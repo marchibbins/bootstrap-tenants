@@ -59,7 +59,7 @@ class Industry(models.Model):
 
     """ Simple representation of an Industry, related M2M of index.CustomUser. """
 
-    name = models.CharField(max_length=50, unique=True)
+    name = models.CharField(_('name'), max_length=50, unique=True)
 
     def __unicode__(self):
         return self.name
@@ -69,8 +69,8 @@ class Location(models.Model):
 
     """ Simple representation of a Location, related FK of index.CustomUser. """
 
-    building = models.CharField(max_length=50)
-    floor = models.IntegerField(default=0)
+    building = models.CharField(_('building'), max_length=50)
+    floor = models.IntegerField(_('floor'), default=0, help_text=_('Use zero for ground floor.'))
 
     def get_floor_suffix(self, floor):
         nth = {
