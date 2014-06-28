@@ -16,6 +16,7 @@ class UserListView(ListView):
     def get_queryset(self):
         """
         Returns ordered queryset based on GET params.
+        Stores filter combination on instance for template context.
         """
         queryset = CustomUser.objects.filter(is_staff=False)
         self.filters = {
