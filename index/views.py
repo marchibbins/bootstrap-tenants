@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.views.generic import DetailView, ListView
+from index.models import Industry, Location
 
 
 class UserListView(ListView):
@@ -26,6 +27,15 @@ class UserListView(ListView):
             order_by = '-' + order_by
 
         return get_user_model().objects.order_by(order_by)
+
+    def get_context_data(self, **kwargs):
+        """
+        Adds Industry and Location objects for filter options.
+        """
+        context = super(UserListView, self).get_context_data(**kwargs)
+        context['industries'] = Industry.objects.all()
+        context['locations'] = Location.objects.all()
+        return context
 
 
 class UserDetailView(DetailView):
