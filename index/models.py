@@ -23,7 +23,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     bio = models.CharField(_('bio'), max_length=255, null=True, blank=True)
     company = models.CharField(_('company'), max_length=50, null=True, blank=True)
-    date_moved_in = models.DateTimeField(_('date moved in'), null=True, blank=True)
+    date_moved_in = models.DateField(_('date moved in'), null=True, blank=True)
     industries = models.ManyToManyField('Industry', null=True, blank=True)
     location = models.ForeignKey('Location', null=True, blank=True)
 

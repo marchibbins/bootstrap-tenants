@@ -9,11 +9,11 @@
             "password": "pbkdf2_sha256$12000$4gDerp1kSzq0$nFJ34iFTBfCe3/t6TQ2Lxlm/CrKxHGA6TttafWbi2nI=",
             "bio": "Lorem ipsum",
             "company": "My admin company",
-            "date_moved_in": "2014-06-27T13:00:00.000Z",
             "industries": [
                 1
             ],
             "location": 1,
+            "date_moved_in": "2014-06-27",
             "is_active": true,
             "is_staff": true,
             "is_superuser": true,
