@@ -5,25 +5,35 @@
 {% block content %}
 <div class="container">
     <section>
-        <h1 class="page-header">{{ object.get_full_name }}</h1>
+        <div class="page-header">
+            <h1>Tenant Index</h1>
+            <p class="lead">{{ object.email }}</p>
+        </div>
         <dl>
-            <dt>Email</dt>
-            <dd>{{ object.email }}</dd>
+            {% if object.company %}
+                <dt>Company</dt>
+                <dd>{{ object.company }}</dd>
+            {% endif %}
 
-            <dt>Company</dt>
-            <dd>{{ object.company|default:'-' }}</dd>
+            {% if object.bio %}
+                <dt>Bio</dt>
+                <dd>{{ object.bio }}</dd>
+            {% endif %}
 
-            <dt>Bio</dt>
-            <dd>{{ object.bio|default:'-' }}</dd>
+            {% if object.industries.count %}
+                <dt>Industries</dt>
+                <dd>{{ object.industries.all|join:', ' }}</dd>
+            {% endif %}
 
-            <dt>Industries</dt>
-            <dd>{{ object.industries.all|join:', '|default:'-' }}</dd>
+            {% if object.location %}
+                <dt>Location</dt>
+                <dd>{{ object.location }}</dd>
+            {% endif %}
 
-            <dt>Location</dt>
-            <dd>{{ object.location|default:'-' }}</dd>
-
-            <dt>Date moved in</dt>
-            <dd>{{ object.date_moved_in|date:"dS F Y"|default:'-' }}</dd>
+            {% if object.date_moved_in %}
+                <dt>Date moved in</dt>
+                <dd>{{ object.date_moved_in|date:'dS F Y' }}</dd>
+            {% endif %}
         </dl>
     </section>
 </div>

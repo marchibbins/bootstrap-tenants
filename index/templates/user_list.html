@@ -4,13 +4,39 @@
 
 {% block content %}
 <div class="container">
-    <h1 class="page-header">Tenant Index</h1>
-    <ul>
-    {% for object in object_list %}
-        <li><a href="{% url 'user_detail' object.id %}" title="View {{ object.get_full_name }}'s profile">{{ object.get_full_name }}</a></li>
-    {% empty %}
-        <li>No users found</li>
-    {% endfor %}
-    </ul>
+    <div class="page-header">
+        <h1>Tenant Index</h1>
+        <p class="lead">Search, filter and sort tenants...right here!</p>
+    </div>
+    {% if object_list %}
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>First name <a href="#" title="Sort by first name">▾</a> <a href="#" title="Sort by first name">▴</a></th>
+                    <th>Last name <a href="#" title="Sort by last name">▾</a> <a href="#" title="Sort by last name">▴</a></th>
+                    <th>Company</th>
+                    <th>Date moved in</th>
+                    <th>Industry/sector</th>
+                    <th>Location</th>
+                    <th><span class="hidden">View profile</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for object in object_list %}
+                    <tr>
+                        <td>{{ object.first_name }}</td>
+                        <td>{{ object.last_name }}</td>
+                        <td>{{ object.company }}</td>
+                        <td>{{ object.date_moved_in|date:'dS F Y' }}</td>
+                        <td>{{ object.industries.all|join:', ' }}</td>
+                        <td>{{ object.location|default:'' }}</td>
+                        <td><a href="{% url 'user_detail' object.id %}">View project</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No tenants found.</p>
+    {% endif %}
 </div>
 {% endblock %}
