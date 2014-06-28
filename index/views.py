@@ -1,6 +1,5 @@
-from django.contrib.auth import get_user_model
 from django.views.generic import DetailView, ListView
-from index.models import Industry, Location
+from index.models import CustomUser, Industry, Location
 
 
 class UserListView(ListView):
@@ -18,6 +17,21 @@ class UserListView(ListView):
         """
         Returns ordered queryset based on GET params.
         """
+        queryset = CustomUser.objects.all()
+        self.filters = {}
+
+        # Filters
+        industry = self.request.GET.get('industry')
+        if industry:
+            queryset = queryset.filter(industries__id=industry)
+            self.filters['selected_industry'] = int(industry)
+
+        location = self.request.GET.get('location')
+        if location:
+            queryset = queryset.filter(location=location)
+            self.filters['selected_location'] = int(location)
+
+        # Ordering
         order_by = self.request.GET.get('order_by')
         if order_by not in self.orderable_columns:
             order_by = self.orderable_default
@@ -26,13 +40,14 @@ class UserListView(ListView):
         if order == 'desc':
             order_by = '-' + order_by
 
-        return get_user_model().objects.order_by(order_by)
+        return queryset.order_by(order_by)
 
     def get_context_data(self, **kwargs):
         """
         Adds Industry and Location objects for filter options.
         """
         context = super(UserListView, self).get_context_data(**kwargs)
+        context.update(self.filters)
         context['industries'] = Industry.objects.all()
         context['locations'] = Location.objects.all()
         return context
@@ -44,5 +59,5 @@ class UserDetailView(DetailView):
     Render detail view for a User.
     """
 
-    model = get_user_model()
+    model = CustomUser
     template_name = 'user_detail.html'

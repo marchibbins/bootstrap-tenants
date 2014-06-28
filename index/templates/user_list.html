@@ -6,15 +6,15 @@
 <div class="container">
     <div class="page-header">
         <h1>Tenant Index</h1>
-        <p class="lead">Search, filter and sort tenants&hellip; right here!</p>
     </div>
+        <p class="lead">Search, filter and sort tenants&hellip; right here!</p>
     <form action="{% url 'user_list' %}" method="get" class="form-inline" role="form">
         <div class="form-group">
             <label class="sr-only" for="industry">Industry</label>
             <select class="form-control input-lg" name="industry" id="industry">
                 <option value="">Select industry</option>
                 {% for industry in industries %}
-                    <option value="{{ industry.id }}">{{ industry }}</option>
+                    <option value="{{ industry.id }}" {% if selected_industry == industry.id %}selected{% endif %}>{{ industry }}</option>
                 {% endfor %}
             </select>
 
@@ -22,7 +22,7 @@
             <select class="form-control input-lg" name="location" id="location">
                 <option value="">Select location</option>
                 {% for location in locations %}
-                    <option value="{{ location.id }}">{{ location }}</option>
+                    <option value="{{ location.id }}" {% if selected_location == location.id %}selected{% endif %}>{{ location }}</option>
                 {% endfor %}
             </select>
 
