@@ -6,8 +6,8 @@
 <div class="container">
     <div class="page-header">
         <h1>Tenant Index</h1>
-    </div>
         <p class="lead">Search, filter and sort tenants&hellip; right here!</p>
+    </div>
     <form action="{% url 'user_list' %}" method="get" class="form-inline" role="form">
         <div class="form-group">
             <label class="sr-only" for="industry">Industry</label>
@@ -28,43 +28,46 @@
 
             <label class="sr-only" for="search">Search name or company</label>
             <input type="search" class="form-control input-lg" name="search" id="search" placeholder="Search name or company&hellip;">
+
+            <input type="hidden" name="order_by" value="{{ order_by }}">
+            <input type="hidden" name="order" value="{{ order }}">
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-lg btn-primary">Filter</button>
-            <a href="{% url 'user_list' %}" title="Reset filter options" class="btn btn-lg btn-default">Reset</a>
+            <a href="{% url 'user_list' %}?order_by={{ order_by }}&amp;order={{ order }}" title="Reset filter options" class="btn btn-lg btn-default">Reset</a>
         </div>
     </form>
+    <hr>
+
     {% if object_list %}
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th>
+                    <th class="{% if 'first_name' in order_by %}success{% endif %}">
                         First name
-                        <a href="?order_by=first_name" title="Sort by first name">▾</a>
-                        <a href="?order_by=first_name&amp;order=desc" title="Sort by first name">▴</a>
+                        <a href="{{ querystring }}&amp;order_by=first_name" title="Sort by first name">▾</a>
+                        <a href="{{ querystring }}&amp;order_by=first_name&amp;order=desc" title="Sort by first name">▴</a>
                     </th>
-                    <th>
+                    <th class="{% if 'last_name' in order_by %}success{% endif %}">
                         Last name
-                        <a href="?order_by=last_name" title="Sort by last name">▾</a>
-                        <a href="?order_by=last_name&amp;order=desc" title="Sort by last name">▴</a>
+                        <a href="{{ querystring }}&amp;order_by=last_name" title="Sort by last name">▾</a>
+                        <a href="{{ querystring }}&amp;order_by=last_name&amp;order=desc" title="Sort by last name">▴</a>
                     </th>
-                    <th>
+                    <th class="{% if 'company' in order_by %}success{% endif %}">
                         Company
-                        <a href="?order_by=company" title="Sort by last name">▾</a>
-                        <a href="?order_by=company&amp;order=desc" title="Sort by last name">▴</a>
+                        <a href="{{ querystring }}&amp;order_by=company" title="Sort by last name">▾</a>
+                        <a href="{{ querystring }}&amp;order_by=company&amp;order=desc" title="Sort by last name">▴</a>
                     </th>
-                    <th>
-                        Industry/sector
-                    </th>
-                    <th>
+                    <th>Industry/sector</th>
+                    <th class="{% if 'location' in order_by %}success{% endif %}">
                         Location
-                        <a href="?order_by=location" title="Sort by last name">▾</a>
-                        <a href="?order_by=location&amp;order=desc" title="Sort by last name">▴</a>
+                        <a href="{{ querystring }}&amp;order_by=location" title="Sort by last name">▾</a>
+                        <a href="{{ querystring }}&amp;order_by=location&amp;order=desc" title="Sort by last name">▴</a>
                     </th>
-                    <th>
+                    <th class="{% if 'date_moved_in' in order_by %}success{% endif %}">
                         Date moved in
-                        <a href="?order_by=date_moved_in" title="Sort by last name">▾</a>
-                        <a href="?order_by=date_moved_in&amp;order=desc" title="Sort by last name">▴</a>
+                        <a href="{{ querystring }}&amp;order_by=date_moved_in" title="Sort by last name">▾</a>
+                        <a href="{{ querystring }}&amp;order_by=date_moved_in&amp;order=desc" title="Sort by last name">▴</a>
                     </th>
                     <th><span class="hidden">View profile</span></th>
                 </tr>
@@ -72,13 +75,25 @@
             <tbody>
                 {% for object in object_list %}
                     <tr>
-                        <td>{{ object.first_name }}</td>
-                        <td>{{ object.last_name }}</td>
-                        <td>{{ object.company }}</td>
+                        <td class="{% if 'first_name' in order_by %}success{% endif %}">
+                            {{ object.first_name }}
+                        </td>
+                        <td class="{% if 'last_name' in order_by %}success{% endif %}">
+                            {{ object.last_name }}
+                        </td>
+                        <td class="{% if 'company' in order_by %}success{% endif %}">
+                            {{ object.company }}
+                        </td>
                         <td>{{ object.industries.all|join:', ' }}</td>
-                        <td>{{ object.location|default:'' }}</td>
-                        <td>{{ object.date_moved_in|date:'dS F Y' }}</td>
-                        <td><a href="{% url 'user_detail' object.id %}">View project</a></td>
+                        <td class="{% if 'location' in order_by %}success{% endif %}">
+                            {{ object.location|default:'' }}
+                        </td>
+                        <td class="{% if 'date_moved_in' in order_by %}success{% endif %}">
+                            {{ object.date_moved_in|date:'dS F Y' }}
+                        </td>
+                        <td>
+                            <a href="{% url 'user_detail' object.id %}">View project</a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>

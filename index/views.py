@@ -18,27 +18,33 @@ class UserListView(ListView):
         Returns ordered queryset based on GET params.
         """
         queryset = CustomUser.objects.all()
-        self.filters = {}
+        self.filters = {
+            'querystring': '?'
+        }
 
         # Filters
         industry = self.request.GET.get('industry')
         if industry:
             queryset = queryset.filter(industries__id=industry)
+            self.filters['querystring'] += '&industry=%s' % industry
             self.filters['selected_industry'] = int(industry)
 
         location = self.request.GET.get('location')
         if location:
             queryset = queryset.filter(location=location)
+            self.filters['querystring'] += '&location=%s' % location
             self.filters['selected_location'] = int(location)
 
         # Ordering
         order_by = self.request.GET.get('order_by')
         if order_by not in self.orderable_columns:
             order_by = self.orderable_default
+        self.filters['order_by'] = order_by
 
         order = self.request.GET.get('order', 'asc')
         if order == 'desc':
             order_by = '-' + order_by
+        self.filters['order'] = order
 
         return queryset.order_by(order_by)
 
