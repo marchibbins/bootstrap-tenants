@@ -75,11 +75,6 @@ DATABASES = {
 # Custom User model
 AUTH_USER_MODEL = 'index.CustomUser'
 
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.core.context_processors.request',
-    'django.contrib.auth.context_processors.auth',
-)
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 LANGUAGE_CODE = 'en-us'
