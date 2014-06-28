@@ -1,12 +1,14 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from index.views import UserDetailView
+
 
 admin.autodiscover()
 
 urlpatterns = patterns('',
     # Index
     url(r'^$', 'index.views.user_list', name='user_list'),
-    url(r'^profile/(?P<user_id>[0-9]+)$', 'index.views.user_detail', name='user_detail'),
+    url(r'^profile/(?P<pk>\d+)$', UserDetailView.as_view(), name='user-detail'),
 
     # Admin
     url(r'^admin/', include(admin.site.urls)),

@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.views.generic.detail import DetailView
 
 
 def user_list(request):
@@ -9,9 +9,9 @@ def user_list(request):
     return HttpResponse(output)
 
 
-def user_detail(request, user_id):
+class UserDetailView(DetailView):
     """
-    Render full profile of User, throw 404 if ID not found.
+    Render detail view for a User.
     """
-    user = get_object_or_404(get_user_model(), pk=user_id)
-    return render(request, 'profile.html', {'user': user})
+    model = get_user_model()
+    template_name = 'profile.html'
