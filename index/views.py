@@ -9,7 +9,7 @@ class UserListView(ListView):
     """
 
     model = get_user_model()
-    template_name = 'list.html'
+    template_name = 'user_list.html'
 
 
 class UserDetailView(DetailView):
@@ -19,4 +19,4 @@ class UserDetailView(DetailView):
     """
 
     model = get_user_model()
-    template_name = 'profile.html'
+    template_name = 'user_detail.html'
