@@ -17,7 +17,7 @@ class UserListView(ListView):
         """
         Returns ordered queryset based on GET params.
         """
-        queryset = CustomUser.objects.all()
+        queryset = CustomUser.objects.filter(is_staff=False)
         self.filters = {
             'querystring': '?'
         }
