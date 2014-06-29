@@ -72,8 +72,10 @@ DATABASES = {
     'default': dj_database_url.config(default='sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite'))
 }
 
-# Custom User model
+# Auth
 AUTH_USER_MODEL = 'index.CustomUser'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
