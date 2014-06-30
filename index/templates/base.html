@@ -6,6 +6,19 @@
     <link href="{% static "bower_components/bootstrap/dist/css/bootstrap.min.css" %}" rel="stylesheet">
 </head>
 <body>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                    <li><a href="#" title="Log in">Logged in as {{ user.get_full_name }}</a></li>
+                    <li><a href="{% url 'logout' %}" title="Log out">Log out</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}" title="Log in">Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
     {% block content %}
     {% endblock %}
 </body>
