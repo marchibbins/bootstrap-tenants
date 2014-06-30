@@ -42,10 +42,10 @@
                     {% endfor %}
                 </ul>
             {% endif %}
+            <p class="help-block"><a href="{% url "password_reset_recover" %}">Forgotten password?</a></p>
         </div>
 
         <input type="hidden" name="next" value="{{ next }}">
-
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>

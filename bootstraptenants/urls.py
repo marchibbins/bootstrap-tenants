@@ -14,6 +14,7 @@ urlpatterns = patterns('',
     # Auth
     url(r'^login$', LoginView.as_view(), name='login'),
     url(r'^logout$', LogoutView.as_view(), name='logout'),
+    url(r'^password/', include('password_reset.urls')),
 
     # Admin
     url(r'^admin/', include(admin.site.urls)),

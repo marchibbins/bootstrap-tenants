@@ -31,6 +31,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'index',
+    'password_reset',
     'debug_toolbar',
     'inspector_panel',
 )
@@ -100,3 +101,6 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
+
+# Email
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
