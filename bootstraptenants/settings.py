@@ -33,6 +33,7 @@ INSTALLED_APPS = (
     'index',
     'password_reset',
     'bootstrapform',
+    'avatar',
     'debug_toolbar',
     'inspector_panel',
 )
@@ -94,6 +95,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = 'media'
+MEDIA_URL = '/media/'
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

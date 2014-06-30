@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load avatar_tags bootstrap %}
+
+{% block title %}Delete avatar{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <h1>Delete avatar</h1>
+    </div>
+
+    {% if not avatars %}
+        <p>You have no avatars to delete. Please <a href="{% url 'avatar_change' %}">upload one</a>.</p>
+    {% else %}
+        <form action="{% url 'avatar_delete' %}" method="POST" class="form" role="form">
+            {% csrf_token %}
+
+            {{ delete_avatar_form|bootstrap }}
+
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Delete">
+            </div>
+        </form>
+    {% endif %}
+</div>
+{% endblock %}

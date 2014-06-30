@@ -1,3 +1,5 @@
+{% load avatar_tags %}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +12,9 @@
         <div class="container">
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
-                    <li><a href="#" title="Log in">Logged in as {{ user.get_full_name }}</a></li>
+                    <li style="margin-top: 12px;">{% avatar user 25 %}</li>
+                    <li class="navbar-text">{{ user.get_full_name }}</li>
+                    <li><a href="{% url 'avatar_change' %}" title="Change your profile image">Change avatar</a></li>
                     <li>
                         <form action="{% url 'logout' %}" method="post" class="navbar-form" role="form">
                             {% csrf_token %}
