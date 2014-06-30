@@ -81,6 +81,9 @@ class LogoutView(View):
     """ Class-based logout view. """
 
     def get(self, request, *args, **kwargs):
+        """
+        Performs logout on GET, controversially.
+        """
         logout(request)
         return HttpResponseRedirect(settings.LOGOUT_REDIRECT_URL)
 
@@ -154,15 +157,21 @@ class UserDetailView(DetailView):
 
 
 def error403(request, reason=""):
-    """ Generic 403 view, also CSRF and cookie failure. """
+    """
+    Generic 403 view, also CSRF and cookie failure.
+    """
     return render(request, '403.html', {'reason': reason}, status=403)
 
 
 def error404(request):
-    """ Generic 404 view. """
+    """
+    Generic 404 view.
+    """
     return render(request, '404.html', status=404)
 
 
 def error500(request):
-    """ Generic 500 view. """
+    """
+    Generic 500 view.
+    """
     return render(request, '500.html', status=500)
