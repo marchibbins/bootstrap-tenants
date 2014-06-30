@@ -15,7 +15,7 @@ class LoginView(FormView):
     """ Class-based login view. """
 
     form_class = AuthenticationForm
-    template_name = 'registration/login.html'
+    template_name = 'auth/login.html'
 
     @method_decorator(csrf_protect)
     @method_decorator(never_cache)
