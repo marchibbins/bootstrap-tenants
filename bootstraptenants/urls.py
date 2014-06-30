@@ -41,4 +41,14 @@ urlpatterns = patterns('',
 
     # Admin
     url(r'^admin/', include(admin.site.urls)),
+
+    # Error previews
+    url(r'^403', 'index.views.error403', name='error_403'),
+    url(r'^404', 'index.views.error404', name='error_404'),
+    url(r'^500', 'index.views.error500', name='error_500'),
 )
+
+# Error handlers
+handler403 = 'index.views.error403'
+handler404 = 'index.views.error404'
+handler500 = 'index.views.error500'

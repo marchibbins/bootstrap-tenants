@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Page not found{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <h1>Error 403</h1>
+        {% if 'cookie' in reason|lower %}
+            <p class="lead">Crumbs, looks like there might be a problem with your cookies.</p>
+            <p>Check that they're enabled and try again.</p>
+        {% else %}
+            <p class="lead">Oops, something went wrong.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

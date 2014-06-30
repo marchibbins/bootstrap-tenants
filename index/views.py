@@ -2,6 +2,7 @@ from django.conf import settings
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponseRedirect
+from django.shortcuts import render
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
@@ -150,3 +151,18 @@ class UserDetailView(DetailView):
 
     model = CustomUser
     template_name = 'user_detail.html'
+
+
+def error403(request, reason=""):
+    """ Generic 403 view, also CSRF and cookie failure. """
+    return render(request, '403.html', {'reason': reason}, status=403)
+
+
+def error404(request):
+    """ Generic 404 view. """
+    return render(request, '404.html', status=404)
+
+
+def error500(request):
+    """ Generic 500 view. """
+    return render(request, '500.html', status=500)
