@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
-from django.views.generic import DetailView, FormView, ListView, View
+from django.views.generic import DetailView, FormView, ListView, TemplateView
 from index.models import CustomUser, Industry, Location
 import urlparse
 
@@ -76,15 +76,28 @@ class LoginView(FormView):
         return context
 
 
-class LogoutView(View):
+class LogoutView(TemplateView):
 
     """ Class-based logout view. """
 
+    template_name = 'auth/logout.html'
+
     def get(self, request, *args, **kwargs):
         """
-        Performs logout on GET, controversially.
+        Renders logout form on GET to perform state change on POST.
         """
-        logout(request)
+        if not request.user.is_authenticated():
+            return HttpResponseRedirect(settings.LOGIN_REDIRECT_URL)
+
+        return super(LogoutView, self).get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        """
+        Performs logout.
+        """
+        if request.user.is_authenticated():
+            logout(request)
+
         return HttpResponseRedirect(settings.LOGOUT_REDIRECT_URL)
 
 

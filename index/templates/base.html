@@ -11,7 +11,12 @@
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
                     <li><a href="#" title="Log in">Logged in as {{ user.get_full_name }}</a></li>
-                    <li><a href="{% url 'logout' %}" title="Log out">Log out</a></li>
+                    <li>
+                        <form action="{% url 'logout' %}" method="post" class="navbar-form" role="form">
+                            {% csrf_token %}
+                            <input type="submit" class="btn btn-default" value="Logout">
+                        </form>
+                    </li>
                 {% else %}
                     <li><a href="{% url 'login' %}" title="Log in">Login</a></li>
                 {% endif %}
