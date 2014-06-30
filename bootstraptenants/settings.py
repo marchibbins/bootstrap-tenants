@@ -32,6 +32,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'index',
     'password_reset',
+    'bootstrapform',
     'debug_toolbar',
     'inspector_panel',
 )
