@@ -16,7 +16,7 @@
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
                     <li style="margin-top: 12px;">{% avatar user 25 %}</li>
-                    <li class="navbar-text">{{ user.get_full_name }}</li>
+                    <li><a href="{% url 'user_detail' user.id %}" title="View your profile">{{ user.get_full_name }}</a></li>
                     <li><a href="{% url 'user_update' %}" title="Edit your profile details">Edit profile</a></li>
                     <li><a href="{% url 'avatar_change' %}" title="Change your profile image">Change avatar</a></li>
                     <li>
