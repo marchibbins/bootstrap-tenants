@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load avatar_tags %}
 
 {% block title %}Tenant Index{% endblock %}
 
@@ -43,6 +44,7 @@
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
+                    <th><span class="hidden">Avatar</span></th>
                     <th class="{% if 'first_name' in order_by %}success{% endif %}">
                         First name
                         <a href="{{ querystring }}&amp;order_by=first_name" title="Sort by first name">▾</a>
@@ -75,6 +77,9 @@
             <tbody>
                 {% for object in object_list %}
                     <tr>
+                        <td>
+                            {% avatar object 75 %}
+                        </td>
                         <td class="{% if 'first_name' in order_by %}success{% endif %}">
                             {{ object.first_name }}
                         </td>
