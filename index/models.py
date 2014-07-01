@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils import timezone
-from django.utils.translation import ugettext_lazy as _
 from django.core.mail import send_mail
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from index.managers import CustomUserManager
@@ -11,20 +10,20 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     """ Mostly duplicates built-in Django User model, with required unique email as username field,
     removing username actual, also requiring first_name and last_name. """
 
-    email = models.EmailField(_('email address'), unique=True)
-    first_name = models.CharField(_('first name'), max_length=30)
-    last_name = models.CharField(_('last name'), max_length=30)
-    date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
+    email = models.EmailField('email address', unique=True)
+    first_name = models.CharField('first name', max_length=30)
+    last_name = models.CharField('last name', max_length=30)
+    date_joined = models.DateTimeField('date joined', default=timezone.now)
 
-    is_staff = models.BooleanField(_('staff status'), default=False,
-        help_text=_('Designates whether the user can log into this admin site.'))
-    is_active = models.BooleanField(_('active'), default=True,
-        help_text=_('Designates whether this user should be treated as active. Unselect this instead of deleting accounts.'))
+    is_staff = models.BooleanField('staff status', default=False,
+        help_text='Designates whether the user can log into this admin site.')
+    is_active = models.BooleanField('active', default=True,
+        help_text='Designates whether this user should be treated as active. Unselect this instead of deleting accounts.')
 
-    bio = models.TextField(_('bio'), null=True, blank=True)
-    website = models.CharField(_('website'), max_length=255, null=True, blank=True)
-    company = models.CharField(_('company'), max_length=50, null=True, blank=True)
-    date_moved_in = models.DateField(_('date moved in'), null=True, blank=True)
+    bio = models.TextField('bio', null=True, blank=True)
+    website = models.CharField('website', max_length=255, null=True, blank=True)
+    company = models.CharField('company', max_length=50, null=True, blank=True)
+    date_moved_in = models.DateField('date moved in', null=True, blank=True)
     industries = models.ManyToManyField('Industry', null=True, blank=True)
     location = models.ForeignKey('Location', null=True, blank=True)
 
@@ -34,8 +33,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = ['first_name', 'last_name']
 
     class Meta:
-        verbose_name = _('user')
-        verbose_name_plural = _('users')
+        verbose_name = 'user'
+        verbose_name_plural = 'users'
 
     def get_full_name(self):
         """
@@ -61,10 +60,10 @@ class Industry(models.Model):
 
     """ Simple representation of an Industry, related M2M of index.CustomUser. """
 
-    name = models.CharField(_('name'), max_length=50, unique=True)
+    name = models.CharField('name', max_length=50, unique=True)
 
     class Meta:
-        verbose_name_plural = _('industries')
+        verbose_name_plural = 'industries'
 
     def __unicode__(self):
         return self.name
@@ -74,8 +73,8 @@ class Location(models.Model):
 
     """ Simple representation of a Location, related FK of index.CustomUser. """
 
-    building = models.CharField(_('building'), max_length=50)
-    floor = models.IntegerField(_('floor'), default=0, help_text=_('Use zero for ground floor.'))
+    building = models.CharField('building', max_length=50)
+    floor = models.IntegerField('floor', default=0, help_text='Use zero for ground floor.')
 
     def floor_readable(self):
         """

@@ -1,6 +1,5 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from django.utils.translation import ugettext_lazy as _
 from index.models import CustomUser, Industry, Location
 from index.forms import CustomUserChangeForm, CustomUserCreationForm
 
@@ -14,13 +13,13 @@ class CustomUserAdmin(UserAdmin):
         (None, {
             'fields': ('email', 'first_name', 'last_name', 'password')
         }),
-        (_('Information'), {
+        ('Information', {
             'fields': ('bio', 'website', 'company', 'industries', 'location', 'date_moved_in')
         }),
-        (_('Permissions'), {
+        ('Permissions', {
             'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')
         }),
-        (_('Important dates'), {
+        ('Important dates', {
             'fields': ('last_login', 'date_joined')
         }),
     )
@@ -30,7 +29,7 @@ class CustomUserAdmin(UserAdmin):
             'classes': ('wide',),
             'fields': ('email', 'first_name', 'last_name', 'password1', 'password2')
         }),
-        (_('Information'), {
+        ('Information', {
             'fields': ('bio', 'company', 'industries', 'location', 'date_moved_in')
         }),
     )
@@ -49,7 +48,7 @@ class CustomUserAdmin(UserAdmin):
         """
         return ', '.join([industry.name for industry in obj.industries.all()])
 
-    get_industries.short_description = _('Industries')
+    get_industries.short_description = 'Industries'
 
 
 admin.site.register(CustomUser, CustomUserAdmin)
