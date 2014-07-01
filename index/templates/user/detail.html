@@ -22,6 +22,11 @@
                 <dd>{{ object.bio }}</dd>
             {% endif %}
 
+            {% if object.website %}
+                <dt>Website</dt>
+                <dd>{{ object.website|urlize }}</dd>
+            {% endif %}
+
             {% if object.industries.count %}
                 <dt>Industries</dt>
                 <dd>{{ object.industries.all|join:', ' }}</dd>

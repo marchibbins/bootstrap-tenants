@@ -22,6 +22,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         help_text=_('Designates whether this user should be treated as active. Unselect this instead of deleting accounts.'))
 
     bio = models.CharField(_('bio'), max_length=255, null=True, blank=True)
+    website = models.CharField(_('website'), max_length=255, null=True, blank=True)
     company = models.CharField(_('company'), max_length=50, null=True, blank=True)
     date_moved_in = models.DateField(_('date moved in'), null=True, blank=True)
     industries = models.ManyToManyField('Industry', null=True, blank=True)
