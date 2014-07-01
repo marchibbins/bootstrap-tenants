@@ -97,7 +97,18 @@
                             {{ object.date_moved_in|date:'dS F Y' }}
                         </td>
                         <td>
-                            <a href="{% url 'user_detail' object.id %}">View project</a>
+                            <a href="#profile-{{ object.id }}" data-toggle="collapse">View more</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="8">
+                            <div id="profile-{{ object.id }}" class="collapse">
+                                {% if object.bio %}
+                                    <strong>Bio</strong>
+                                    <p>{{ object.bio }}</p>
+                                {% endif %}
+                                <p><a href="{% url 'user_detail' object.id %}">View full profile</a></p>
+                            </div>
                         </td>
                     </tr>
                 {% endfor %}
