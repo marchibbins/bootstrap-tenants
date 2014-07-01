@@ -94,7 +94,7 @@
                             {{ object.location|default:'' }}
                         </td>
                         <td class="{% if 'date_moved_in' in order_by %}success{% endif %}">
-                            {{ object.date_moved_in|date:'dS F Y' }}
+                            {{ object.date_moved_in|date:'jS F Y' }}
                         </td>
                         <td>
                             <a href="#profile-{{ object.id }}" data-toggle="collapse">View more</a>
