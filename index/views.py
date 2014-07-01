@@ -1,12 +1,15 @@
 from django.conf import settings
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm
+from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
 from django.views.generic import DetailView, FormView, ListView, TemplateView
+from django.views.generic.edit import UpdateView
+from index.forms import CustomUserUpdateForm
 from index.models import CustomUser, Industry, Location
 import urlparse
 
@@ -167,6 +170,24 @@ class UserDetailView(DetailView):
 
     model = CustomUser
     template_name = 'user/detail.html'
+
+
+class UserUpdateView(UpdateView):
+
+    """
+    Render update form view for current User.
+    """
+
+    model = CustomUser
+    form_class = CustomUserUpdateForm
+    success_url = reverse_lazy('user_update')
+    template_name = 'user/update.html'
+
+    def get_object(self, queryset=None):
+        """
+        Return current authenticated user.
+        """
+        return self.request.user
 
 
 def error403(request, reason=""):

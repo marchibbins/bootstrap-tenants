@@ -1,4 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.forms import ModelForm
 from index.models import CustomUser
 
 
@@ -29,3 +30,14 @@ class CustomUserChangeForm(UserChangeForm):
 
     class Meta:
         model = CustomUser
+
+
+class CustomUserUpdateForm(ModelForm):
+
+    """
+    Simple front-facing CustomUser form for non-staff use.
+    """
+
+    class Meta:
+        model = CustomUser
+        fields = ['email', 'first_name', 'last_name', 'bio', 'company', 'industries', 'location', 'date_moved_in']

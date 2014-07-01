@@ -3,7 +3,7 @@ from django.conf.urls import patterns, include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth.decorators import login_required
-from index.views import LoginView, LogoutView, UserDetailView, UserListView
+from index.views import LoginView, LogoutView, UserDetailView, UserListView, UserUpdateView
 from password_reset.views import Recover, RecoverDone, Reset, ResetDone
 
 
@@ -18,6 +18,10 @@ urlpatterns = patterns('',
     url(r'^profile/(?P<pk>\d+)$',
         login_required(UserDetailView.as_view()),
         name='user_detail'),
+
+    url(r'^profile/edit$',
+        login_required(UserUpdateView.as_view()),
+        name='user_update'),
 
     # Avatar
     url(r'^avatar/add/$', 'avatar.views.add', name='avatar_add'),
