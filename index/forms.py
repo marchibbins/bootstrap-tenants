@@ -40,4 +40,4 @@ class CustomUserUpdateForm(ModelForm):
 
     class Meta:
         model = CustomUser
-        fields = ['email', 'first_name', 'last_name', 'bio', 'company', 'industries', 'location', 'date_moved_in']
+        exclude = ('password', 'last_login', 'groups', 'user_permissions', 'date_joined', 'is_active', 'is_staff', 'is_superuser')
