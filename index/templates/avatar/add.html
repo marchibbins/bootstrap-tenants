@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load avatar_tags bootstrap %}
+
+{% block title %}Add avatar{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <h1>Add avatar</h1>
+    </div>
+    {% if not avatars %}
+        <p>You haven't uploaded an avatar yet. Please upload one now.</p>
+    {% else %}
+        <p>Your current avatar:</p>
+        {% avatar user %}
+    {% endif %}
+
+    <form action="{% url 'avatar_add' %}" method="POST" enctype="multipart/form-data" class="form" role="form">
+        {% csrf_token %}
+
+        {{ upload_avatar_form|bootstrap }}
+
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Upload new avatar">
+        </div>
+    </form>
+</div>
+{% endblock %}

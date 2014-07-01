@@ -110,7 +110,7 @@ class UserListView(ListView):
     orderable_columns = ('first_name', 'last_name', 'company', 'location', 'date_moved_in')
     orderable_default = 'last_name'
 
-    template_name = 'user_list.html'
+    template_name = 'user/list.html'
 
     def get_queryset(self):
         """
@@ -166,7 +166,7 @@ class UserDetailView(DetailView):
     """
 
     model = CustomUser
-    template_name = 'user_detail.html'
+    template_name = 'user/detail.html'
 
 
 def error403(request, reason=""):

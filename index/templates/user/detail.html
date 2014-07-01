@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load avatar_tags %}
 
 {% block title %}Profile for {{ object.get_full_name }}{% endblock %}
 
@@ -9,6 +10,7 @@
             <h1>Tenant Index</h1>
             <p class="lead">{{ object.email }}</p>
         </div>
+        {% avatar object 100 %}
         <dl>
             {% if object.company %}
                 <dt>Company</dt>

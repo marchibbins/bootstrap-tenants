@@ -1,4 +1,6 @@
+from django.conf import settings
 from django.conf.urls import patterns, include, url
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth.decorators import login_required
 from index.views import LoginView, LogoutView, UserDetailView, UserListView
@@ -16,6 +18,11 @@ urlpatterns = patterns('',
     url(r'^profile/(?P<pk>\d+)$',
         login_required(UserDetailView.as_view()),
         name='user_detail'),
+
+    # Avatar
+    url(r'^avatar/add/$', 'avatar.views.add', name='avatar_add'),
+    url(r'^avatar/change/$', 'avatar.views.change', name='avatar_change'),
+    url(r'^avatar/delete/$', 'avatar.views.delete', name='avatar_delete'),
 
     # Auth
     url(r'^login$', LoginView.as_view(), name='login'),
@@ -47,6 +54,10 @@ urlpatterns = patterns('',
     url(r'^404', 'index.views.error404', name='error_404'),
     url(r'^500', 'index.views.error500', name='error_500'),
 )
+
+# Allow Django to serve media files in DEBUG mode
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # Error handlers
 handler403 = 'index.views.error403'
