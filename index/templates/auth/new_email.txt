@@ -1,0 +1,7 @@
+Dear {{ username }},
+
+An account has been created for you on {{ site.domain }}.
+
+You can set your new password by following this link:
+
+http{% if secure %}s{% endif %}://{{ site.domain }}{% url 'password_reset_new' token %}

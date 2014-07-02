@@ -1,8 +1,15 @@
-from django.db import models
-from django.utils import timezone
-from django.core.mail import send_mail
+from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+from django.contrib.sites.models import Site
+from django.core import signing
+from django.core.mail import send_mail
+from django.db import models
+from django.dispatch import receiver
+from django.template import loader
+from django.utils import timezone
 from index.managers import CustomUserManager
+from password_reset.forms import PasswordRecoveryForm
+from password_reset.views import SaltMixin
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
@@ -49,11 +56,32 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         """
         return self.first_name
 
-    def email_user(self, subject, message, from_email=None):
+    def email_user(self, subject, message, from_email=settings.DEFAULT_FROM_EMAIL):
         """
         Sends an email to this User.
         """
         send_mail(subject, message, from_email, [self.email])
+
+
+@receiver(models.signals.post_save, sender=CustomUser, dispatch_uid="customuser_created")
+def notify_created_user(sender, instance, created, **kwargs):
+    """
+    Send an email to the new User to set their own password.
+    """
+    if created:
+        user = instance
+        form = PasswordRecoveryForm(data={'username_or_email': user.email})
+        if form.is_valid():
+            context = {
+                'user': user,
+                'username': user.email,
+                'secure': settings.SITE_SECURE,
+                'site': Site.objects.get_current(),
+                'token': signing.dumps(user.pk, salt=SaltMixin.salt),
+            }
+            body = loader.render_to_string('auth/new_email.txt', context).strip()
+            subject = loader.render_to_string('auth/new_email_subject.txt', context).strip()
+            user.email_user(subject, body)
 
 
 class Industry(models.Model):

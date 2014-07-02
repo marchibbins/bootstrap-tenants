@@ -50,6 +50,10 @@ urlpatterns = patterns('',
         Reset.as_view(template_name='auth/reset.html'),
         name='password_reset_reset'),
 
+    url(r'^reset/(?P<token>[\w:-]+)/new$',
+        Reset.as_view(template_name='auth/new.html'),
+        name='password_reset_new'),
+
     # Admin
     url(r'^admin/', include(admin.site.urls)),
 
