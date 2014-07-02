@@ -30,7 +30,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         help_text='Designates whether this user should be shown in the tenant index list. Unselect this to remove users from index list.')
 
     bio = models.TextField('bio', null=True, blank=True)
-    website = models.CharField('website', max_length=255, null=True, blank=True)
+    website = models.URLField('website', null=True, blank=True)
     company = models.CharField('company', max_length=50, null=True, blank=True)
     date_moved_in = models.DateField('date moved in', null=True, blank=True)
     industries = models.ManyToManyField('Industry', null=True, blank=True)
