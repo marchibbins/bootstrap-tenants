@@ -24,29 +24,29 @@ urlpatterns = patterns('',
         name='user_update'),
 
     # Avatar
-    url(r'^avatar/add/$', 'avatar.views.add', name='avatar_add'),
-    url(r'^avatar/change/$', 'avatar.views.change', name='avatar_change'),
-    url(r'^avatar/delete/$', 'avatar.views.delete', name='avatar_delete'),
+    url(r'^avatar/add$', 'avatar.views.add', name='avatar_add'),
+    url(r'^avatar/change$', 'avatar.views.change', name='avatar_change'),
+    url(r'^avatar/delete$', 'avatar.views.delete', name='avatar_delete'),
 
     # Auth
     url(r'^login$', LoginView.as_view(), name='login'),
     url(r'^logout$', LogoutView.as_view(), name='logout'),
 
-    url(r'^recover/(?P<signature>.+)/$',
+    url(r'^recover/(?P<signature>.+)$',
         RecoverDone.as_view(template_name='auth/reset_sent.html'),
         name='password_reset_sent'),
 
-    url(r'^recover/$',
+    url(r'^recover$',
         Recover.as_view(template_name='auth/recovery_form.html' ,
                         email_template_name='auth/recovery_email.txt',
                         email_subject_template_name='auth/recovery_email_subject.txt'),
         name='password_reset_recover'),
 
-    url(r'^reset/done/$',
+    url(r'^reset/done$',
         ResetDone.as_view(template_name='auth/recovery_done.html'),
         name='password_reset_done'),
 
-    url(r'^reset/(?P<token>[\w:-]+)/$',
+    url(r'^reset/(?P<token>[\w:-]+)$',
         Reset.as_view(template_name='auth/reset.html'),
         name='password_reset_reset'),
 
