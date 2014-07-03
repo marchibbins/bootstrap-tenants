@@ -10,4 +10,8 @@ First run
 
         $ python manage.py syncdb --noinput
 
+3. Load development fixture data
+
+        $ python manage.py loaddata index/fixtures/development_data.json
+
 This work is licensed under a [Creative Commons Attribution-ShareAlike 3.0 Unported License](http://creativecommons.org/licenses/by-sa/3.0)
