@@ -36,6 +36,7 @@ class CustomUserAdmin(UserAdmin):
 
     form = CustomUserChangeForm
     add_form = CustomUserCreationForm
+    add_form_template = 'user/admin/add_form.html'
 
     list_display = ('email', 'first_name', 'last_name', 'company', 'get_industries', 'location', 'date_moved_in', 'is_in_index', 'is_staff', 'is_active', 'is_superuser')
     list_filter = ('industries', 'location', 'is_in_index', 'is_staff', 'is_active', 'is_superuser', 'groups')

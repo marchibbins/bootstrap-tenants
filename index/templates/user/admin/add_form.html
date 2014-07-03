@@ -1,0 +1,7 @@
+{% extends 'admin/auth/user/add_form.html' %}
+
+{% block field_sets %}
+    {% for fieldset in adminform %}
+      {% include 'user/admin/fieldset.html' %}
+    {% endfor %}
+{% endblock %}
