@@ -6,6 +6,7 @@ from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.utils.decorators import method_decorator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
 from django.views.generic import DetailView, FormView, ListView, TemplateView
@@ -113,7 +114,8 @@ class UserListView(ListView):
 
     orderable_columns = ('first_name', 'last_name', 'company', 'location', 'date_moved_in')
     orderable_default = 'last_name'
-
+    paginate_by = 10
+    
     template_name = 'user/list.html'
 
     def get_queryset(self):
@@ -121,7 +123,7 @@ class UserListView(ListView):
         Returns ordered queryset based on GET params.
         Stores filter combination on instance for template context.
         """
-        queryset = CustomUser.objects.filter(is_staff=False, is_in_index=True)
+        queryset = CustomUser.objects.filter(is_in_index=True)
         self.filters = {
             'querystring': '?'
         }

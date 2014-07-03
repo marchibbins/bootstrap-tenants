@@ -1,0 +1,236 @@
+[
+    {
+        "pk": 2,
+        "model": "index.customuser",
+        "fields": {
+            "website": "",
+            "email": "marchibbins@gmail.com",
+            "bio": "Web developer. Penguin lover.",
+            "first_name": "Marc",
+            "last_name": "Hibbins"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "index.customuser",
+        "fields": {
+            "website": "",
+            "email": "gareth.foote@gmail.com",
+            "bio": "Web developer. Beardy.",
+            "first_name": "Gareth",
+            "last_name": "Foote"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "index.customuser",
+        "fields": {
+            "website": "",
+            "email": "rhiannon@armstrong.com",
+            "bio": "",
+            "first_name": "Rhiannon",
+            "last_name": "Armstrong"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "index.customuser",
+        "fields": {
+            "website": "",
+            "email": "tara@darby.com",
+            "bio": "",
+            "first_name": "Tara",
+            "last_name": "Darby"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "index.customuser",
+        "fields": {
+            "website": "",
+            "email": "james@perrin.com",
+            "bio": "",
+            "first_name": "James",
+            "last_name": "Perrin"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "index.customuser",
+        "fields": {
+            "website": "",
+            "email": "julian@love.com",
+            "bio": "",
+            "first_name": "Julian",
+            "last_name": "Love"
+        }
+    },
+    {
+        "pk": 8,
+        "model": "index.customuser",
+        "fields": {
+            "website": "",
+            "email": "roger@mason.com",
+            "bio": "",
+            "first_name": "Roger",
+            "last_name": "Mason"
+        }
+    },
+    {
+        "pk": 9,
+        "model": "index.customuser",
+        "fields": {
+            "website": "",
+            "email": "charlie@doran.com",
+            "bio": "",
+            "first_name": "Charlie",
+            "last_name": "Doran"
+        }
+    },
+    {
+        "pk": 10,
+        "model": "index.customuser",
+        "fields": {
+            "website": "",
+            "email": "kate@gaughran.com",
+            "bio": "",
+            "first_name": "Kate",
+            "last_name": "Gaughran"
+        }
+    },
+    {
+        "pk": 11,
+        "model": "index.customuser",
+        "fields": {
+            "website": "",
+            "email": "lauren@kavanagh.com",
+            "bio": "",
+            "first_name": "Lauren",
+            "last_name": "Kavanagh"
+        }
+    },
+    {
+        "pk": 12,
+        "model": "index.customuser",
+        "fields": {
+            "website": "",
+            "email": "marc@kremers.com",
+            "bio": "",
+            "first_name": "Marc",
+            "last_name": "Kremers"
+        }
+    },
+    {
+        "pk": 13,
+        "model": "index.customuser",
+        "fields": {
+            "website": "",
+            "email": "helen@mair.com",
+            "bio": "",
+            "first_name": "Helen",
+            "last_name": "Mair"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "index.industry",
+        "fields": {
+            "name": "Video Editing"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "index.industry",
+        "fields": {
+            "name": "Digital Design"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "index.industry",
+        "fields": {
+            "name": "Web Development"
+        }
+    },    
+    {
+        "pk": 4,
+        "model": "index.industry",
+        "fields": {
+            "name": "Architecture"
+        }
+    },    
+    {
+        "pk": 5,
+        "model": "index.industry",
+        "fields": {
+            "name": "Charity"
+        }
+    },    
+    {
+        "pk": 6,
+        "model": "index.industry",
+        "fields": {
+            "name": "Graphic Design"
+        }
+    },    
+    {
+        "pk": 7,
+        "model": "index.industry",
+        "fields": {
+            "name": "Product Design"
+        }
+    },    
+    {
+        "pk": 8,
+        "model": "index.industry",
+        "fields": {
+            "name": "Artist"
+        }
+    },   
+    {
+        "pk": 9,
+        "model": "index.industry",
+        "fields": {
+            "name": "Photographer"
+        }
+    },   
+    {
+        "pk": 10,
+        "model": "index.industry",
+        "fields": {
+            "name": "Illustrator"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "index.location",
+        "fields": {
+            "building": "Fitzroy House",
+            "floor": 0
+        }
+    },
+    {
+        "pk": 2,
+        "model": "index.location",
+        "fields": {
+            "building": "Fitzroy House",
+            "floor": 1
+        }
+    },
+    {
+        "pk": 3,
+        "model": "index.location",
+        "fields": {
+            "building": "Fitzroy House",
+            "floor": 2
+        }
+    },
+    {
+        "pk": 4,
+        "model": "index.location",
+        "fields": {
+            "building": "Fitzroy House",
+            "floor": 3
+        }
+    }
+]
