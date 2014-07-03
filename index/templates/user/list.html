@@ -114,6 +114,24 @@
                 {% endfor %}
             </tbody>
         </table>
+        {% if is_paginated %}
+        <div class="pagination pagination-lg">
+            {% if page_obj.has_previous %}
+            <li><a href="{{ querystring }}&amp;page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+            <li class="disabled"><a href="#">&laquo;</a></li>
+            {% endif %}
+            {% for page_num in page_obj.paginator.page_range %}
+            <li{% if page_obj.number == page_num %} class="active"{% endif %}><a href="{{ querystring }}&amp;page={{ page_num }}">{{ page_num }}</a></li>
+            {% endfor %}
+            {% if page_obj.has_next %}
+            <li><a href="{{ querystring }}&amp;page={{ page_obj.next_page_number }}">&raquo;</a></li>
+            {% else %}
+            <li class="disabled"><a href="#">&raquo;</a></li>
+            {% endif %}
+        </div>
+        {% endif %}
+
     {% else %}
         <p>No tenants found.</p>
     {% endif %}
