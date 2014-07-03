@@ -65,7 +65,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         send_mail(subject, message, from_email, [self.email])
 
 
-@receiver(models.signals.post_save, sender=CustomUser, dispatch_uid="customuser_created")
+@receiver(models.signals.post_save, sender=CustomUser, dispatch_uid='customuser_created')
 def notify_created_user(sender, instance, created, **kwargs):
     """
     Send an email to the new User to set their own password.
@@ -112,9 +112,9 @@ class Location(models.Model):
         """
         if self.floor > 0:
             nth = {
-                1: "st",
-                2: "nd",
-                3: "rd"
+                1: 'st',
+                2: 'nd',
+                3: 'rd'
             }
             return '%s%s floor' % (self.floor, nth.get(self.floor, 'th'))
         else:

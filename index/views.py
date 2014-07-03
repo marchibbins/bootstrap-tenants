@@ -2,6 +2,7 @@ from django.conf import settings
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.core.urlresolvers import reverse_lazy
+from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.utils.decorators import method_decorator
@@ -9,7 +10,6 @@ from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
 from django.views.generic import DetailView, FormView, ListView, TemplateView
 from django.views.generic.edit import UpdateView
-from django.db.models import Q
 from index.forms import CustomUserUpdateForm
 from index.models import CustomUser, Industry, Location
 import urlparse
@@ -142,10 +142,9 @@ class UserListView(ListView):
         search_term = self.request.GET.get('search')
         if search_term:
             queryset = queryset.filter(
-                        Q(first_name__icontains=search_term)|
-                        Q(last_name__icontains=search_term)|
-                        Q(company__icontains=search_term)
-                    )   
+                Q(first_name__icontains=search_term) |
+                Q(last_name__icontains=search_term) |
+                Q(company__icontains=search_term))
             self.filters['search_term'] = search_term
 
         # Ordering
@@ -200,7 +199,7 @@ class UserUpdateView(UpdateView):
         return self.request.user
 
 
-def error403(request, reason=""):
+def error403(request, reason=''):
     """
     Generic 403 view, also CSRF and cookie failure.
     """
