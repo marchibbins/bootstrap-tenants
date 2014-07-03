@@ -94,6 +94,7 @@ class Industry(models.Model):
 
     class Meta:
         verbose_name_plural = 'industries'
+        ordering = ('name',)
 
     def __unicode__(self):
         return self.name
@@ -105,6 +106,9 @@ class Location(models.Model):
 
     building = models.CharField('building', max_length=50)
     floor = models.IntegerField('floor', default=0, help_text='Use zero for ground floor.')
+
+    class Meta:
+        ordering = ('building', 'floor')
 
     def floor_readable(self):
         """
