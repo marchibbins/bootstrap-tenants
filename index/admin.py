@@ -14,10 +14,10 @@ class CustomUserAdmin(UserAdmin):
             'fields': ('email', 'first_name', 'last_name', 'password')
         }),
         ('Information', {
-            'fields': ('bio', 'website', 'company', 'industries', 'location', 'date_moved_in')
+            'fields': ('bio', 'website', 'company', 'industries', 'location', 'date_moved_in', 'is_in_index')
         }),
         ('Permissions', {
-            'fields': ('is_active', 'is_staff', 'is_in_index', 'is_superuser', 'groups', 'user_permissions')
+            'fields': ('is_staff', 'is_active', 'is_superuser', 'groups', 'user_permissions')
         }),
         ('Important dates', {
             'fields': ('last_login', 'date_joined')
@@ -30,15 +30,15 @@ class CustomUserAdmin(UserAdmin):
             'fields': ('email', 'first_name', 'last_name', 'password1', 'password2')
         }),
         ('Information', {
-            'fields': ('bio', 'company', 'industries', 'location', 'date_moved_in')
+            'fields': ('bio', 'company', 'industries', 'location', 'date_moved_in', 'is_in_index')
         }),
     )
 
     form = CustomUserChangeForm
     add_form = CustomUserCreationForm
 
-    list_display = ('email', 'first_name', 'last_name', 'company', 'get_industries', 'location', 'date_moved_in', 'is_staff', 'is_in_index', 'is_superuser')
-    list_filter = ('industries', 'location', 'is_staff', 'is_superuser', 'is_active', 'is_in_index', 'groups')
+    list_display = ('email', 'first_name', 'last_name', 'company', 'get_industries', 'location', 'date_moved_in', 'is_in_index', 'is_staff', 'is_active', 'is_superuser')
+    list_filter = ('industries', 'location', 'is_in_index', 'is_staff', 'is_active', 'is_superuser', 'groups')
     search_fields = ('email', 'first_name', 'last_name', 'location__building')
     ordering = ('last_name', 'email')
 
