@@ -93,8 +93,8 @@ class Industry(models.Model):
     name = models.CharField('name', max_length=50, unique=True)
 
     class Meta:
-        verbose_name_plural = 'industries'
         ordering = ('name',)
+        verbose_name_plural = 'industries'
 
     def __unicode__(self):
         return self.name
