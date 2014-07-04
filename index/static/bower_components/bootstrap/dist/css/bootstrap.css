@@ -5785,4 +5785,14 @@ button.close {
   border-top: 0 none;
   border-bottom: 0 none;
 }
+.table > thead > tr > th {
+  font-weight: normal;
+}
+.table > thead > tr > th.info {
+  font-weight: bold;
+  background-color: transparent;
+}
+.table > thead > tr > th.info .info {
+  color: #5bc0de;
+}
 /*# sourceMappingURL=bootstrap.css.map */
