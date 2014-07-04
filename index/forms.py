@@ -26,8 +26,8 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser
         widgets = {
-         'birthday': DayMonthWidget
-       }
+            'birthday': DayMonthWidget
+        }
 
 
 class CustomUserChangeForm(UserChangeForm):
@@ -43,8 +43,8 @@ class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = CustomUser
         widgets = {
-         'birthday': DayMonthWidget
-       }
+            'birthday': DayMonthWidget
+        }
 
 
 
@@ -59,5 +59,5 @@ class CustomUserUpdateForm(forms.ModelForm):
 
         exclude = ('password', 'last_login', 'groups', 'user_permissions', 'date_joined', 'is_active', 'is_staff', 'is_superuser')
         widgets = {
-         'birthday': DayMonthWidget
-       }
+            'birthday': DayMonthWidget
+        }
