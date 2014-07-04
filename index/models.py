@@ -106,6 +106,7 @@ class Location(models.Model):
 
     building = models.CharField('building', max_length=50)
     floor = models.IntegerField('floor', default=0, help_text='Use zero for ground floor.')
+    studio = models.CharField('studio', max_length=50, null=True, blank=True, help_text='Optional studio name and/or number.')
 
     class Meta:
         ordering = ('building', 'floor')
@@ -125,4 +126,7 @@ class Location(models.Model):
             return 'Ground floor'
 
     def __unicode__(self):
-        return self.floor_readable() + ', ' + self.building
+        if self.studio:
+            return '%s, %s, %s' % (self.studio, self.floor_readable(), self.building)
+        else:
+            return '%s, %s' % (self.floor_readable(), self.building)
