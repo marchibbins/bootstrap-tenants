@@ -10,10 +10,8 @@ class CustomUserCreationForm(UserCreationForm):
     and adding email, first name and last name.
     """
 
-    password1 = forms.CharField(label='Password', widget=forms.PasswordInput(render_value=True),
-        help_text='This password has been randomly generated, only edit this if you want to manually choose a password.')
-    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput(render_value=True),
-        help_text='Enter the same password as above (if changed), for verification.')
+    password1 = forms.CharField(widget=forms.HiddenInput)
+    password2 = forms.CharField(widget=forms.HiddenInput)
 
     def __init__(self, *args, **kargs):
         super(CustomUserCreationForm, self).__init__(*args, **kargs)
