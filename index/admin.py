@@ -14,7 +14,7 @@ class CustomUserAdmin(UserAdmin):
             'fields': ('email', 'first_name', 'last_name', 'password')
         }),
         ('Information', {
-            'fields': ('bio', 'website', 'company', 'industries', 'location', 'date_moved_in', 'is_in_index')
+            'fields': ('bio', 'website', 'company', 'industries', 'location', 'date_moved_in', 'birthday', 'is_in_index')
         }),
         ('Permissions', {
             'fields': ('is_staff', 'is_active', 'is_superuser', 'groups', 'user_permissions')
@@ -30,7 +30,7 @@ class CustomUserAdmin(UserAdmin):
             'fields': ('email', 'first_name', 'last_name', 'password1', 'password2')
         }),
         ('Information', {
-            'fields': ('bio', 'company', 'industries', 'location', 'date_moved_in', 'is_in_index')
+            'fields': ('bio', 'company', 'industries', 'location', 'date_moved_in', 'birthday', 'is_in_index')
         }),
     )
 

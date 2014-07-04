@@ -35,6 +35,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     date_moved_in = models.DateField('date moved in', null=True, blank=True)
     industries = models.ManyToManyField('Industry', null=True, blank=True)
     location = models.ForeignKey('Location', null=True, blank=True)
+    birthday = models.DateField('birthday', null=True, blank=True, help_text='This won\'t be shown on your public profile.')
 
     objects = CustomUserManager()
 
