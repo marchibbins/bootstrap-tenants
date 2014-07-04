@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load custom_avatar_tags %}
+{% load avatar_tags %}
 
 {% block title %}Tenant Index{% endblock %}
 
@@ -78,7 +78,7 @@
                 {% for object in object_list %}
                     <tr{% if forloop.counter|divisibleby:"2" %} class="active"{% endif %}>
                         <td>
-                            <img src="{% avatar_url object 75 %}" alt="Avatar for {{ object.get_full_name }}" width="75" height="75">
+                            {% avatar object 75 %}
                         </td>
                         <td>
                             {{ object.first_name }}
