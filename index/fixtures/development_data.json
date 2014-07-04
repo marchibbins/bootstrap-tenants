@@ -7,7 +7,8 @@
             "email": "marchibbins@gmail.com",
             "bio": "Web developer. Penguin lover.",
             "first_name": "Marc",
-            "last_name": "Hibbins"
+            "last_name": "Hibbins",
+            "location": 4
         }
     },
     {
@@ -18,7 +19,8 @@
             "email": "gareth.foote@gmail.com",
             "bio": "Web developer. Beardy.",
             "first_name": "Gareth",
-            "last_name": "Foote"
+            "last_name": "Foote",
+            "location": 4
         }
     },
     {
@@ -29,7 +31,8 @@
             "email": "rhiannon@armstrong.com",
             "bio": "",
             "first_name": "Rhiannon",
-            "last_name": "Armstrong"
+            "last_name": "Armstrong",
+            "location": 1
         }
     },
     {
@@ -51,7 +54,8 @@
             "email": "james@perrin.com",
             "bio": "",
             "first_name": "James",
-            "last_name": "Perrin"
+            "last_name": "Perrin",
+            "location": 2
         }
     },
     {
@@ -62,7 +66,8 @@
             "email": "julian@love.com",
             "bio": "",
             "first_name": "Julian",
-            "last_name": "Love"
+            "last_name": "Love",
+            "location": 3
         }
     },
     {
@@ -84,7 +89,8 @@
             "email": "charlie@doran.com",
             "bio": "",
             "first_name": "Charlie",
-            "last_name": "Doran"
+            "last_name": "Doran",
+            "location": 8
         }
     },
     {
@@ -95,7 +101,8 @@
             "email": "kate@gaughran.com",
             "bio": "",
             "first_name": "Kate",
-            "last_name": "Gaughran"
+            "last_name": "Gaughran",
+            "location": 5
         }
     },
     {
@@ -106,7 +113,8 @@
             "email": "lauren@kavanagh.com",
             "bio": "",
             "first_name": "Lauren",
-            "last_name": "Kavanagh"
+            "last_name": "Kavanagh",
+            "location": 5
         }
     },
     {
@@ -117,7 +125,8 @@
             "email": "marc@kremers.com",
             "bio": "",
             "first_name": "Marc",
-            "last_name": "Kremers"
+            "last_name": "Kremers",
+            "location": 6
         }
     },
     {
@@ -231,6 +240,38 @@
         "fields": {
             "building": "Fitzroy House",
             "floor": 3
+        }
+    },
+    {
+        "pk": 5,
+        "model": "index.location",
+        "fields": {
+            "building": "Print House",
+            "floor": 0
+        }
+    },
+    {
+        "pk": 6,
+        "model": "index.location",
+        "fields": {
+            "building": "Print House",
+            "floor": 1
+        }
+    },
+    {
+        "pk": 7,
+        "model": "index.location",
+        "fields": {
+            "building": "Print House",
+            "floor": 2
+        }
+    },
+    {
+        "pk": 8,
+        "model": "index.location",
+        "fields": {
+            "building": "Colourworks",
+            "floor": 0
         }
     }
 ]
