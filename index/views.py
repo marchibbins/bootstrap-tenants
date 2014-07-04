@@ -160,7 +160,7 @@ class UserListView(ListView):
             order_by = '-' + order_by
         self.filters['order'] = order
 
-        return queryset.order_by(order_by)
+        return queryset.order_by(order_by, self.orderable_default)
 
     def get_context_data(self, **kwargs):
         """
