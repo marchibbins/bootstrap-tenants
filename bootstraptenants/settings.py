@@ -22,8 +22,8 @@ SITE_SECURE = False
 SECRET_KEY = '=vzzml7lofbwe_ob-&gi1#ci$_vng+x(zo!fcifq5-0)bh8i5b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-TEMPLATE_DEBUG = True
+DEBUG = False
+TEMPLATE_DEBUG = False
 
 # Application definition
 INSTALLED_APPS = (
