@@ -271,7 +271,8 @@
         "model": "index.location",
         "fields": {
             "building": "Colourworks",
-            "floor": 0
+            "floor": 0,
+            "studio": "Studio 2B"
         }
     }
 ]
