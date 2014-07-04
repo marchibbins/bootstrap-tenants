@@ -87,20 +87,20 @@
                             {{ object.last_name }}
                         </td>
                         <td class="{% if 'company' in order_by %}success{% endif %}">
-                            {{ object.company }}
+                            {{ object.company|default:'&ndash;' }}
                         </td>
-                        <td>{{ object.industries.all|join:', ' }}</td>
+                        <td>{{ object.industries.all|join:', '|default:'&ndash;' }}</td>
                         <td class="{% if 'location' in order_by %}success{% endif %}">
-                            {{ object.location|default:'' }}
+                            {{ object.location|default:'&ndash;' }}
                         </td>
                         <td class="{% if 'date_moved_in' in order_by %}success{% endif %}">
-                            {{ object.date_moved_in|date:'jS F Y' }}
+                            <time datetime="{% if object.date_moved_in %}{{ object.date_moved_in|date:'c' }}{% else %}&ndash;{% endif %}">{% if object.date_moved_in %}{{ object.date_moved_in|date:'jS F Y' }}{% else %}&ndash;{% endif %}</date>
                         </td>
                         <td>
                             <a href="#profile-{{ object.id }}" data-toggle="collapse">View more</a>
                         </td>
                     </tr>
-                    <tr class="{% if forloop.counter|divisibleby:s"2" %}active {% endif %}">
+                    <tr class="{% if forloop.counter|divisibleby:"2" %}active {% endif %}">
                         <td colspan="8" class="row-constrain">
                             <div id="profile-{{ object.id }}" class="collapse">
                                 <table class="table">
@@ -108,20 +108,20 @@
                                         <tr>
                                             <th>Bio</th>
                                             <th>Website</th>
-                                            <th>Date Moved In</th>
+                                            <th>Last seen</th>
                                             <th><span class="hidden">Full Profile</span></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
                                         <td>
-                                            <p>{{ object.bio }}</p>
+                                            <p>{{ object.bio|default:"Nothing here yet." }}</p>
                                         </td>                                            
                                         <td>
-                                            <a href="{{ object.website }}">{{ object.website }}</a>
+                                            {% if object.website %}<a href="{{ object.website }}">{{ object.website|urlize }}</a>{% else %}&ndash;{% endif %}
                                         </td>                                             
                                         <td>
-                                            <time datetime="{{ object.date_moved_in|date:"c" }}">{{ object.date_moved_in|date:"D d M Y" }}</date>
+                                            <time datetime="{% if object.last_login %}{{ object.last_login|date:"c" }}{% else %}&ndash;{% endif %}">{% if object.last_login %}{{ object.last_login|timesince }}{% else %}&ndash;{% endif %}</date>
                                         </td>    
                                         <td>
                                             <a class="pull-right" href="{% url 'user_detail' object.id %}">View full profile</a>
