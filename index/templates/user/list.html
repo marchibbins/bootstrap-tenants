@@ -100,7 +100,7 @@
                             <a href="#profile-{{ object.id }}" data-toggle="collapse">View more</a>
                         </td>
                     </tr>
-                    <tr class="{% if forloop.counter|divisibleby:s"2" %}active {% endif %}">
+                    <tr class="{% if forloop.counter|divisibleby:"2" %}active {% endif %}">
                         <td colspan="8" class="row-constrain">
                             <div id="profile-{{ object.id }}" class="collapse">
                                 <table class="table">
