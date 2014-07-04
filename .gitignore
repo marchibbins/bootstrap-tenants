@@ -1,2 +1,5 @@
 media
 *.sublime-workspace
+venv
+*.pyc
+staticfiles
