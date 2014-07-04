@@ -26,8 +26,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         help_text='Designates whether the user can log into this admin site.')
     is_active = models.BooleanField('active', default=True,
         help_text='Designates whether this user should be treated as active. Unselect this instead of deleting accounts.')
-    is_in_index = models.BooleanField('displayed in index', default=True,
-        help_text='Designates whether this user should be shown in the tenant index list. Unselect this to remove users from index list.')
 
     bio = models.TextField('bio', null=True, blank=True)
     website = models.URLField('website', null=True, blank=True)
@@ -36,6 +34,9 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     industries = models.ManyToManyField('Industry', null=True, blank=True)
     location = models.ForeignKey('Location', null=True, blank=True)
     birthday = models.DateField('birthday', null=True, blank=True, help_text='This won\'t be shown on your public profile.')
+
+    is_in_index = models.BooleanField('displayed in index', default=True,
+        help_text='Designates whether this user should be shown in the tenant index list. Unselect this to remove users from index list.')
 
     objects = CustomUserManager()
 
