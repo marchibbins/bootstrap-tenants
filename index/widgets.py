@@ -1,7 +1,8 @@
 from django.conf import settings
 from django.forms.widgets import HiddenInput
 from django.forms.extras.widgets import _parse_date_fmt, SelectDateWidget
-from django.utils import six
+from django.utils.encoding import force_str
+from django.utils import datetime_safe, six
 from django.utils.dates import MONTHS
 from django.utils.formats import get_format
 from django.utils.safestring import mark_safe
@@ -54,6 +55,28 @@ class DayMonthWidget(SelectDateWidget):
                 output.append(day_html)
 
         return mark_safe('\n'.join(output))
+
+    def value_from_datadict(self, data, files, name):
+        y = data.get(self.year_field % name)
+        m = data.get(self.month_field % name)
+        d = data.get(self.day_field % name)
+        if m == d == "0":
+            y = "0"
+        if y == m == d == "0":
+            return None
+        if y and m and d:
+            if settings.USE_L10N:
+                input_format = get_format('DATE_INPUT_FORMATS')[0]
+                try:
+                    date_value = datetime.date(int(y), int(m), int(d))
+                except ValueError:
+                    return '%s-%s-%s' % (y, m, d)
+                else:
+                    date_value = datetime_safe.new_date(date_value)
+                    return date_value.strftime(input_format)
+            else:
+                return '%s-%s-%s' % (y, m, d)
+        return data.get(name, None)
 
     def create_hidden(self, name, field, val):
         """
