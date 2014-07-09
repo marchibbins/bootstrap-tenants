@@ -1,8 +1,5 @@
 from settings import *
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-TEMPLATE_DEBUG = True
 # http://stackoverflow.com/questions/20963856/improperlyconfigured-the-included-urlconf-project-urls-doesnt-have-any-patte
 DEBUG_TOOLBAR_PATCH_SETTINGS = False 
 
@@ -39,21 +36,10 @@ DEBUG_TOOLBAR_PANELS = (
     'inspector_panel.panels.inspector.InspectorPanel',
 )
 
-# Database
-# https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-# Parse database configuration from $DATABASE_URL
-import dj_database_url
-DATABASES = {
+CACHES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'bstenants',
-        'USER': 'bstenants',
-        'PASSWORD': 'bstenants',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
     }
 }
 
-# Email
-if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

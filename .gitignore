@@ -3,3 +3,4 @@ media
 venv
 *.pyc
 staticfiles
+.env
