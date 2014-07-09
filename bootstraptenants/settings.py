@@ -119,3 +119,11 @@ ALLOWED_HOSTS = ['*']
 # Email
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Admins
+ADMINS = (
+    ('Marc Hibbins', 'marchibbins@gmail.com'),
+    ('Gareth Foote', 'gareth.foote@gmail.com'),
+)
+
+MANAGERS = ADMINS
