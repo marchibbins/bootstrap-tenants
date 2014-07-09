@@ -3,7 +3,7 @@ from django.conf.urls import patterns, include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth.decorators import login_required
-from index.views import LoginView, LogoutView, UserDetailView, UserListView, UserUpdateView
+from index.views import MessageFormView, MessageSentView, LoginView, LogoutView, UserDetailView, UserListView, UserUpdateView
 from password_reset.views import Recover, RecoverDone, Reset, ResetDone
 
 
@@ -22,6 +22,19 @@ urlpatterns = patterns('',
     url(r'^profile/edit$',
         login_required(UserUpdateView.as_view()),
         name='user_update'),
+
+    # Messages
+    url(r'^message$',
+        login_required(MessageFormView.as_view()),
+        name='message_form'),
+
+    url(r'^message/(?P<user>\d+)$',
+        login_required(MessageFormView.as_view()),
+        name='message_form'),
+
+    url(r'^message/sent$',
+        login_required(MessageSentView.as_view()),
+        name='message_sent'),
 
     # Avatar
     url(r'^avatar/add$', 'avatar.views.add', name='avatar_add'),

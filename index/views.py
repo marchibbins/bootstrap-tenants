@@ -1,19 +1,87 @@
 from django.conf import settings
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.sites.models import Site
+from django.core.mail import send_mail
 from django.core.urlresolvers import reverse_lazy
 from django.db.models import Q
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
+from django.template import loader
 from django.utils.decorators import method_decorator
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
 from django.views.generic import DetailView, FormView, ListView, TemplateView
 from django.views.generic.edit import UpdateView
-from index.forms import CustomUserUpdateForm
+from index.forms import MessageForm, CustomUserUpdateForm
 from index.models import CustomUser, Industry, Location
 import urlparse
+
+
+class MessageFormView(FormView):
+
+    """ Handles sending messages to Users (or Admins) without exposing email addresses. """
+
+    recipient = None
+    form_class = MessageForm
+    template_name = 'message/form.html'
+    success_url = reverse_lazy('message_sent')
+
+    def get_initial(self):
+        """
+        Attemps to populate (optional) recipient User object from POST or URL,
+        throws 404 if User not found.
+        """
+        initial = super(MessageFormView, self).get_initial()
+        user_id = self.request.POST.get('recipient', self.kwargs.get('user'))
+        if user_id:
+            self.recipient = get_object_or_404(CustomUser, pk=user_id)
+            initial['recipient'] = self.recipient.id
+        return initial
+
+    def form_valid(self, form):
+        """
+        Sends message as email to Admins or recipient if specified.
+        """
+        recipient_list = [admin[1] for admin in settings.ADMINS]
+        user_id = form.cleaned_data.get('recipient')
+        if user_id:
+            self.recipient = get_object_or_404(CustomUser, pk=user_id)
+            recipient_list = [self.recipient.email]
+
+        context = {
+            'sender': self.request.user,
+            'recipient': self.recipient,
+            'subject': form.cleaned_data.get('subject'),
+            'message': form.cleaned_data.get('message'),
+            'site': Site.objects.get_current(),
+        }
+        subject = loader.render_to_string('message/new_message_subject.txt', context).strip()
+        body = loader.render_to_string('message/new_message.txt', context).strip()
+
+        send_mail(
+            subject=subject,
+            message=body,
+            from_email=self.request.user.email,
+            recipient_list=recipient_list,
+        )
+
+        return super(MessageFormView, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        """
+        Adds (optional) recipient object to template data.
+        """
+        context = super(MessageFormView, self).get_context_data(**kwargs)
+        context['recipient'] = self.recipient
+        return context
+
+
+class MessageSentView(TemplateView):
+
+    """ Simple static template message. """
+
+    template_name = 'message/sent.html'
 
 
 class LoginView(FormView):

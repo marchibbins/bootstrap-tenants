@@ -4,6 +4,17 @@ from index.models import CustomUser
 from index.widgets import DayMonthWidget
 
 
+class MessageForm(forms.Form):
+
+    """
+    Simple form used to send email messages.
+    """
+
+    recipient = forms.IntegerField(widget=forms.HiddenInput, required=False)
+    subject = forms.CharField()
+    message = forms.CharField(widget=forms.Textarea)
+
+
 class CustomUserCreationForm(UserCreationForm):
 
     """
