@@ -176,9 +176,7 @@ class LogoutView(TemplateView):
 
 class UserListView(ListView):
 
-    """
-    Render detail view for a User.
-    """
+    """ Render detail view for a User. """
 
     orderable_columns = ('first_name', 'last_name', 'company', 'location', 'date_moved_in')
     orderable_default = 'last_name'
@@ -243,9 +241,7 @@ class UserListView(ListView):
 
 class UserDetailView(DetailView):
 
-    """
-    Render detail view for a User.
-    """
+    """ Render detail view for a User. """
 
     model = CustomUser
     template_name = 'user/detail.html'
@@ -253,9 +249,7 @@ class UserDetailView(DetailView):
 
 class UserUpdateView(UpdateView):
 
-    """
-    Render update form view for current User.
-    """
+    """ Render update form view for current User. """
 
     model = CustomUser
     form_class = CustomUserUpdateForm
