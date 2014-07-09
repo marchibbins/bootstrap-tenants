@@ -3,6 +3,8 @@ from settings import *
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 TEMPLATE_DEBUG = True
+# http://stackoverflow.com/questions/20963856/improperlyconfigured-the-included-urlconf-project-urls-doesnt-have-any-patte
+DEBUG_TOOLBAR_PATCH_SETTINGS = False 
 
 # Application definition
 INSTALLED_APPS = (
