@@ -66,6 +66,12 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         """
         send_mail(subject, message, from_email, [self.email])
 
+    def __unicode__(self):
+        """
+        Return name rather than (private) email address.
+        """
+        return self.get_full_name()
+
 
 @receiver(models.signals.post_save, sender=CustomUser, dispatch_uid='customuser_created')
 def notify_created_user(sender, instance, created, **kwargs):
