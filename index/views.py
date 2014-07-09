@@ -2,7 +2,7 @@ from django.conf import settings
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.sites.models import Site
-from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 from django.core.urlresolvers import reverse_lazy
 from django.db.models import Q
 from django.http import HttpResponseRedirect
@@ -58,13 +58,9 @@ class MessageFormView(FormView):
         }
         subject = loader.render_to_string('message/new_message_subject.txt', context).strip()
         body = loader.render_to_string('message/new_message.txt', context).strip()
-
-        send_mail(
-            subject=subject,
-            message=body,
-            from_email=self.request.user.email,
-            recipient_list=recipient_list,
-        )
+        email = EmailMessage(subject=subject, body=body, from_email=settings.DEFAULT_FROM_EMAIL,
+            to=recipient_list, headers={'Reply-To': self.request.user.email})
+        email.send()
 
         return super(MessageFormView, self).form_valid(form)
 
