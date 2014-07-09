@@ -7,8 +7,9 @@
 <div class="container">
     <section>
         <div class="page-header">
-            <h1>Tenant Index</h1>
+            <h1>{{ object.get_full_name }}</h1>
             <p class="lead">{{ object.email }}</p>
+            <a href="{% url 'message_form' object.id %}" title="Send {{ object.first_name }} a message" class="btn btn-primary">Send message</a>
         </div>
         {% avatar object 100 %}
         <dl>
