@@ -10,10 +10,9 @@ import datetime
 
 
 class DayMonthWidget(SelectDateWidget):
-    """
-    Renders a widget that splits date into two input boxes (for day and month),
-    with a hidden field (for year), using a DateField.
-    """
+
+    """ Renders a widget that splits date into two input boxes (for day and month),
+    with a hidden field (for year), using a DateField. """
 
     def render(self, name, value, attrs=None):
         """
@@ -57,6 +56,9 @@ class DayMonthWidget(SelectDateWidget):
         return mark_safe('\n'.join(output))
 
     def value_from_datadict(self, data, files, name):
+        """
+        Duplicates SelectDateWidget, overriding year value.
+        """
         y = data.get(self.year_field % name)
         m = data.get(self.month_field % name)
         d = data.get(self.day_field % name)
