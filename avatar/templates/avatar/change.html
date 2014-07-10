@@ -1,22 +1,39 @@
-{% extends "avatar/base.html" %}
-{% load i18n avatar_tags %}
-{% load url from future %}
+{% extends "base.html" %}
+{% load avatar_tags bootstrap %}
+
+{% block title %}Change avatar{% endblock %}
 
 {% block content %}
-    <p>{% trans "Your current avatar: " %}</p>
-    {% avatar user %}
+<div class="container">
+    <div class="page-header">
+        <h1>Change avatar</h1>
+    </div>
+
     {% if not avatars %}
-        <p>{% trans "You haven't uploaded an avatar yet. Please upload one now." %}</p>
+        <p>You haven't uploaded an avatar yet. Please upload one now.</p>
     {% else %}
-        <form method="POST" action="{% url 'avatar_change' %}">
-            <ul>
-                {{ primary_avatar_form.as_ul }}
-            </ul>
-            <p>{% csrf_token %}<input type="submit" value="{% trans "Choose new Default" %}" /></p>
+        <p>Your current avatar:</p>
+        {% avatar user %}
+
+        <form action="{% url 'avatar_change' %}" method="POST" class="form" role="form">
+            {% csrf_token %}
+
+            {{ primary_avatar_form|bootstrap }}
+
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Choose avatar">
+            </div>
         </form>
     {% endif %}
-    <form enctype="multipart/form-data" method="POST" action="{% url 'avatar_add' %}">
-        {{ upload_avatar_form.as_p }}
-        <p>{% csrf_token %}<input type="submit" value="{% trans "Upload New Image" %}" /></p>
+
+    <form action="{% url 'avatar_add' %}" method="POST" enctype="multipart/form-data" class="form" role="form">
+        {% csrf_token %}
+
+        {{ upload_avatar_form|bootstrap }}
+
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Upload new avatar">
+        </div>
     </form>
+</div>
 {% endblock %}
