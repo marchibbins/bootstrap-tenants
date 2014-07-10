@@ -35,7 +35,7 @@ class MessageFormView(FormView):
         initial = super(MessageFormView, self).get_initial()
         user_id = self.request.POST.get('recipient', self.kwargs.get('user'))
         if user_id:
-            self.recipient = get_object_or_404(CustomUser, pk=user_id)
+            self.recipient = get_object_or_404(CustomUser.objects.public(), pk=user_id)
             initial['recipient'] = self.recipient.id
         return initial
 
@@ -46,7 +46,7 @@ class MessageFormView(FormView):
         recipient_list = [admin[1] for admin in settings.ADMINS]
         user_id = form.cleaned_data.get('recipient')
         if user_id:
-            self.recipient = get_object_or_404(CustomUser, pk=user_id)
+            self.recipient = get_object_or_404(CustomUser.objects.public(), pk=user_id)
             recipient_list = [self.recipient.email]
 
         context = {
