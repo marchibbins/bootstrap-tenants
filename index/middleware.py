@@ -25,9 +25,13 @@ class SetLastVisitMiddleware(object):
 
     def process_response(self, request, response):
         if request.path.startswith('/admin/') == False:
-            # If client is in the building(s).
-            if (request.user.is_authenticated() 
-                and self.get_client_ip(request) in settings.LOCATION_IPS):
-                # Update last visit time.
-                CustomUser.objects.filter(pk=request.user.pk).update(last_visit=now())
+            # Last use of website.
+            if request.user.is_authenticated():
+                user = CustomUser.objects.get(pk=request.user.pk) 
+                user.last_visit=now()
+                # Last use of website within the building.
+                if self.get_client_ip(request) in settings.LOCATION_IPS:            
+                    user.last_on_site=now()
+                user.save()
+
         return response
