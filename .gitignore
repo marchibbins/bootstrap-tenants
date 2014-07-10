@@ -4,3 +4,8 @@ venv
 *.pyc
 staticfiles
 .env
+
+# GF dev env specific
+Procfile.dev
+db-drop-create.sh
+gunicorn.pid
