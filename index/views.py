@@ -185,7 +185,7 @@ class UserListView(ListView):
         Returns ordered queryset based on GET params.
         Stores filter combination on instance for template context.
         """
-        queryset = CustomUser.objects.filter(is_in_index=True)
+        queryset = CustomUser.objects.public()
         self.filters = {
             'querystring': '?'
         }
@@ -239,8 +239,13 @@ class UserDetailView(DetailView):
 
     """ Render detail view for a User. """
 
-    model = CustomUser
     template_name = 'user/detail.html'
+
+    def get_queryset(self):
+        """
+        Only allows Users in index to show profile view.
+        """
+        return CustomUser.objects.public()
 
 
 class UserUpdateView(UpdateView):

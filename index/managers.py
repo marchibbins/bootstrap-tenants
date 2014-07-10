@@ -39,3 +39,9 @@ class CustomUserManager(BaseUserManager):
         Creates User with superuser (and staff) permissions.
         """
         return self._create_user(email, first_name, last_name, password, True, True, **extra_fields)
+
+    def public(self):
+        """
+        Filters Users displayed publically in index.
+        """
+        return self.get_queryset().filter(is_in_index=True)
