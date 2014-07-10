@@ -87,10 +87,18 @@ MEDIA_URL = '/media/'
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['localhost']
 
 # Email
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'no-reply@localhost'
+
+# Admins
+ADMINS = (
+    ('Marc Hibbins', 'marchibbins@gmail.com'),
+    ('Gareth Foote', 'gareth.foote@gmail.com'),
+)
+MANAGERS = ADMINS
 
 # Location IP addresses
 LOCATION_IPS = (

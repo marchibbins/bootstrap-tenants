@@ -4,12 +4,19 @@ from index.models import CustomUser
 from index.widgets import DayMonthWidget
 
 
+class MessageForm(forms.Form):
+
+    """ Simple form used to send email messages. """
+
+    recipient = forms.IntegerField(widget=forms.HiddenInput, required=False)
+    subject = forms.CharField()
+    message = forms.CharField(widget=forms.Textarea)
+
+
 class CustomUserCreationForm(UserCreationForm):
 
-    """
-    Extends the built-in Django UserCreationForm, removing username
-    and adding email, first name and last name.
-    """
+    """ Extends the built-in Django UserCreationForm, removing username
+    and adding email, first name and last name. """
 
     password1 = forms.CharField(widget=forms.HiddenInput)
     password2 = forms.CharField(widget=forms.HiddenInput)
@@ -32,9 +39,7 @@ class CustomUserCreationForm(UserCreationForm):
 
 class CustomUserChangeForm(UserChangeForm):
 
-    """
-    Extends the built-in Django UserChangeForm, removing username.
-    """
+    """ Extends the built-in Django UserChangeForm, removing username. """
 
     def __init__(self, *args, **kargs):
         super(CustomUserChangeForm, self).__init__(*args, **kargs)
@@ -50,9 +55,7 @@ class CustomUserChangeForm(UserChangeForm):
 
 class CustomUserUpdateForm(forms.ModelForm):
 
-    """
-    Simple front-facing CustomUser form for non-staff use.
-    """
+    """ Simple front-facing CustomUser form for non-staff use. """
 
     def __init__(self, *args, **kargs):
         super(CustomUserUpdateForm, self).__init__(*args, **kargs)

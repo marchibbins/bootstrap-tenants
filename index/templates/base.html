@@ -5,7 +5,7 @@
 <head>
     <title>{% block title %}{% endblock %}</title>
     {% load staticfiles %}
-    <link href="{% static "bower_components/bootstrap/dist/css/bootstrap.min.css" %}" rel="stylesheet">
+    <link href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar navbar-default" role="navigation">
@@ -13,6 +13,11 @@
             <div class="navbar-header">
               <a class="navbar-brand" href="/">Home</a>
             </div>
+            {% if user.is_authenticated %}
+                <ul class="nav navbar-nav">
+                    <li><a href="{% url 'message_form' %}" title="Send us a message">Suggestions?</a></li>
+                </ul>
+            {% endif %}
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
                     <li style="margin-top: 12px;">{% avatar user 25 %}</li>
@@ -35,7 +40,7 @@
     {% block content %}
     {% endblock %}
 
-    <script type="text/javascript" src="{% static "bower_components/jquery/dist/jquery.min.js" %}"></script>
-    <script type="text/javascript" src="{% static "bower_components/bootstrap/dist/js/bootstrap.min.js" %}" async></script>
+    <script type="text/javascript" src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components/bootstrap/dist/js/bootstrap.min.js' %}" async></script>
 </body>
 </html>
