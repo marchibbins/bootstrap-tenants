@@ -35,7 +35,7 @@ INSTALLED_APPS = (
     'index',
     'password_reset',
     'bootstrapform',
-    'avatar'
+    'avatar',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -93,6 +93,15 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = 'media'
 MEDIA_URL = '/media/'
+
+# Avatar
+AVATAR_HASH_FILENAMES = True
+AVATAR_HASH_USERDIRNAMES = True
+AVATAR_LOCATION_LIST = (
+    'colourworks',
+    'fitzroyhouse',
+    'printhouse'
+)
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
