@@ -1,9 +1,6 @@
-import hashlib
-
 try:
-    from urllib.parse import urljoin, urlencode
+    from urllib.parse import urlencode
 except ImportError:
-    from urlparse import urljoin
     from urllib import urlencode
 
 from django import template
@@ -24,18 +21,22 @@ register = template.Library()
 @register.simple_tag
 def avatar_url(user, size=settings.AVATAR_DEFAULT_SIZE):
     avatar = get_primary_avatar(user, size=size)
+
     if avatar:
         return avatar.avatar_url(size)
 
-    if settings.AVATAR_GRAVATAR_BACKUP:
-        params = {'s': str(size)}
-        if settings.AVATAR_GRAVATAR_DEFAULT:
-            params['d'] = settings.AVATAR_GRAVATAR_DEFAULT
-        path = "%s/?%s" % (hashlib.md5(force_bytes(user.email)).hexdigest(),
-                           urlencode(params))
-        return urljoin(settings.AVATAR_GRAVATAR_BASE_URL, path)
+    base_url = getattr(settings, 'STATIC_URL', None)
+    if not base_url:
+        base_url = getattr(settings, 'MEDIA_URL', '')
 
-    return get_default_avatar_url()
+    image_url = 'images/tenants.jpg'
+
+    if user.location:
+        building = ''.join(user.location.building.split(' ')).lower()
+        if building in settings.AVATAR_LOCATION_LIST:
+            image_url = 'images/%s.jpg' % building
+
+    return '%s%s' % (base_url, image_url)
 
 
 @cache_result()

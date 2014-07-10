@@ -71,7 +71,7 @@ def add(request, extra_context=None, next_override=None,
             image_file = request.FILES['avatar']
             avatar.avatar.save(image_file.name, image_file)
             avatar.save()
-            messages.success(request, _("Successfully uploaded a new avatar."))
+            # messages.success(request, _("Successfully uploaded a new avatar."))
             avatar_updated.send(sender=Avatar, user=request.user, avatar=avatar)
             return redirect(next_override or _get_next(request))
     context = {
