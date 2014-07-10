@@ -3,6 +3,8 @@ from django.conf.urls import patterns, include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse_lazy
+from django.views.generic import RedirectView
 from index.views import MessageFormView, MessageSentView, LoginView, LogoutView, UserDetailView, UserListView, UserUpdateView
 from password_reset.views import Recover, RecoverDone, Reset, ResetDone
 
@@ -69,6 +71,7 @@ urlpatterns = patterns('',
 
     # Admin
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin$', RedirectView.as_view(url=reverse_lazy('admin:index'))),
 
     # Error previews
     url(r'^403', 'index.views.error403', name='error_403'),
