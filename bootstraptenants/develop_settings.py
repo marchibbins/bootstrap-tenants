@@ -1,7 +1,7 @@
 from settings import *
 
 # http://stackoverflow.com/questions/20963856/improperlyconfigured-the-included-urlconf-project-urls-doesnt-have-any-patte
-DEBUG_TOOLBAR_PATCH_SETTINGS = False 
+DEBUG_TOOLBAR_PATCH_SETTINGS = False
 
 # Application definition
 INSTALLED_APPS = (
