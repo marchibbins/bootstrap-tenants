@@ -12,18 +12,16 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-SITE_ID = 1
+SITE_ID = os.environ.get('SITE_ID', 1)
 SITE_SECURE = False
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '=vzzml7lofbwe_ob-&gi1#ci$_vng+x(zo!fcifq5-0)bh8i5b'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-TEMPLATE_DEBUG = True
+DEBUG = bool(os.environ.get('DEBUG', False))
+TEMPLATE_DEBUG = bool(os.environ.get('TEMPLATE_DEBUG', False))
 
 # Application definition
 INSTALLED_APPS = (
@@ -37,17 +35,8 @@ INSTALLED_APPS = (
     'index',
     'password_reset',
     'bootstrapform',
-    'avatar',
-    'debug_toolbar',
-    'inspector_panel',
+    'avatar'
 )
-
-if DEBUG:
-    CACHES = {
-        'default': {
-            'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
-        }
-    }
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -56,34 +45,19 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'index.middleware.SetLastVisitMiddleware'
 )
 
 ROOT_URLCONF = 'bootstraptenants.urls'
 WSGI_APPLICATION = 'bootstraptenants.wsgi.application'
-
-DEBUG_TOOLBAR_PANELS = (
-    'debug_toolbar.panels.versions.VersionsPanel',
-    'debug_toolbar.panels.timer.TimerPanel',
-    'debug_toolbar.panels.settings.SettingsPanel',
-    'debug_toolbar.panels.headers.HeadersPanel',
-    'debug_toolbar.panels.request.RequestPanel',
-    'debug_toolbar.panels.sql.SQLPanel',
-    'debug_toolbar.panels.staticfiles.StaticFilesPanel',
-    'debug_toolbar.panels.templates.TemplatesPanel',
-    'debug_toolbar.panels.cache.CachePanel',
-    'debug_toolbar.panels.signals.SignalsPanel',
-    'debug_toolbar.panels.logging.LoggingPanel',
-    'debug_toolbar.panels.redirects.RedirectsPanel',
-    'inspector_panel.panels.inspector.InspectorPanel',
-)
-
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
 DATABASES = {
-    'default': dj_database_url.config(default='sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite'))
+    'default': dj_database_url.config()
 }
 
 # Auth
@@ -117,14 +91,17 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['localhost']
 
 # Email
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = 'no-reply@localhost'
-if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Admins
 ADMINS = (
     ('Marc Hibbins', 'marchibbins@gmail.com'),
     ('Gareth Foote', 'gareth.foote@gmail.com'),
 )
-
 MANAGERS = ADMINS
+
+# Location IP addresses
+LOCATION_IPS = (
+    '127.0.0.1',
+)

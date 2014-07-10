@@ -30,10 +30,12 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     bio = models.TextField('bio', null=True, blank=True)
     website = models.URLField('website', null=True, blank=True)
     company = models.CharField('company', max_length=50, null=True, blank=True)
-    date_moved_in = models.DateField('date moved in', null=True, blank=True)
+    date_moved_in = models.DateField('date moved in', null=True, blank=True, help_text='DD/MM/YYYY')
     industries = models.ManyToManyField('Industry', null=True, blank=True)
     location = models.ForeignKey('Location', null=True, blank=True)
     birthday = models.DateField('birthday', null=True, blank=True, help_text='This won\'t be shown on your public profile.')
+    last_visit = models.DateTimeField('last visited', null=True, blank=True)
+    last_on_site = models.DateTimeField('last time in building', null=True, blank=True)
 
     is_in_index = models.BooleanField('displayed in index', default=True,
         help_text='Designates whether this user should be shown in the tenant index list. Unselect this to remove users from index list.')
