@@ -30,7 +30,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     bio = models.TextField('bio', null=True, blank=True)
     website = models.URLField('website', null=True, blank=True)
     company = models.CharField('company', max_length=50, null=True, blank=True)
-    date_moved_in = models.DateField('date moved in', null=True, blank=True)
+    date_moved_in = models.DateField('date moved in', null=True, blank=True, help_text='DD/MM/YYYY')
     industries = models.ManyToManyField('Industry', null=True, blank=True)
     location = models.ForeignKey('Location', null=True, blank=True)
     birthday = models.DateField('birthday', null=True, blank=True, help_text='This won\'t be shown on your public profile.')
