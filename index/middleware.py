@@ -1,8 +1,6 @@
 from django.utils.timezone import now
 from django.conf import settings
 from index.models import CustomUser
-import logging
-from inspector_panel import debug
 
 class SetLastVisitMiddleware(object):
 
