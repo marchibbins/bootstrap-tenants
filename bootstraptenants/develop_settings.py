@@ -1,8 +1,5 @@
 from settings import *
 
-# http://stackoverflow.com/questions/20963856/improperlyconfigured-the-included-urlconf-project-urls-doesnt-have-any-patte
-DEBUG_TOOLBAR_PATCH_SETTINGS = False
-
 # Application definition
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -43,3 +40,11 @@ CACHES = {
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# http://stackoverflow.com/questions/20963856/improperlyconfigured-the-included-urlconf-project-urls-doesnt-have-any-patte
+DEBUG_TOOLBAR_PATCH_SETTINGS = False
+
+INTERNAL_IPS = (
+    '127.0.0.1',
+    '::1',
+)
