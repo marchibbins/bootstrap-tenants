@@ -3,20 +3,30 @@
         "pk": 1,
         "model": "sites.site",
         "fields": {
-            "domain": "localhost:8000",
-            "name": "localhost"
+            "domain": "hidden-hollows-6465.herokuapp.com",
+            "name": "Bootstrap Tenant"
         }
     },
     {
         "pk": 1,
         "model": "index.customuser",
         "fields": {
-            "email": "admin@localhost",
-            "first_name": "Mr.",
-            "last_name": "Admin",
-            "password": "pbkdf2_sha256$12000$4gDerp1kSzq0$nFJ34iFTBfCe3/t6TQ2Lxlm/CrKxHGA6TttafWbi2nI=",
-            "company": "",
-            "is_in_index": false,
+            "email": "marchibbins@gmail.com",
+            "first_name": "Marc",
+            "last_name": "Hibbins",
+            "bio": "Web developer. Penguin lover.",
+            "is_staff": true,
+            "is_superuser": true
+        }
+    },
+    {
+        "pk": 2,
+        "model": "index.customuser",
+        "fields": {
+            "email": "gareth.foote@gmail.com",
+            "first_name": "Gareth",
+            "last_name": "Foote",
+            "bio": "Web developer. Beardy.",
             "is_staff": true,
             "is_superuser": true
         }

@@ -1,35 +1,30 @@
 [
     {
         "pk": 2,
-        "model": "index.customuser",
+        "model": "sites.site",
         "fields": {
-            "website": "",
-            "email": "marchibbins@gmail.com",
-            "bio": "Web developer. Penguin lover.",
-            "first_name": "Marc",
-            "last_name": "Hibbins",
-            "location": 4
+            "domain": "localhost:8000",
+            "name": "Bootstrap Tenant (dev)"
         }
     },
     {
         "pk": 3,
         "model": "index.customuser",
         "fields": {
-            "website": "",
-            "email": "gareth.foote@gmail.com",
-            "bio": "Web developer. Beardy.",
-            "first_name": "Gareth",
-            "last_name": "Foote",
-            "location": 4
+            "email": "admin@localhost",
+            "first_name": "Mr.",
+            "last_name": "Admin",
+            "password": "pbkdf2_sha256$12000$4gDerp1kSzq0$nFJ34iFTBfCe3/t6TQ2Lxlm/CrKxHGA6TttafWbi2nI=",
+            "is_in_index": false,
+            "is_staff": true,
+            "is_superuser": true
         }
     },
     {
         "pk": 4,
         "model": "index.customuser",
         "fields": {
-            "website": "",
             "email": "rhiannon@armstrong.com",
-            "bio": "",
             "first_name": "Rhiannon",
             "last_name": "Armstrong",
             "location": 1
@@ -39,9 +34,7 @@
         "pk": 5,
         "model": "index.customuser",
         "fields": {
-            "website": "",
             "email": "tara@darby.com",
-            "bio": "",
             "first_name": "Tara",
             "last_name": "Darby"
         }
@@ -50,9 +43,7 @@
         "pk": 6,
         "model": "index.customuser",
         "fields": {
-            "website": "",
             "email": "james@perrin.com",
-            "bio": "",
             "first_name": "James",
             "last_name": "Perrin",
             "location": 2
@@ -62,9 +53,7 @@
         "pk": 7,
         "model": "index.customuser",
         "fields": {
-            "website": "",
             "email": "julian@love.com",
-            "bio": "",
             "first_name": "Julian",
             "last_name": "Love",
             "location": 3
@@ -74,9 +63,7 @@
         "pk": 8,
         "model": "index.customuser",
         "fields": {
-            "website": "",
             "email": "roger@mason.com",
-            "bio": "",
             "first_name": "Roger",
             "last_name": "Mason"
         }
@@ -85,9 +72,7 @@
         "pk": 9,
         "model": "index.customuser",
         "fields": {
-            "website": "",
             "email": "charlie@doran.com",
-            "bio": "",
             "first_name": "Charlie",
             "last_name": "Doran",
             "location": 8
@@ -97,9 +82,7 @@
         "pk": 10,
         "model": "index.customuser",
         "fields": {
-            "website": "",
             "email": "kate@gaughran.com",
-            "bio": "",
             "first_name": "Kate",
             "last_name": "Gaughran",
             "location": 5
@@ -109,9 +92,7 @@
         "pk": 11,
         "model": "index.customuser",
         "fields": {
-            "website": "",
             "email": "lauren@kavanagh.com",
-            "bio": "",
             "first_name": "Lauren",
             "last_name": "Kavanagh",
             "location": 5
@@ -121,9 +102,7 @@
         "pk": 12,
         "model": "index.customuser",
         "fields": {
-            "website": "",
             "email": "marc@kremers.com",
-            "bio": "",
             "first_name": "Marc",
             "last_name": "Kremers",
             "location": 6
@@ -133,9 +112,7 @@
         "pk": 13,
         "model": "index.customuser",
         "fields": {
-            "website": "",
             "email": "helen@mair.com",
-            "bio": "",
             "first_name": "Helen",
             "last_name": "Mair"
         }
