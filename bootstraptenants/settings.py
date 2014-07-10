@@ -45,7 +45,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware'
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'index.middleware.SetLastVisitMiddleware'
 )
 
 ROOT_URLCONF = 'bootstraptenants.urls'
@@ -91,3 +92,8 @@ ALLOWED_HOSTS = ['*']
 
 # Email
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Location IP addresses
+LOCATION_IPS = (
+    '127.0.0.1',
+)
