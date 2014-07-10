@@ -20,6 +20,9 @@ class SetLastVisitMiddleware(object):
         return ip
 
     def process_response(self, request, response):
+        """
+        Sets new date if User is within locations and not visiting the admin.
+        """
         if request.path.startswith(reverse('admin:index')) == False:
             # Last use of website.
             if request.user.is_authenticated():
