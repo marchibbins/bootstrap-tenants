@@ -97,7 +97,7 @@ module.exports = function (grunt) {
       },
       bootstrap: {
         src: [
-          // 'js/transition.js',
+          'js/transition.js',
           // 'js/alert.js',
           // 'js/button.js',
           // 'js/carousel.js',
@@ -324,6 +324,10 @@ module.exports = function (grunt) {
       less: {
         files: 'less/*.less',
         tasks: 'less'
+      },
+      js: {
+        files: 'js/*.js',
+        tasks: 'dist-js'
       }
     },
 

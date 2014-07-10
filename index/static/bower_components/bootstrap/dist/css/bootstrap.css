@@ -5795,4 +5795,24 @@ button.close {
 .table > thead > tr > th.info .info {
   color: #5bc0de;
 }
+.table > tbody > tr > td {
+  vertical-align: middle;
+}
+.table td.large {
+  font-size: 1.6rem;
+}
+.table td.emphasise {
+  font-weight: bold;
+}
+.glyphicon-collapse-up:before {
+  font-size: 2rem;
+  opacity: 0.75;
+  color: #333;
+}
+.glyphicon-collapse-up:hover {
+  text-decoration: none;
+}
+.glyphicon-collapse-up.collapsed:before {
+  content: "\e159";
+}
 /*# sourceMappingURL=bootstrap.css.map */
