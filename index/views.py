@@ -243,9 +243,13 @@ class UserDetailView(DetailView):
 
     def get_queryset(self):
         """
-        Only allows Users in index to show profile view.
+        Only shows profiles for public Users or authenticated User.
         """
-        return CustomUser.objects.public()
+        user_id = self.kwargs.get(self.pk_url_kwarg)
+        if int(user_id) == self.request.user.id:
+            return CustomUser.objects.filter(pk=pk)
+        else:
+            return CustomUser.objects.public()
 
 
 class UserUpdateView(UpdateView):
