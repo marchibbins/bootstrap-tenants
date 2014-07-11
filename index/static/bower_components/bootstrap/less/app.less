@@ -41,20 +41,24 @@
 
 .glyphicon-collapse-up {
 	
-	&:before { 
-		font-size:2rem;
-		opacity: 0.75; 
-		color: #333;
-	}
+	opacity: 0.2; 
+	color: #333;
 
 	&:hover {
 		text-decoration: none;
-		color: #333;
 	}
+
 }
 
-.glyphicon-collapse-up.collapsed {
+.collapsed .glyphicon-collapse-up {
 	&:before { content: "\e159"; }
+}
+
+.table>tbody>tr {
+	cursor: pointer;
+	&:hover .glyphicon-collapse-up {
+		opacity: 1;
+	}
 }
 
 

@@ -5804,15 +5804,20 @@ button.close {
 .table td.emphasise {
   font-weight: bold;
 }
-.glyphicon-collapse-up:before {
-  font-size: 2rem;
-  opacity: 0.75;
+.glyphicon-collapse-up {
+  opacity: 0.2;
   color: #333;
 }
 .glyphicon-collapse-up:hover {
   text-decoration: none;
 }
-.glyphicon-collapse-up.collapsed:before {
+.collapsed .glyphicon-collapse-up:before {
   content: "\e159";
+}
+.table > tbody > tr {
+  cursor: pointer;
+}
+.table > tbody > tr:hover .glyphicon-collapse-up {
+  opacity: 1;
 }
 /*# sourceMappingURL=bootstrap.css.map */
