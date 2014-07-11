@@ -111,7 +111,7 @@ ALLOWED_HOSTS = ['localhost']
 
 # Email
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-DEFAULT_FROM_EMAIL = 'no-reply@localhost'
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')
 
 # Admins
 ADMINS = (
