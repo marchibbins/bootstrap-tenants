@@ -1,1 +1,1 @@
-Password recovery on {{ site.domain }}
+{{ site.name }} password recovery

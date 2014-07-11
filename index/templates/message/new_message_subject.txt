@@ -1,1 +1,1 @@
-New message from {{ sender.get_full_name }} via {{ site.domain }}
+New message from {{ sender.get_full_name }} via {{ site.name }}

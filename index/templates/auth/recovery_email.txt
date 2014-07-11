@@ -1,9 +1,13 @@
-Dear {{ username }},
+Dear {{ user.first_name }},
 
-You -- or someone pretending to be you -- has requested a password reset on {{ site.domain }}.
+You, or someone pretending to be you, has requested a password reset on {{ site.name }}.
 
 You can set your new password by following this link:
 
 http{% if secure %}s{% endif %}://{{ site.domain }}{% url 'password_reset_reset' token %}
 
 If you don't want to reset your password, simply ignore this email and it will stay unchanged.
+
+Thanks,
+
+The Bootstrap Team

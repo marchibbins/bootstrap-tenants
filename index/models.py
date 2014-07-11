@@ -86,7 +86,6 @@ def notify_created_user(sender, instance, created, **kwargs):
         if form.is_valid():
             context = {
                 'user': user,
-                'username': user.email,
                 'secure': settings.SITE_SECURE,
                 'site': Site.objects.get_current(),
                 'token': signing.dumps(user.pk, salt=SaltMixin.salt),

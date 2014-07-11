@@ -1,1 +1,1 @@
-Account created on {{ site.domain }}
+{{ user.first_name }}, your {{ site.name }} account has been created

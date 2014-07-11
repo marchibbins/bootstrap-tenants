@@ -1,10 +1,13 @@
 {% if recipient %}Dear {{ recipient.first_name }},{% endif %}
 
-{{ sender.get_full_name }} sent you the following message via {{ site.domain }}:
+{{ sender.get_full_name }} sent you the following message via {{ site.name }}:
 
 Subject: {{ subject }}
 
 {{ message }}
 
-Replying to this email will put you in contact with them directly and by doing so share your email address.
+Replying to this email will put you in contact with them directly and by doing so will share your email address.
 
+Thanks,
+
+The Bootstrap Team
