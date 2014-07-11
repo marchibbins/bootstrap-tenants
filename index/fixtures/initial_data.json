@@ -15,7 +15,6 @@
             "first_name": "Marc",
             "last_name": "Hibbins",
             "bio": "Web developer. Penguin lover.",
-            "is_staff": true,
             "is_superuser": true
         }
     },
@@ -27,7 +26,6 @@
             "first_name": "Gareth",
             "last_name": "Foote",
             "bio": "Web developer. Beardy.",
-            "is_staff": true,
             "is_superuser": true
         }
     }

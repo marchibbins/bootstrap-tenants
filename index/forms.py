@@ -1,4 +1,6 @@
 from django import forms
+from django.contrib.admin.forms import AdminAuthenticationForm, ERROR_MESSAGE
+from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from index.models import CustomUser
 from index.widgets import DayMonthWidget
@@ -11,6 +13,25 @@ class MessageForm(forms.Form):
     recipient = forms.IntegerField(widget=forms.HiddenInput, required=False)
     subject = forms.CharField()
     message = forms.CharField(widget=forms.Textarea)
+
+
+class CustomAdminAuthenticationForm(AdminAuthenticationForm):
+
+    """ Overrides built-in form to allow non-staff superuser access. """
+
+    def clean(self):
+        username = self.cleaned_data.get('username')
+        password = self.cleaned_data.get('password')
+        message = ERROR_MESSAGE
+        params = {'username': self.username_field.verbose_name}
+
+        if username and password:
+            self.user_cache = authenticate(username=username, password=password)
+            if self.user_cache is None:
+                raise forms.ValidationError(message, code='invalid', params=params)
+            elif not self.user_cache.is_active or not (self.user_cache.is_staff or self.user_cache.is_superuser):
+                raise forms.ValidationError(message, code='invalid', params=params)
+        return self.cleaned_data
 
 
 class CustomUserCreationForm(UserCreationForm):

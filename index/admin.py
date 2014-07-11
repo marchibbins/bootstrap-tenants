@@ -1,7 +1,9 @@
 from django.contrib import admin
+from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.views import login
 from index.models import CustomUser, Industry, Location
-from index.forms import CustomUserChangeForm, CustomUserCreationForm
+from index.forms import CustomAdminAuthenticationForm, CustomUserChangeForm, CustomUserCreationForm
 
 
 class CustomUserAdmin(UserAdmin):
@@ -55,3 +57,34 @@ class CustomUserAdmin(UserAdmin):
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(Industry)
 admin.site.register(Location)
+
+
+def admin_permission(request):
+    """
+    Overrides built-in method to allow non-staff superuser access.
+    """
+    return request.user.is_active and (request.user.is_staff or request.user.is_superuser)
+
+
+def admin_login(request, extra_context=None):
+    """
+    Displays the login form for the given HttpRequest, overrides authentication form.
+    """
+    context = {
+        'title': 'Log in',
+        'app_path': request.get_full_path(),
+        REDIRECT_FIELD_NAME: request.get_full_path(),
+    }
+    context.update(extra_context or {})
+
+    defaults = {
+        'extra_context': context,
+        'current_app': 'admin',
+        'authentication_form': CustomAdminAuthenticationForm,
+        'template_name': 'admin/login.html',
+    }
+    return login(request, **defaults)
+
+
+admin.site.has_permission = admin_permission
+admin.site.login = admin_login
