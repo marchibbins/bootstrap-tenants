@@ -4,103 +4,112 @@
 {% block title %}{{ block.super }} | Tenant Index{% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="page-header">
-        <h1>Tenant Index</h1>
-        <p class="lead">Search, filter and sort tenants&hellip; right here!</p>
-    </div>
+<div class="container-fluid">
     <form action="{% url 'user_list' %}" method="get" class="form-inline" role="form">
+        <span>Filter by:</span>
         <div class="form-group">
             <label class="sr-only" for="industry">Industry</label>
-            <select class="form-control input-lg" name="industry" id="industry">
-                <option value="">Select industry</option>
+            <select class="form-control" name="industry" id="industry">
+                <option value="">All industries</option>
                 {% for industry in industries %}
                     <option value="{{ industry.id }}" {% if selected_industry == industry.id %}selected{% endif %}>{{ industry }}</option>
                 {% endfor %}
             </select>
 
             <label class="sr-only" for="location">Location</label>
-            <select class="form-control input-lg" name="location" id="location">
-                <option value="">Select location</option>
+            <select class="form-control" name="location" id="location">
+                <option value="">All locations</option>
                 {% for location in locations %}
                     <option value="{{ location.id }}" {% if selected_location == location.id %}selected{% endif %}>{{ location }}</option>
                 {% endfor %}
             </select>
 
-            <label class="sr-only" for="search">Search name or company</label>
-            <input type="search" class="form-control input-lg" name="search" id="search" value="{{ search_term }}" placeholder="Search name or company&hellip;">
+            <label class="sr-only" for="search">Name or company</label>
+            <input type="search" class="form-control" name="search" id="search" value="{{ search_term }}" placeholder="Name or company&hellip;">
 
             <input type="hidden" name="order_by" value="{{ order_by }}">
             <input type="hidden" name="order" value="{{ order }}">
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-lg btn-primary">Filter</button>
-            <a href="{% url 'user_list' %}?order_by={{ order_by }}&amp;order={{ order }}" title="Reset filter options" class="btn btn-lg btn-default">Reset</a>
+            <button type="submit" class="btn btn-primary">Filter</button>
+            <a href="{% url 'user_list' %}?order_by={{ order_by }}&amp;order={{ order }}" title="Reset filter options" class="btn btn-default">Reset</a>
         </div>
     </form>
     <hr>
 
     {% if object_list %}
-        <table class="table table-hover">
+        <table class="custom-table table">
             <thead>
                 <tr>
                     <th><span class="hidden">Avatar</span></th>
-                    <th class="{% if 'first_name' in order_by %}info{% endif %}">
-                        First name
-                        <a class="{% if 'first_name' in order_by and 'asc' in order %}info{% endif %}" href="{{ querystring }}&amp;order_by=first_name" title="Sort by first name">▾</a>
-                        <a class="{% if 'first_name' in order_by and 'desc' in order %}info{% endif %}" href="{{ querystring }}&amp;order_by=first_name&amp;order=desc" title="Sort by first name">▴</a>
+                    <th class="{% if 'first_name' in order_by %}ordered{% endif %}">
+                        <a href="{{ querystring }}&amp;order_by=first_name{% if 'first_name' in order_by and 'asc' in order %}&amp;order=desc{% elif 'first_name' in order_by and 'desc' in order %}&amp;order=asc{% endif %}" title="Sort by first name">
+                            First name
+                            <span class="direction desc{% if 'first_name' in order_by and 'desc' in order %} ordered{% endif %}">▾</span>
+                            <span class="direction asc{% if 'first_name' in order_by and 'asc' in order %} ordered{% endif %}">▴</span>
+                        </a>
                     </th>
-                    <th class="{% if 'last_name' in order_by %}info{% endif %}">
-                        Last name
-                        <a class="{% if 'last_name' in order_by and 'asc' in order %}info{% endif %}" href="{{ querystring }}&amp;order_by=last_name" title="Sort by last name">▾</a>
-                        <a class="{% if 'last_name' in order_by and 'desc' in order %}info{% endif %}" href="{{ querystring }}&amp;order_by=last_name&amp;order=desc" title="Sort by last name">▴</a>
+                    <th class="{% if 'last_name' in order_by %}ordered{% endif %}">
+                        <a href="{{ querystring }}&amp;order_by=last_name{% if 'last_name' in order_by and 'asc' in order %}&amp;order=desc{% elif 'last_name' in order_by and 'desc' in order %}&amp;order=asc{% endif %}" title="Sort by last name">
+                            Last name
+                            <span class="direction desc{% if 'last_name' in order_by and 'desc' in order %} ordered{% endif %}">▾</span>
+                            <span class="direction asc{% if 'last_name' in order_by and 'asc' in order %} ordered{% endif %}">▴</span>
+                        </a>                    
                     </th>
-                    <th class="{% if 'company' in order_by %}info{% endif %}">
-                        Company
-                        <a class="{% if 'company' in order_by and 'asc' in order %}info{% endif %}" href="{{ querystring }}&amp;order_by=company" title="Sort by last name">▾</a>
-                        <a class="{% if 'company' in order_by and 'desc' in order %}info{% endif %}" href="{{ querystring }}&amp;order_by=company&amp;order=desc" title="Sort by last name">▴</a>
+                    <th class="{% if 'company' in order_by %}ordered{% endif %}">
+                        <a href="{{ querystring }}&amp;order_by=company{% if 'company' in order_by and 'asc' in order %}&amp;order=desc{% elif 'company' in order_by and 'desc' in order %}&amp;order=asc{% endif %}" title="Sort by last name">
+                            Company
+                            <span class="direction desc{% if 'company' in order_by and 'desc' in order %} ordered{% endif %}">▾</span>
+                            <span class="direction asc{% if 'company' in order_by and 'asc' in order %} ordered{% endif %}">▴</span>
+                        </a> 
                     </th>
                     <th>Industry/sector</th>
-                    <th class="{% if 'location' in order_by %}info{% endif %}">
-                        Location
-                        <a class="{% if 'location' in order_by and 'asc' in order %}info{% endif %}" href="{{ querystring }}&amp;order_by=location" title="Sort by last name">▾</a>
-                        <a class="{% if 'location' in order_by and 'desc' in order %}info{% endif %}" href="{{ querystring }}&amp;order_by=location&amp;order=desc" title="Sort by last name">▴</a>
+                    <th class="{% if 'location' in order_by %}ordered{% endif %}">
+                        <a href="{{ querystring }}&amp;order_by=location{% if 'location' in order_by and 'asc' in order %}&amp;order=desc{% elif 'location' in order_by and 'desc' in order %}&amp;order=asc{% endif %}" title="Sort by last name">
+                            Location
+                            <span class="direction desc{% if 'location' in order_by and 'desc' in order %} ordered{% endif %}">▾</span>
+                            <span class="direction asc{% if 'location' in order_by and 'asc' in order %} ordered{% endif %}">▴</span>
+                        </a> 
                     </th>
-                    <th class="{% if 'date_moved_in' in order_by %}info{% endif %}">
-                        Date moved in
-                        <a class="{% if 'date_moved_in' in order_by and 'asc' in order %}info{% endif %}" href="{{ querystring }}&amp;order_by=date_moved_in" title="Sort by last name">▾</a>
-                        <a class="{% if 'date_moved_in' in order_by and 'desc' in order %}info{% endif %}" href="{{ querystring }}&amp;order_by=date_moved_in&amp;order=desc" title="Sort by last name">▴</a>
+                    <th class="{% if 'date_moved_in' in order_by %}ordered{% endif %}">
+                        <a href="{{ querystring }}&amp;order_by=date_moved_in{% if 'date_moved_in' in order_by and 'asc' in order %}&amp;order=desc{% elif 'date_moved_in' in order_by and 'desc' in order %}&amp;order=asc{% endif %}" title="Sort by last name">
+                            Date moved in
+                            <span class="direction desc{% if 'date_moved_in' in order_by and 'desc' in order %} ordered{% endif %}">▾</span>
+                            <span class="direction asc{% if 'date_moved_in' in order_by and 'asc' in order %} ordered{% endif %}">▴</span>
+                        </a>
                     </th>
                     <th><span class="hidden">View profile</span></th>
                 </tr>
             </thead>
             <tbody>
                 {% for object in object_list %}
-                    <tr{% if forloop.counter|divisibleby:"2" %} class="active"{% endif %}>
+                    <tr class="collapsed{% if forloop.counter|divisibleby:"2" %} active{% endif %}" data-target="#profile-{{ object.id }}" data-toggle="collapse">
                         <td>
-                            {% avatar object 75 %}
+                            {% avatar object 30 %}
                         </td>
-                        <td>
+                        <td class="{% if 'first_name' in order_by %}emphasise{% endif %}">
                             {{ object.first_name }}
                         </td>
-                        <td>
+                        <td class="{% if 'last_name' in order_by %}emphasise{% endif %}">
                             {{ object.last_name }}
                         </td>
-                        <td>
+                        <td class="{% if 'company' in order_by %}emphasise{% endif %}">
                             {{ object.company|default:'&ndash;' }}
                         </td>
-                        <td>{{ object.industries.all|join:', '|default:'&ndash;' }}</td>
                         <td>
+                            {{ object.industries.all|join:', '|default:'&ndash;' }}
+                        </td>
+                        <td class="{% if 'location' in order_by %}emphasise{% endif %}">
                             {{ object.location|default:'&ndash;' }}
                         </td>
                         <td>
                             <time datetime="{% if object.date_moved_in %}{{ object.date_moved_in|date:'c' }}{% else %}&ndash;{% endif %}">{% if object.date_moved_in %}{{ object.date_moved_in|date:'jS F Y' }}{% else %}&ndash;{% endif %}</date>
                         </td>
                         <td>
-                            <a href="#profile-{{ object.id }}" data-toggle="collapse">View more</a>
+                            <span class="glyphicon glyphicon-collapse-up collapsed" href="#profile-{{ object.id }}" data-toggle="collapse"><span class="sr-only">View More</span></span>
                         </td>
                     </tr>
-                    <tr class="{% if forloop.counter|divisibleby:"2" %}active {% endif %}">
+                    <tr class="extra collapsed{% if forloop.counter|divisibleby:"2" %} active{% endif %}" data-target="#profile-{{ object.id }}" data-toggle="collapse">
                         <td colspan="8" class="row-constrain">
                             <div id="profile-{{ object.id }}" class="collapse">
                                 <table class="table">
@@ -136,7 +145,7 @@
             </tbody>
         </table>
         {% if is_paginated %}
-        <div class="pagination pagination-lg">
+        <div class="pagination">
             {% if page_obj.has_previous %}
                 <li><a href="{{ querystring }}&amp;order_by={{ order_by }}&amp;order={{ order }}&amp;page={{ page_obj.previous_page_number }}">&laquo;</a></li>
             {% else %}
