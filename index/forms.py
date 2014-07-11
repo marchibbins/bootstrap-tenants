@@ -73,7 +73,6 @@ class CustomUserChangeForm(UserChangeForm):
         }
 
 
-
 class CustomUserUpdateForm(forms.ModelForm):
 
     """ Simple front-facing CustomUser form for non-staff use. """
@@ -90,7 +89,6 @@ class CustomUserUpdateForm(forms.ModelForm):
 
     class Meta:
         model = CustomUser
-
         exclude = ('password', 'last_login', 'groups', 'user_permissions', 'date_joined', 'is_active', 'is_staff', 'is_superuser')
         widgets = {
             'birthday': DayMonthWidget
