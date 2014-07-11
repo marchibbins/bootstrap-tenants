@@ -5,7 +5,7 @@
 <head>
     <title>{% block title %}{% endblock %}</title>
     {% load staticfiles %}
-    <link href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'dist/css/bootstrap-tenant.min.css' %}" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar navbar-default" role="navigation">
@@ -41,6 +41,6 @@
     {% endblock %}
 
     <script type="text/javascript" src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'bower_components/bootstrap/dist/js/bootstrap.min.js' %}" async></script>
+    <script type="text/javascript" src="{% static 'dist/js/bootstrap-tenant.min.js' %}" async></script>
 </body>
 </html>
