@@ -5772,4 +5772,56 @@ button.close {
     display: none !important;
   }
 }
+.navbar-brand {
+  text-indent: -9999em;
+  background: transparent url('../');
+}
+.table > tbody > tr > td.row-constrain {
+  padding: 0;
+  border-top: 0 none;
+}
+.table .table {
+  margin-bottom: 0;
+  background-color: transparent;
+}
+.table .table > thead > tr > th,
+.table .table > tbody > tr > td {
+  border-top: 0 none;
+  border-bottom: 0 none;
+}
+.table > thead > tr > th {
+  font-weight: normal;
+}
+.table > thead > tr > th.info {
+  font-weight: bold;
+  background-color: transparent;
+}
+.table > thead > tr > th.info .info {
+  color: #5bc0de;
+}
+.table > tbody > tr > td {
+  vertical-align: middle;
+}
+.table td.large {
+  font-size: 1.6rem;
+}
+.table td.emphasise {
+  font-weight: bold;
+}
+.glyphicon-collapse-up {
+  opacity: 0.2;
+  color: #333;
+}
+.glyphicon-collapse-up:hover {
+  text-decoration: none;
+}
+.collapsed .glyphicon-collapse-up:before {
+  content: "\e159";
+}
+.table > tbody > tr {
+  cursor: pointer;
+}
+.table > tbody > tr:hover .glyphicon-collapse-up {
+  opacity: 1;
+}
 /*# sourceMappingURL=bootstrap.css.map */
