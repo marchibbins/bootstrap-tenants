@@ -18,21 +18,21 @@ module.exports = function(grunt) {
         }
       },
       minify: {
-		options: {
-			cleancss: true,
-			report: 'min'
-		},
-		files: {
-			'dist/css/<%= pkg.name %>.min.css': 'dist/css/<%= pkg.name %>.css'
-		}
+    		options: {
+    			cleancss: true,
+    			report: 'min'
+    		},
+    		files: {
+    			'dist/css/<%= pkg.name %>.min.css': 'dist/css/<%= pkg.name %>.css'
+    		}
       }
     },
 
     watch: {
-		less: {
-			files: 'less/*.less',
-			tasks: 'less'
-		}
+  		less: {
+  			files: 'less/*.less',
+  			tasks: 'less'
+  		}
     },
 
     uglify: {

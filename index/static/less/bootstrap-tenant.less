@@ -1,25 +1,98 @@
 @import "bower_components/bootstrap/less/bootstrap.less";
 
+@sidebar-width: 160px;
 
-// ------- BRAND -------
-.navbar-brand {
+@font-face {
+	font-family: 'Conv_Replica';
+	src: url('../fonts/Replica-Regular.eot');
+	src: local('☺'), url('../fonts/Replica-Regular.woff') format('woff'), url('../fonts/Replica-Regular.ttf') format('truetype'), url('../fonts/Replica-Regular.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Conv_Replica';
+	src: url('../fonts/Replica-Light.eot');
+	src: local('☺'), url('../fonts/Replica-Light.woff') format('woff'), url('../fonts/Replica-Light.ttf') format('truetype'), url('../fonts/Replica-Light.svg') format('svg');
+	font-weight: 100;
+	font-style: normal;
+}
+
+body {
+	font-family: "Conv_Replica", "Helvetica Neue", Helvetica,Arial,sans-serif;
+	font-weight: 100;
+}
+
+
+// ------- HEADER -------
+.custom-navbar {
+	position: static;
+	margin-bottom: 0;
+	border: 0;
+}
+
+.custom-navbar .navbar-header h1 {
+	margin-top: 0;
+	/*padding-left: 100px;*/
+}
+	
+.custom-navbar .container-fluid .navbar-brand {
+	margin-left: 0;
+}
+
+.custom-navbar .navbar-brand {
 	text-indent: -9999em;
-	background: transparent url('../');
+	background: transparent url('../../images/bootstraplogo.jpg') no-repeat;
+	width: @sidebar-width;
+	height: 175px;
+	float: left;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 1;
 }
 
 // ------- LAYOUT -------
+.content {
+	margin-left: @sidebar-width;
+	border-top: 1px solid #dae3e9;
+	border-left: 1px solid #dae3e9;
+	border-bottom: 1px solid #dae3e9;
+	/*box-shadow: -3px 3px 3px -2px #f1f1f3;*/
+	border-radius: 5px 0px 0px 5px;
+	padding-top: @line-height-computed;
+}
 
+// ------- SIDEBAR NAV -------
+.sidebar-nav {
+	position: absolute;
+	width: @sidebar-width;
+	padding-top: 12.5em;
+}
+
+.sidebar-nav li, .sidebar-nav a {
+	width: 100%;
+}
 
 
 // ------- TABLE -------
-.table>tbody>tr>td.row-constrain {
+.btn-primary {
+	.button-variant(#fff; @bootstrap-green; darken(@bootstrap-green, 5%));
+}
+
+// ------- TABLE -------
+.custom-table>tbody>tr>td.row-constrain {
 	padding:0;
 	border-top: 0 none;
 }
 
-.table .table {
+.custom-table .table {
 	margin-bottom:0;
 	background-color: transparent;
+
+	&>thead>tr>th {
+		font-weight: normal;
+	}
 
 	&>thead>tr>th,
 	&>tbody>tr>td {
@@ -28,29 +101,61 @@
 	}
 }
 
-.table>thead>tr>th {
+.custom-table>thead>tr>th {
 	font-weight: normal;
+	border-bottom: 0;
+	background-color: @bootstrap-green;
+	color: #fff;
+}
+.custom-table .table>thead>tr>th {
+	background-color: transparent;
+	color: inherit;
 }
 
-.table>thead>tr>th.info {
-	font-weight: bold;
-	background-color: transparent;
-	// Ordering arrows
-	.info {
-		color: @brand-info;
+.custom-table>thead>tr>th {
+	
+	a {
+		text-decoration: none;
+		color: #fff;
+	}
+
+	a:hover .direction {
+		opacity: 0.3;
+	}
+
+	.direction {
+		opacity: 0;
+		text-decoration: none;
 	}
 }
 
-.table>tbody>tr>td {
-	vertical-align: middle; 
+.custom-table>thead>tr>th.ordered {
+
+	a:hover .direction.ordered,
+	.direction.ordered {
+		opacity: 1;
+	}
 }
 
-.table td.large {
+.custom-table>tbody>tr>td {
+	vertical-align: middle; 
+	border-top: 0;
+}
+
+.custom-table td.large {
 	font-size: 1.6rem;
 }
 
-.table td.emphasise {
-	font-weight: bold;
+.custom-table>tbody>tr>td.emphasise {
+	/*background-color: @bootstrap-orange-tint;*/
+	color: #000;
+}
+
+.custom-table>tbody>tr {
+	cursor: pointer;
+	&:hover .glyphicon-collapse-up {
+		opacity: 1;
+	}
 }
 
 .glyphicon-collapse-up {
@@ -67,12 +172,4 @@
 .collapsed .glyphicon-collapse-up {
 	&:before { content: "\e159"; }
 }
-
-.table>tbody>tr {
-	cursor: pointer;
-	&:hover .glyphicon-collapse-up {
-		opacity: 1;
-	}
-}
-
 

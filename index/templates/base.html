@@ -8,16 +8,11 @@
     <link href="{% static 'dist/css/bootstrap-tenant.min.css' %}" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="container">
+    <nav class="custom-navbar navbar" role="navigation">
+        <div class="container-fluid">
             <div class="navbar-header">
-              <a class="navbar-brand" href="/">Home</a>
-            </div>
-            {% if user.is_authenticated %}
-                <ul class="nav navbar-nav">
-                    <li><a href="{% url 'message_form' %}" title="Send us a message">Suggestions?</a></li>
-                </ul>
-            {% endif %}
+              <h1><a class="navbar-brand" href="/">Bootstrap</a></h1>
+            </div>  
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
                     <li style="margin-top: 12px;">{% avatar user 25 %}</li>
@@ -36,9 +31,21 @@
             </ul>
         </div>
     </nav>
+    <div class="sidebar-nav">
+        <ul class="nav navbar-nav">
+            {% if user.is_authenticated %}
+            <li><a href="/" title="Your homepage">Tenants</a></li>
+            <li><a href="" title="Talk/Shout in the forum">Talk</a></li>
+            <li><a href="" title="Calendar of events">Events</a></li>
+            <li><a href="{% url 'message_form' %}" title="Send us a message">Suggestions?</a></li>
+            {% endif %}
+        </ul>
+    </div>
 
+    <div class="content">
     {% block content %}
     {% endblock %}
+    </div>
 
     <script type="text/javascript" src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'dist/js/bootstrap-tenant.min.js' %}" async></script>
