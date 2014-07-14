@@ -32,8 +32,6 @@
         <ul class="nav navbar-nav">
             {% if user.is_authenticated %}
             <li><a href="/" title="Your homepage">Tenants</a></li>
-            <li><a href="" title="Talk/Shout in the forum">Talk</a></li>
-            <li><a href="" title="Calendar of events">Events</a></li>
             <li><a href="{% url 'message_form' %}" title="Send us a message">Suggestions</a></li>
             {% endif %}
         </ul>
