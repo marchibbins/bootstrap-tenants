@@ -14,7 +14,6 @@ INSTALLED_APPS = (
     'bootstrapform',
     'avatar',
     'debug_toolbar',
-    'inspector_panel',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -41,7 +40,6 @@ DEBUG_TOOLBAR_PANELS = (
     'debug_toolbar.panels.signals.SignalsPanel',
     'debug_toolbar.panels.logging.LoggingPanel',
     'debug_toolbar.panels.redirects.RedirectsPanel',
-    'inspector_panel.panels.inspector.InspectorPanel',
 )
 
 CACHES = {
