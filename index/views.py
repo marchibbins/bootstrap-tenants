@@ -247,7 +247,7 @@ class UserDetailView(DetailView):
         """
         user_id = self.kwargs.get(self.pk_url_kwarg)
         if int(user_id) == self.request.user.id:
-            return CustomUser.objects.filter(pk=pk)
+            return CustomUser.objects.filter(pk=user_id)
         else:
             return CustomUser.objects.public()
 
