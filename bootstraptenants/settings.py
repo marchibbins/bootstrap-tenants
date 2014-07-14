@@ -94,6 +94,15 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = 'media'
 MEDIA_URL = '/media/'
 
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+STATICFILES_STORAGE='django.contrib.staticfiles.storage.StaticFilesStorage'
+
+# # AWS and S3
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', False)
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', False)
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME', False)
+# S3_BUCKET_NAME = os.environ.get('S3_BUCKET_NAME', False)
+
 # Avatar
 AVATAR_HASH_FILENAMES = True
 AVATAR_HASH_USERDIRNAMES = True

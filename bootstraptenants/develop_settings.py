@@ -59,3 +59,5 @@ INTERNAL_IPS = (
     '127.0.0.1',
     '::1',
 )
+
+DEFAULT_FILE_STORAGE='django.core.files.storage.FileSystemStorage'
