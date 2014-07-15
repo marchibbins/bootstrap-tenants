@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% load avatar_tags bootstrap %}
 
-{% block title %}{{ block.super }} | Add avatar{% endblock %}
+{% block title %}{{ block.super }} | Change avatar{% endblock %}
 
 {% block content %}
 <div class="container">
     <div class="page-header">
-        <h1>Add avatar</h1>
+        <h1>Change avatar</h1>
     </div>
 
     {% if not avatars %}
@@ -16,7 +16,8 @@
         {% avatar user %}
     {% endif %}
 
-    <form action="{% url 'avatar_add' %}" method="POST" enctype="multipart/form-data" class="form" role="form">
+    <hr>
+    <form action="{% url 'avatar_change' %}" method="POST" enctype="multipart/form-data" class="form" role="form">
         {% csrf_token %}
 
         {{ upload_avatar_form|bootstrap }}

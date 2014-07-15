@@ -39,9 +39,7 @@ urlpatterns = patterns('',
         name='message_sent'),
 
     # Avatar
-    url(r'^avatar/add$', 'avatar.views.add', name='avatar_add'),
-    url(r'^avatar/change$', 'avatar.views.change', name='avatar_change'),
-    url(r'^avatar/delete$', 'avatar.views.delete', name='avatar_delete'),
+    url(r'^avatar/change$', 'avatar.views.add', name='avatar_change'),
 
     # Auth
     url(r'^login$', LoginView.as_view(), name='login'),
