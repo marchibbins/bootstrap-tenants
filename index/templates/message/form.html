@@ -14,6 +14,11 @@
             <p class="lead">Comments, complaints, suggestions?</p>
         {% endif %}
     </div>
+
+    {% if not recipient %}
+    <p>Use this form to send <a href="{% url 'user_detail' 1 %}" title="View Marc's profile">Marc</a> and <a href="{% url 'user_detail' 2 %}" title="View Gareth's profile">Gareth</a> a message. This site is a work in progress &mdash; let us know if there's something we've missed or if there's something you'd like to see.</p>
+    {% endif %}
+
     <form action="{% url 'message_form' %}" method="post" class="form" role="form">
         {% csrf_token %}
 
