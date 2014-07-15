@@ -124,7 +124,7 @@
                                     <tr>
                                         <td>
                                             <p>{{ object.bio|default:"Nothing here yet."|truncatewords:30|urlize }}</p>
-                                            <a class="js-profile-link btn btn-primary" href="{% url 'user_detail' object.id %}">View full profile</a>
+                                            <p><a class="js-profile-link btn btn-primary" href="{% url 'user_detail' object.id %}">View full profile</a></p>
                                         </td>                                            
                                         <td>
                                             {% if object.website %}<a href="{{ object.website }}">{{ object.website|urlize }}</a>{% else %}&ndash;{% endif %}
