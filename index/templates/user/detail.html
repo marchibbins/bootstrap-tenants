@@ -13,25 +13,24 @@
             <h1>{{ object.get_full_name }}</h1>
             <a href="{% url 'message_form' object.id %}" title="Send {{ object.first_name }} a message" class="btn btn-primary">Send message</a>
         </div>
-        <dl class="dl-horizontal">
-            <dt>Company</dt>
-            <dd>{{ object.company|default:'-' }}</dd>
 
-            <dt>Bio</dt>
-            <dd>{{ object.bio|default:'-' }}</dd>
+        <h2>Bio</h2>
+        <p>{{ object.bio|default:'Nothing here yet' }}</p>
 
-            <dt>Website</dt>
-            <dd>{{ object.website|default:'-'|urlize }}</dd>
+        <h3>Website</h3>
+        <p>{{ object.website|default:'-'|urlize }}</p>
 
-            <dt>Industries</dt>
-            <dd>{{ object.industries.all|join:', '|default:'-' }}</dd>
+        <h4>Company</h4>
+        <p>{{ object.company|default:'-' }}</p>
 
-            <dt>Location</dt>
-            <dd>{{ object.location|default:'-' }}</dd>
+        <h4>Industries</h4>
+        <p>{{ object.industries.all|join:', '|default:'-' }}</p>
 
-            <dt>Date moved in</dt>
-            <dd>{{ object.date_moved_in|date:'jS F Y'|default:'-' }}</dd>
-        </dl>
+        <h4>Location</h4>
+        <p>{{ object.location|default:'-' }}</p>
+
+        <h5>Date moved in</h5>
+        <p>{{ object.date_moved_in|date:'jS F Y'|default:'-' }}</p>
     </section>
 </div>
 {% endblock %}
