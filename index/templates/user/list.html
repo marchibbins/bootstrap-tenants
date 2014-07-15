@@ -106,7 +106,7 @@
                             <time datetime="{% if object.date_moved_in %}{{ object.date_moved_in|date:'c' }}{% else %}&ndash;{% endif %}">{% if object.date_moved_in %}{{ object.date_moved_in|date:'jS F Y' }}{% else %}&ndash;{% endif %}</date>
                         </td>
                         <td>
-                            <span class="glyphicon glyphicon-collapse-up collapsed" href="#profile-{{ object.id }}" data-toggle="collapse"><span class="sr-only">View More</span></span>
+                            <span class="glyphicon glyphicon-collapse-up collapsed" href="#profile-{{ object.id }}"><span class="sr-only">View More</span></span>
                         </td>
                     </tr>
                     <tr class="extra collapsed{% if forloop.counter|divisibleby:"2" %} active{% endif %}" data-target="#profile-{{ object.id }}" data-toggle="collapse">
