@@ -15,7 +15,7 @@
         </div>
 
         <h2>Bio</h2>
-        <p>{{ object.bio|default:'Nothing here yet' }}</p>
+        <p>{{ object.bio|default:'Nothing here yet'|urlize|linebreaks }}</p>
 
         <h3>Website</h3>
         <p>{{ object.website|default:'-'|urlize }}</p>
