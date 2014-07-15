@@ -133,7 +133,7 @@
                                             <time datetime="{% if object.last_login %}{{ object.last_login|date:"c" }}{% else %}&ndash;{% endif %}">{% if object.last_visit %}{{ object.last_visit|timesince }} ago{% else %}&ndash;{% endif %}</date>
                                         </td>    
                                         <td>
-                                            <a class="pull-right" href="{% url 'user_detail' object.id %}">View full profile</a>
+                                            <a class="js-profile-link pull-right" href="{% url 'user_detail' object.id %}">View full profile</a>
                                         </td>       
                                     </tr>
                                     </tbody>

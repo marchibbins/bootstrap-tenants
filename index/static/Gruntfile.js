@@ -30,9 +30,13 @@ module.exports = function(grunt) {
 
     watch: {
   		less: {
-  			files: 'less/*.less',
+  			files: ['less/*.less', 'bower_components/bootstrap/less/*.less'],
   			tasks: 'less'
-  		}
+  		},
+      js: {
+        files: ['js/*.js', 'bower_components/bootstrap/js/*.js'],
+        tasks: 'dist-js'
+      }
     },
 
     uglify: {
@@ -67,6 +71,7 @@ module.exports = function(grunt) {
           // 'bower_components/bootstrap/js/scrollspy.js',
           // 'bower_components/bootstrap/js/tab.js',
           // 'bower_components/bootstrap/js/affix.js'
+          'js/app.js'
         ],
         dest: 'dist/js/<%= pkg.name %>.js'
       }
