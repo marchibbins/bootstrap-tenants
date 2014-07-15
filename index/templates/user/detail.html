@@ -6,42 +6,31 @@
 {% block content %}
 <div class="container">
     <section>
-        <div class="page-header">
+        <div class="page-header clearfix">
+            <div class="pull-right">
+                {% avatar object 125 %}
+            </div>
             <h1>{{ object.get_full_name }}</h1>
             <a href="{% url 'message_form' object.id %}" title="Send {{ object.first_name }} a message" class="btn btn-primary">Send message</a>
         </div>
-        {% avatar object 100 %}
-        <dl>
-            {% if object.company %}
-                <dt>Company</dt>
-                <dd>{{ object.company }}</dd>
-            {% endif %}
 
-            {% if object.bio %}
-                <dt>Bio</dt>
-                <dd>{{ object.bio }}</dd>
-            {% endif %}
+        <h2>Bio</h2>
+        <p>{{ object.bio|default:'Nothing here yet' }}</p>
 
-            {% if object.website %}
-                <dt>Website</dt>
-                <dd>{{ object.website|urlize }}</dd>
-            {% endif %}
+        <h3>Website</h3>
+        <p>{{ object.website|default:'-'|urlize }}</p>
 
-            {% if object.industries.count %}
-                <dt>Industries</dt>
-                <dd>{{ object.industries.all|join:', ' }}</dd>
-            {% endif %}
+        <h4>Company</h4>
+        <p>{{ object.company|default:'-' }}</p>
 
-            {% if object.location %}
-                <dt>Location</dt>
-                <dd>{{ object.location }}</dd>
-            {% endif %}
+        <h4>Industries</h4>
+        <p>{{ object.industries.all|join:', '|default:'-' }}</p>
 
-            {% if object.date_moved_in %}
-                <dt>Date moved in</dt>
-                <dd>{{ object.date_moved_in|date:'jS F Y' }}</dd>
-            {% endif %}
-        </dl>
+        <h4>Location</h4>
+        <p>{{ object.location|default:'-' }}</p>
+
+        <h5>Date moved in</h5>
+        <p>{{ object.date_moved_in|date:'jS F Y'|default:'-' }}</p>
     </section>
 </div>
 {% endblock %}
