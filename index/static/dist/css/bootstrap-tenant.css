@@ -5790,6 +5790,11 @@ body {
   font-family: "Conv_Replica", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 100;
 }
+label,
+dt,
+strong {
+  font-weight: normal;
+}
 .custom-navbar {
   position: static;
   margin-bottom: 0;
@@ -5930,14 +5935,14 @@ fieldset[disabled] .btn-primary.active {
 .custom-table > tbody > tr:hover .glyphicon-collapse-up {
   opacity: 1;
 }
-.glyphicon-collapse-up {
+.custom-table .glyphicon-collapse-up {
   opacity: 0.2;
   color: #333;
 }
-.glyphicon-collapse-up:hover {
+.custom-table .glyphicon-collapse-up:hover {
   text-decoration: none;
 }
-.collapsed .glyphicon-collapse-up:before {
+.custom-table .collapsed .glyphicon-collapse-up:before {
   content: "\e159";
 }
 /*# sourceMappingURL=bootstrap-tenant.css.map */
