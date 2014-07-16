@@ -230,8 +230,8 @@ class UserListView(ListView):
         """
         context = super(UserListView, self).get_context_data(**kwargs)
         context.update(self.filters)
-        context['industries'] = Industry.objects.filter(customuser__isnull=False)
-        context['locations'] = Location.objects.filter(customuser__isnull=False)
+        context['industries'] = Industry.objects.filter(customuser__isnull=False).distinct()
+        context['locations'] = Location.objects.filter(customuser__isnull=False).distinct()
         return context
 
 
