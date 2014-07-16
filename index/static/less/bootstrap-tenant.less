@@ -93,6 +93,8 @@ label, dt, strong {
 .custom-table .table {
 	margin-bottom:0;
 	background-color: transparent;
+	border-top: 1px solid #ddd;
+	padding: 15px;
 
 	&>thead>tr>th {
 		font-weight: normal;
@@ -111,6 +113,7 @@ label, dt, strong {
 	background-color: @bootstrap-green;
 	color: #fff;
 }
+
 .custom-table .table>thead>tr>th {
 	background-color: transparent;
 	color: inherit;
@@ -139,6 +142,10 @@ label, dt, strong {
 	.direction.ordered {
 		opacity: 1;
 	}
+}
+
+.custom-table>tbody>tr.extra>td>div {
+	padding: 0 15px;
 }
 
 .custom-table>tbody>tr>td {
@@ -175,5 +182,17 @@ label, dt, strong {
 
 .custom-table .collapsed .glyphicon-collapse-up {
 	&:before { content: "\e159"; }
+}
+
+.column__date-moved-in {
+	width: 180px;
+}
+
+.column__bio {
+	width: 60%;
+}
+
+.column__last-seen {
+	width: 150px;
 }
 

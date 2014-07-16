@@ -71,7 +71,7 @@
                             <span class="direction asc{% if 'location' in order_by and 'asc' in order %} ordered{% endif %}">▴</span>
                         </a> 
                     </th>
-                    <th class="{% if 'date_moved_in' in order_by %}ordered{% endif %}">
+                    <th class="{% if 'date_moved_in' in order_by %}ordered{% endif %} column__date-moved-in">
                         <a href="{{ querystring }}&amp;order_by=date_moved_in{% if 'date_moved_in' in order_by and 'asc' in order %}&amp;order=desc{% elif 'date_moved_in' in order_by and 'desc' in order %}&amp;order=asc{% endif %}" title="Sort by last name">
                             Date moved in
                             <span class="direction desc{% if 'date_moved_in' in order_by and 'desc' in order %} ordered{% endif %}">▾</span>
@@ -115,26 +115,23 @@
                                 <table class="table">
                                      <thead>
                                         <tr>
-                                            <th>Bio</th>
+                                            <th class="column__bio">Bio</th>
                                             <th>Website</th>
-                                            <th>Last seen</th>
-                                            <th><span class="hidden">Full Profile</span></th>
+                                            <th class="column__last-seen">Last seen</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
                                         <td>
-                                            <p>{{ object.bio|default:"Nothing here yet." }}</p>
+                                            <p>{{ object.bio|default:"Nothing here yet."|truncatewords:30|urlize }}</p>
+                                            <p><a class="js-profile-link btn btn-primary" href="{% url 'user_detail' object.id %}">View full profile</a></p>
                                         </td>                                            
                                         <td>
                                             {% if object.website %}<a href="{{ object.website }}">{{ object.website|urlize }}</a>{% else %}&ndash;{% endif %}
                                         </td>                                             
                                         <td>
                                             <time datetime="{% if object.last_login %}{{ object.last_login|date:"c" }}{% else %}&ndash;{% endif %}">{% if object.last_visit %}{{ object.last_visit|timesince }} ago{% else %}&ndash;{% endif %}</date>
-                                        </td>    
-                                        <td>
-                                            <a class="js-profile-link pull-right" href="{% url 'user_detail' object.id %}">View full profile</a>
-                                        </td>       
+                                        </td>        
                                     </tr>
                                     </tbody>
                                 </table>

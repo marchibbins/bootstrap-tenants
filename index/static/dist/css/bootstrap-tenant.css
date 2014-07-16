@@ -5884,6 +5884,8 @@ fieldset[disabled] .btn-primary.active {
 .custom-table .table {
   margin-bottom: 0;
   background-color: transparent;
+  border-top: 1px solid #ddd;
+  padding: 15px;
 }
 .custom-table .table > thead > tr > th {
   font-weight: normal;
@@ -5918,6 +5920,9 @@ fieldset[disabled] .btn-primary.active {
 .custom-table > thead > tr > th.ordered .direction.ordered {
   opacity: 1;
 }
+.custom-table > tbody > tr.extra > td > div {
+  padding: 0 15px;
+}
 .custom-table > tbody > tr > td {
   vertical-align: middle;
   border-top: 0;
@@ -5944,5 +5949,14 @@ fieldset[disabled] .btn-primary.active {
 }
 .custom-table .collapsed .glyphicon-collapse-up:before {
   content: "\e159";
+}
+.column__date-moved-in {
+  width: 180px;
+}
+.column__bio {
+  width: 60%;
+}
+.column__last-seen {
+  width: 150px;
 }
 /*# sourceMappingURL=bootstrap-tenant.css.map */
