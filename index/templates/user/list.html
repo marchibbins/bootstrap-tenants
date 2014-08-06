@@ -41,7 +41,6 @@
         <table class="custom-table table">
             <thead>
                 <tr>
-                    <th><span class="hidden">Avatar</span></th>
                     <th class="{% if 'first_name' in order_by %}ordered{% endif %}">
                         <a href="{{ querystring }}&amp;order_by=first_name{% if 'first_name' in order_by and 'asc' in order %}&amp;order=desc{% elif 'first_name' in order_by and 'desc' in order %}&amp;order=asc{% endif %}" title="Sort by first name">
                             First name
@@ -88,9 +87,6 @@
             <tbody>
                 {% for object in object_list %}
                     <tr class="collapsed{% if forloop.counter|divisibleby:"2" %} active{% endif %}" data-target="#profile-{{ object.id }}" data-toggle="collapse">
-                        <td>
-                            {% avatar object 30 %}
-                        </td>
                         <td class="{% if 'first_name' in order_by %}emphasise{% endif %}">
                             {{ object.first_name }}
                         </td>
