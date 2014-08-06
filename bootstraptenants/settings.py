@@ -117,7 +117,10 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers
 ALLOWED_HOSTS = [
-    os.environ.get('ALLOWED_HOST', '*')
+    'tenants.bootstrapcompany.co.uk',
+    'hidden-hollows-6465.herokuapp.com',
+    'localhost',
+    # os.environ.get('ALLOWED_HOST', '*')
 ]
 
 # Email
