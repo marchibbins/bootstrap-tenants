@@ -90,24 +90,29 @@ def invalidate_cache(user, size=None):
             cache.delete(get_cache_key(user, size, prefix))
 
 
-def get_default_avatar_url():
+def get_default_avatar_url(staff=False):
     base_url = getattr(settings, 'STATIC_URL', None)
     if not base_url:
         base_url = getattr(settings, 'MEDIA_URL', '')
 
+    if staff:
+        default_url = settings.AVATAR_DEFAULT_STAFF_URL
+    else:
+        default_url = settings.AVATAR_DEFAULT_URL
+
     # Don't use base_url if the default url starts with http:// of https://
-    if settings.AVATAR_DEFAULT_URL.startswith(('http://', 'https://')):
-        return settings.AVATAR_DEFAULT_URL
+    if default_url.startswith(('http://', 'https://')):
+        return default_url
     # We'll be nice and make sure there are no duplicated forward slashes
     ends = base_url.endswith('/')
 
-    begins = settings.AVATAR_DEFAULT_URL.startswith('/')
+    begins = default_url.startswith('/')
     if ends and begins:
         base_url = base_url[:-1]
     elif not ends and not begins:
-        return '%s/%s' % (base_url, settings.AVATAR_DEFAULT_URL)
+        return '%s/%s' % (base_url, default_url)
 
-    return '%s%s' % (base_url, settings.AVATAR_DEFAULT_URL)
+    return '%s%s' % (base_url, default_url)
 
 
 def get_primary_avatar(user, size=settings.AVATAR_DEFAULT_SIZE):

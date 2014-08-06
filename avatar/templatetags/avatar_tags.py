@@ -35,7 +35,7 @@ def avatar_url(user, size=settings.AVATAR_DEFAULT_SIZE):
                            urlencode(params))
         return urljoin(settings.AVATAR_GRAVATAR_BASE_URL, path)
 
-    return get_default_avatar_url()
+    return get_default_avatar_url(user.in_staff_index)
 
 
 @cache_result()
@@ -47,7 +47,7 @@ def avatar(user, size=settings.AVATAR_DEFAULT_SIZE, **kwargs):
             alt = six.text_type(user)
             url = avatar_url(user, size)
         except get_user_model().DoesNotExist:
-            url = get_default_avatar_url()
+            url = get_default_avatar_url(user.in_staff_index)
             alt = _("Default Avatar")
     else:
         alt = six.text_type(user)

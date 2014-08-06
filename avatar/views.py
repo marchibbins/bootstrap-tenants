@@ -229,6 +229,9 @@ def render_primary(request, user=None, size=settings.AVATAR_DEFAULT_SIZE):
         # the CDN store those files instead
         url = avatar.avatar_url(size)
     else:
-        url = get_default_avatar_url()
+        if user:
+            url = get_default_avatar_url(user.in_staff_index)
+        else:
+            url = get_default_avatar_url()
 
     return redirect(url)
