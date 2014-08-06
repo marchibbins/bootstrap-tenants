@@ -4,33 +4,38 @@
 {% block title %}{{ block.super }} | {{ object.get_full_name }}{% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="container-fluid">
     <section>
         <div class="page-header clearfix">
             <div class="pull-right">
                 {% avatar object 125 %}
             </div>
             <h1>{{ object.get_full_name }}</h1>
-            <a href="{% url 'message_form' object.id %}" title="Send {{ object.first_name }} a message" class="btn btn-primary">Send message</a>
+            <small class="profile__header__subtitle">Tenant since <strong>{{ object.date_moved_in|date:'jS F Y'|default:'-' }}</strong></small>
+            <small class="profile__header__subtitle">Find them on <strong>{{ object.location|default:'-' }}</strong></small>
         </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-7">
+                <p>{{ object.bio|default:'Nothing here yet'|urlize|linebreaks }}</p>
+                <p><a href="{% url 'message_form' object.id %}" title="Send {{ object.first_name }} a message" class="btn btn-primary">Send {{ object.first_name }} a message</a></p>
+            </div>
+            <dl class="col-md-6 col-lg-5 dl-horizontal profile__list">
+                <dt><span class="glyphicon glyphicon-globe"></span></dt>
+                <dd>{{ object.website|default:'-'|urlize }}</dd>
 
-        <h2>Bio</h2>
-        <p>{{ object.bio|default:'Nothing here yet'|urlize|linebreaks }}</p>
+                <dt>Company</dt>
+                <dd>{{ object.company|default:'-' }}</dd>
 
-        <h3>Website</h3>
-        <p>{{ object.website|default:'-'|urlize }}</p>
-
-        <h4>Company</h4>
-        <p>{{ object.company|default:'-' }}</p>
-
-        <h4>Industries</h4>
-        <p>{{ object.industries.all|join:', '|default:'-' }}</p>
-
-        <h4>Location</h4>
-        <p>{{ object.location|default:'-' }}</p>
-
-        <h5>Date moved in</h5>
-        <p>{{ object.date_moved_in|date:'jS F Y'|default:'-' }}</p>
+                <dt>Industries</dt>
+                <dd>
+                    <ul>
+                    {% for industry in object.industries.all %}
+                        <li><a href="{% url 'user_list' %}?industry={{ industry.id }}" title="Tenants in {{ industry }} industry">{{ industry }}</a></li>
+                    {% endfor %}
+                    </ul>
+                </dd>
+            </dl>
+        </div>
     </section>
 </div>
 {% endblock %}

@@ -70,7 +70,7 @@ module.exports = function(grunt) {
           // 'bower_components/bootstrap/js/popover.js',
           // 'bower_components/bootstrap/js/scrollspy.js',
           // 'bower_components/bootstrap/js/tab.js',
-          // 'bower_components/bootstrap/js/affix.js'
+          // 'bower_components/bootstrap/js/affix.js',
           'js/app.js'
         ],
         dest: 'dist/js/<%= pkg.name %>.js'
@@ -83,6 +83,10 @@ module.exports = function(grunt) {
         flatten: true,
         src: './bower_components/bootstrap/fonts/*',
         dest: './dist/fonts/'
+      },
+      vendor: {
+        src: './vendor/**',
+        dest: './dist/'
       }
     },
 
@@ -99,9 +103,9 @@ module.exports = function(grunt) {
 	grunt.registerTask('default', ['watch']);
 
 	// JS distribution task.
-	grunt.registerTask('dist-js', ['concat', 'uglify']);
+	grunt.registerTask('dist-js', ['concat', 'uglify', 'copy:vendor']);
 
 	// Full dist.
-	grunt.registerTask('dist', ['clean', 'less', 'dist-js', 'copy:fonts']);
+	grunt.registerTask('dist', ['clean', 'less', 'dist-js', 'copy']);
 
 };

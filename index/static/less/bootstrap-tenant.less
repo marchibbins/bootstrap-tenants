@@ -21,12 +21,25 @@ body {
 	font-weight: 100;
 }
 
+
 // ------- TWITTER BOOTSTRAP OVERRIDES -----
 
 label, dt, strong {
   font-weight: normal;
 }
 
+
+// ------- HELPERS -----
+.js .fallback-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
 
 // ------- HEADER -------
 .custom-navbar {
@@ -196,3 +209,22 @@ label, dt, strong {
 	width: 150px;
 }
 
+
+// ------- PROFILE -------
+
+.profile__header__subtitle {
+	display: block;
+	width: 100%;
+	font-size: 100%;
+}
+
+.profile__list {
+
+	ul {
+		list-style: none;
+	}
+	ul, li {
+		padding: 0;
+		margin: 0;
+	}
+}

@@ -5795,6 +5795,16 @@ dt,
 strong {
   font-weight: normal;
 }
+.js .fallback-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
 .custom-navbar {
   position: static;
   margin-bottom: 0;
@@ -5958,5 +5968,18 @@ fieldset[disabled] .btn-primary.active {
 }
 .column__last-seen {
   width: 150px;
+}
+.profile__header__subtitle {
+  display: block;
+  width: 100%;
+  font-size: 100%;
+}
+.profile__list ul {
+  list-style: none;
+}
+.profile__list ul,
+.profile__list li {
+  padding: 0;
+  margin: 0;
 }
 /*# sourceMappingURL=bootstrap-tenant.css.map */
