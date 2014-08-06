@@ -5795,6 +5795,47 @@ dt,
 strong {
   font-weight: normal;
 }
+.btn-primary {
+  color: #ffffff;
+  background-color: #95c94a;
+  border-color: #89c039;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary {
+  color: #ffffff;
+  background-color: #81b436;
+  border-color: #67912b;
+}
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary {
+  background-image: none;
+}
+.btn-primary.disabled,
+.btn-primary[disabled],
+fieldset[disabled] .btn-primary,
+.btn-primary.disabled:hover,
+.btn-primary[disabled]:hover,
+fieldset[disabled] .btn-primary:hover,
+.btn-primary.disabled:focus,
+.btn-primary[disabled]:focus,
+fieldset[disabled] .btn-primary:focus,
+.btn-primary.disabled:active,
+.btn-primary[disabled]:active,
+fieldset[disabled] .btn-primary:active,
+.btn-primary.disabled.active,
+.btn-primary[disabled].active,
+fieldset[disabled] .btn-primary.active {
+  background-color: #95c94a;
+  border-color: #89c039;
+}
+.btn-primary .badge {
+  color: #95c94a;
+  background-color: #ffffff;
+}
 .js .fallback-sr-only {
   position: absolute;
   width: 1px;
@@ -5845,47 +5886,6 @@ strong {
 .sidebar-nav li,
 .sidebar-nav a {
   width: 100%;
-}
-.btn-primary {
-  color: #ffffff;
-  background-color: #95c94a;
-  border-color: #89c039;
-}
-.btn-primary:hover,
-.btn-primary:focus,
-.btn-primary:active,
-.btn-primary.active,
-.open .dropdown-toggle.btn-primary {
-  color: #ffffff;
-  background-color: #81b436;
-  border-color: #67912b;
-}
-.btn-primary:active,
-.btn-primary.active,
-.open .dropdown-toggle.btn-primary {
-  background-image: none;
-}
-.btn-primary.disabled,
-.btn-primary[disabled],
-fieldset[disabled] .btn-primary,
-.btn-primary.disabled:hover,
-.btn-primary[disabled]:hover,
-fieldset[disabled] .btn-primary:hover,
-.btn-primary.disabled:focus,
-.btn-primary[disabled]:focus,
-fieldset[disabled] .btn-primary:focus,
-.btn-primary.disabled:active,
-.btn-primary[disabled]:active,
-fieldset[disabled] .btn-primary:active,
-.btn-primary.disabled.active,
-.btn-primary[disabled].active,
-fieldset[disabled] .btn-primary.active {
-  background-color: #95c94a;
-  border-color: #89c039;
-}
-.btn-primary .badge {
-  color: #95c94a;
-  background-color: #ffffff;
 }
 .custom-table > tbody > tr > td.row-constrain {
   padding: 0;
@@ -5969,16 +5969,35 @@ fieldset[disabled] .btn-primary.active {
 .column__last-seen {
   width: 150px;
 }
-.profile__header__subtitle {
+.extra {
+  padding: 15px;
+}
+.extra__profile img {
+  float: left;
+  padding: 0 15px 15px 0;
+}
+.extra__contact time {
+  font-weight: normal;
+}
+.extra__contact a {
+  width: 200px;
+  display: block;
+  clear: left;
+}
+.profile-header__image {
+  float: left;
+  margin-right: 10px;
+}
+.profile-header__subtitle {
   display: block;
   width: 100%;
   font-size: 100%;
 }
-.profile__list ul {
+.profile-list ul {
   list-style: none;
 }
-.profile__list ul,
-.profile__list li {
+.profile-list ul,
+.profile-list li {
   padding: 0;
   margin: 0;
 }

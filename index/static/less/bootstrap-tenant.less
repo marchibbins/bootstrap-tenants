@@ -28,6 +28,9 @@ label, dt, strong {
   font-weight: normal;
 }
 
+.btn-primary {
+	.button-variant(#fff; @bootstrap-green; darken(@bootstrap-green, 5%));
+}
 
 // ------- HELPERS -----
 .js .fallback-sr-only {
@@ -89,12 +92,6 @@ label, dt, strong {
 
 .sidebar-nav li, .sidebar-nav a {
 	width: 100%;
-}
-
-
-// ------- TABLE -------
-.btn-primary {
-	.button-variant(#fff; @bootstrap-green; darken(@bootstrap-green, 5%));
 }
 
 // ------- TABLE -------
@@ -209,16 +206,41 @@ label, dt, strong {
 	width: 150px;
 }
 
+.extra {
+	padding: 15px;
+}
+
+.extra__profile img {
+	float: left;
+	padding: 0 15px 15px 0;
+}
+
+.extra__contact {
+	time {
+		font-weight: normal;
+	}
+	a {
+		width: 200px;
+		display: block;
+		clear: left;
+	}
+}
+
 
 // ------- PROFILE -------
 
-.profile__header__subtitle {
+.profile-header__image {
+	float: left;
+	margin-right: 10px;
+}
+
+.profile-header__subtitle {
 	display: block;
 	width: 100%;
 	font-size: 100%;
 }
 
-.profile__list {
+.profile-list {
 
 	ul {
 		list-style: none;

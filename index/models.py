@@ -8,6 +8,7 @@ from django.db import models
 from django.dispatch import receiver
 from django.template import loader
 from django.utils import timezone
+from datetime import datetime, timedelta
 from index.managers import CustomUserManager
 from password_reset.forms import PasswordRecoveryForm
 from password_reset.views import SaltMixin
@@ -79,6 +80,18 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         Sends an email to this User.
         """
         send_mail(subject, message, from_email, [self.email])
+    
+    @property
+    def online_now(self):
+        """
+        If last_visit is less than one minute ago.
+        """
+        last_visit = self.last_visit
+        now = timezone.now()
+        if last_visit is not None:
+            if (now - last_visit) < timedelta(seconds = 60):
+                return True
+        return False
 
     def __unicode__(self):
         """
@@ -148,6 +161,6 @@ class Location(models.Model):
 
     def __unicode__(self):
         if self.studio:
-            return '%s, %s, %s' % (self.studio, self.floor_readable(), self.building)
+            return '%s, %s, %s' % (self.building, self.floor_readable(), self.studio)
         else:
-            return '%s, %s' % (self.floor_readable(), self.building)
+            return '%s, %s' % (self.building, self.floor_readable())

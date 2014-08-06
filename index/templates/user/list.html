@@ -125,29 +125,17 @@
                     <tr class="extra collapsed{% if forloop.counter|divisibleby:"2" %} active{% endif %}" data-target="#profile-{{ object.id }}" data-toggle="collapse">
                         <td colspan="8" class="row-constrain">
                             <div id="profile-{{ object.id }}" class="collapse">
-                                <table class="table">
-                                     <thead>
-                                        <tr>
-                                            <th class="column__bio">Bio</th>
-                                            <th>Website</th>
-                                            <th class="column__last-seen">Last seen</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>
-                                            <p>{{ object.bio|default:"Nothing here yet."|truncatewords:30|urlize }}</p>
-                                            <p><a class="js-profile-link btn btn-primary" href="{% url 'user_detail' object.id %}">View full profile</a></p>
-                                        </td>                                            
-                                        <td>
-                                            {% if object.website %}<a href="{{ object.website }}">{{ object.website|urlize }}</a>{% else %}&ndash;{% endif %}
-                                        </td>                                             
-                                        <td>
-                                            <time datetime="{% if object.last_login %}{{ object.last_login|date:"c" }}{% else %}&ndash;{% endif %}">{% if object.last_visit %}{{ object.last_visit|timesince }} ago{% else %}&ndash;{% endif %}</date>
-                                        </td>        
-                                    </tr>
-                                    </tbody>
-                                </table>
+                                <div class="extra row">
+                                    <div class="extra__profile col-md-4">
+                                        {% avatar object 125 %}
+                                        <p>{{ object.bio|default:"Nothing here yet."|truncatewords:30|urlize }}</p>
+                                    </div>
+                                    <div class="extra__contact col-md-8">
+                                        <p class="">Last seen online <time datetime="{% if object.last_login %}{{ object.last_login|date:"c" }}{% else %}&ndash;{% endif %}"> {% if object.online_now %}just now{% else %}{{ object.last_visit|timesince|default:"-" }} ago{% endif %}</time></p>
+                                        <p><a class="js-nested-link btn btn-primary" href="{% url 'message_form' object.id %}" title="Send {{ object.first_name }} a message"><span class="glyphicon glyphicon-envelope"></span> Send a message</a></p>
+                                        <p><a class="js-nested-link btn btn-primary" href="{% url 'user_detail' object.id %}"><span class="glyphicon glyphicon-user"></span> View full profile</a></p>
+                                    </div>
+                                </div>
                             </div>
                         </td>
                     </tr>
