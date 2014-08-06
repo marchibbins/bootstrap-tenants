@@ -109,6 +109,7 @@ AVATAR_HASH_USERDIRNAMES = True
 AVATAR_MAX_AVATARS_PER_USER = 1
 AVATAR_GRAVATAR_BACKUP = False
 AVATAR_DEFAULT_URL = 'images/tenants.jpg'
+AVATAR_AUTO_GENERATE_SIZES = (30, 125,)
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

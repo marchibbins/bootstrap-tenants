@@ -13,7 +13,7 @@
         <p>You haven't uploaded an avatar yet. Please upload one now.</p>
     {% else %}
         <p>Your current avatar:</p>
-        {% avatar user %}
+        {% avatar user 125 %}
 
         <form action="{% url 'avatar_change' %}" method="POST" class="form" role="form">
             {% csrf_token %}
