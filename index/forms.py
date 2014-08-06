@@ -83,13 +83,25 @@ class CustomUserUpdateForm(forms.ModelForm):
         # Update description for (non-staff) users
         self.fields['in_tenant_index'].label = 'Show me in the tenant index'
         self.fields['in_tenant_index'].help_text = ('Deselect to remove yourself '
-            'from the list. You\'ll always be able to use this site and browse '
+            'from the tenant list. You\'ll always be able to use this site and browse '
             'the list regardless. <br/> Note that only logged users authorised by '
             'Bootstrap will ever be able to see the list anyway.')
 
+        # Handle staff fields conditionally
+        if kargs['instance'].in_staff_index:
+            self.fields['in_staff_index'].label = 'Show me in the staff index'
+            self.fields['in_staff_index'].help_text = ('Deselect to remove yourself '
+                'from the staff list. If you change your mind later, you\'ll need '
+                'an admin to add you again.')
+            self.fields['staff_role'].help_text = ('What is your role, title, or responsibilities?')
+        else:
+            del self.fields['staff_role']
+            del self.fields['in_staff_index']
+
     class Meta:
         model = CustomUser
-        fields = ('email', 'first_name', 'last_name', 'bio', 'website', 'company', 'date_moved_in', 'industries', 'location', 'birthday', 'in_tenant_index')
+        fields = ('email', 'first_name', 'last_name', 'bio', 'website', 'company', 'date_moved_in',
+            'industries', 'location', 'birthday', 'staff_role', 'in_staff_index', 'in_tenant_index')
         widgets = {
             'birthday': DayMonthWidget
         }
