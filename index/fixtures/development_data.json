@@ -15,6 +15,7 @@
             "first_name": "Mr.",
             "last_name": "Admin",
             "password": "pbkdf2_sha256$12000$4gDerp1kSzq0$nFJ34iFTBfCe3/t6TQ2Lxlm/CrKxHGA6TttafWbi2nI=",
+            "staff_role": "Box man",
             "in_tenant_index": false,
             "in_staff_index": true,
             "is_staff": true,

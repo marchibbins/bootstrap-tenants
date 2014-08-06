@@ -43,6 +43,9 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     in_staff_index = models.BooleanField('displayed in staff index', default=False,
         help_text='Designates whether this user should be shown in the staff index list, as a staff member of Bootstrap.')
 
+    staff_role = models.CharField('bootstrap role', max_length=50, null=True, blank=True,
+        help_text='If this user is Bootstrap staff, what is their role, title, or responsibilities?')
+
     objects = CustomUserManager()
 
     USERNAME_FIELD = 'email'
