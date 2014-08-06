@@ -89,7 +89,7 @@ class CustomUserUpdateForm(forms.ModelForm):
 
     class Meta:
         model = CustomUser
-        exclude = ('password', 'last_login', 'groups', 'user_permissions', 'date_joined', 'is_active', 'is_staff', 'is_superuser', 'last_visit', 'last_on_site')
+        fields = ('email', 'first_name', 'last_name', 'bio', 'website', 'company', 'date_moved_in', 'industries', 'location', 'birthday', 'in_tenant_index')
         widgets = {
             'birthday': DayMonthWidget
         }
