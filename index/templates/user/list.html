@@ -56,20 +56,24 @@
                             <span class="direction asc{% if 'last_name' in order_by and 'asc' in order %} ordered{% endif %}">▴</span>
                         </a>                    
                     </th>
-                    <th class="{% if 'company' in order_by %}ordered{% endif %}">
-                        <a href="{{ querystring }}&amp;order_by=company{% if 'company' in order_by and 'asc' in order %}&amp;order=desc{% elif 'company' in order_by and 'desc' in order %}&amp;order=asc{% endif %}" title="Sort by last name">
-                            Company
-                            <span class="direction desc{% if 'company' in order_by and 'desc' in order %} ordered{% endif %}">▾</span>
-                            <span class="direction asc{% if 'company' in order_by and 'asc' in order %} ordered{% endif %}">▴</span>
-                        </a> 
-                    </th>
-                    <th>Industry/sector</th>
+                    {% if staff_list %}
+                        <th>Role</th>
+                    {% else %}
+                        <th class="{% if 'company' in order_by %}ordered{% endif %}">
+                            <a href="{{ querystring }}&amp;order_by=company{% if 'company' in order_by and 'asc' in order %}&amp;order=desc{% elif 'company' in order_by and 'desc' in order %}&amp;order=asc{% endif %}" title="Sort by last name">
+                                Company
+                                <span class="direction desc{% if 'company' in order_by and 'desc' in order %} ordered{% endif %}">▾</span>
+                                <span class="direction asc{% if 'company' in order_by and 'asc' in order %} ordered{% endif %}">▴</span>
+                            </a>
+                        </th>
+                        <th>Industry/sector</th>
+                    {% endif %}
                     <th class="{% if 'location' in order_by %}ordered{% endif %}">
                         <a href="{{ querystring }}&amp;order_by=location{% if 'location' in order_by and 'asc' in order %}&amp;order=desc{% elif 'location' in order_by and 'desc' in order %}&amp;order=asc{% endif %}" title="Sort by last name">
                             Location
                             <span class="direction desc{% if 'location' in order_by and 'desc' in order %} ordered{% endif %}">▾</span>
                             <span class="direction asc{% if 'location' in order_by and 'asc' in order %} ordered{% endif %}">▴</span>
-                        </a> 
+                        </a>
                     </th>
                     <th class="{% if 'date_moved_in' in order_by %}ordered{% endif %} column__date-moved-in">
                         <a href="{{ querystring }}&amp;order_by=date_moved_in{% if 'date_moved_in' in order_by and 'asc' in order %}&amp;order=desc{% elif 'date_moved_in' in order_by and 'desc' in order %}&amp;order=asc{% endif %}" title="Sort by last name">
@@ -93,12 +97,18 @@
                         <td class="{% if 'last_name' in order_by %}emphasise{% endif %}">
                             {{ object.last_name }}
                         </td>
-                        <td class="{% if 'company' in order_by %}emphasise{% endif %}">
-                            {{ object.company|default:'&ndash;' }}
-                        </td>
-                        <td>
-                            {{ object.industries.all|join:', '|default:'&ndash;' }}
-                        </td>
+                        {% if staff_list %}
+                            <td>
+                                {{ object.staff_role|default:'&ndash;' }}
+                            </td>
+                        {% else %}
+                            <td class="{% if 'company' in order_by %}emphasise{% endif %}">
+                                {{ object.company|default:'&ndash;' }}
+                            </td>
+                            <td>
+                                {{ object.industries.all|join:', '|default:'&ndash;' }}
+                            </td>
+                        {% endif %}
                         <td class="{% if 'location' in order_by %}emphasise{% endif %}">
                             {{ object.location|default:'&ndash;' }}
                         </td>

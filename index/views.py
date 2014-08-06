@@ -172,7 +172,7 @@ class LogoutView(TemplateView):
 
 class UserListView(ListView):
 
-    """ Render detail view for a User. """
+    """ Render list view for Users in tenant index. """
 
     orderable_columns = ('first_name', 'last_name', 'company', 'location', 'date_moved_in')
     orderable_default = 'last_name'
@@ -243,13 +243,21 @@ class UserListView(ListView):
 
 class UserStaffListView(UserListView):
 
-    """ Render detail view for a User. """
+    """ Render list view for Users in staff index. """
 
     def get_base_queryset(self):
         """
         Returns only Users set to display in tentant list.
         """
         return CustomUser.objects.public_staff()
+
+    def get_context_data(self, **kwargs):
+        """
+        Adds Industry and Location objects for filter options.
+        """
+        context = super(UserStaffListView, self).get_context_data(**kwargs)
+        context['staff_list'] = True
+        return context
 
 
 class UserDetailView(DetailView):
