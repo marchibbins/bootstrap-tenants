@@ -1,4 +1,5 @@
 from django.contrib.auth.models import BaseUserManager
+from django.db.models import Q
 from django.utils import timezone
 
 
@@ -44,9 +45,15 @@ class CustomUserManager(BaseUserManager):
         """
         Filters Users displayed publically in index.
         """
+        return self.get_queryset().filter(Q(in_tenant_index=True) | Q(in_staff_index=True))
+
+    def public_tenants(self):
+        """
+        Filters Users displayed publically in index.
+        """
         return self.get_queryset().filter(in_tenant_index=True)
 
-    def staff(self):
+    def public_staff(self):
         """
         Filters Users displayed publically in index.
         """

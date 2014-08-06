@@ -184,7 +184,7 @@ class UserListView(ListView):
         """
         Returns only Users set to display in tentant list.
         """
-        return CustomUser.objects.public()
+        return CustomUser.objects.public_tenants()
 
     def get_queryset(self):
         """
@@ -249,7 +249,7 @@ class UserStaffListView(UserListView):
         """
         Returns only Users set to display in tentant list.
         """
-        return CustomUser.objects.staff()
+        return CustomUser.objects.public_staff()
 
 
 class UserDetailView(DetailView):
