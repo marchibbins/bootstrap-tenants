@@ -45,16 +45,16 @@ class CustomUserManager(BaseUserManager):
         """
         Filters Users displayed publically in index.
         """
-        return self.get_queryset().filter(Q(in_tenant_index=True) | Q(in_staff_index=True))
+        return self.get_queryset().filter(is_active=True).filter(Q(in_tenant_index=True) | Q(in_staff_index=True))
 
     def public_tenants(self):
         """
         Filters Users displayed publically in index.
         """
-        return self.get_queryset().filter(in_tenant_index=True)
+        return self.get_queryset().filter(is_active=True, in_tenant_index=True)
 
     def public_staff(self):
         """
         Filters Users displayed publically in index.
         """
-        return self.get_queryset().filter(in_staff_index=True)
+        return self.get_queryset().filter(is_active=True, in_staff_index=True)
