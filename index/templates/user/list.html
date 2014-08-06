@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load avatar_tags %}
+{% load staticfiles %}
 
 {% block title %}{{ block.super }} | Tenant Index{% endblock %}
 
@@ -106,6 +107,9 @@
                             </td>
                         {% endif %}
                         <td class="{% if 'location' in order_by %}emphasise{% endif %}">
+                            {% if object.location.image_location %}
+                            <img width="30" src="{% static 'images/' %}{{object.location.image_location}}.jpg">
+                            {% endif %}
                             {{ object.location|default:'&ndash;' }}
                         </td>
                         <td>

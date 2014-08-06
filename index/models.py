@@ -159,6 +159,13 @@ class Location(models.Model):
         else:
             return 'Ground floor'
 
+    @property
+    def image_location(self):
+        building = ''.join(self.building.split(' ')).lower()
+        if building in settings.BUILDING_IMAGES:
+            return building
+        return False
+
     def __unicode__(self):
         if self.studio:
             return '%s, %s, %s' % (self.building, self.floor_readable(), self.studio)

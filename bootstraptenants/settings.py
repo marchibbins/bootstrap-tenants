@@ -143,3 +143,9 @@ LOCATION_IPS = (
 )
 
 APPEND_SLASH = False
+
+BUILDING_IMAGES = (
+    'colourworks',
+    'fitzroyhouse',
+    'printhouse',
+)
