@@ -11,7 +11,10 @@
                 {% avatar object 125 %}
             </div>
             <h1>{{ object.get_full_name }}</h1>
-            <small class="profile__header__subtitle">Tenant since <strong>{{ object.date_moved_in|date:'jS F Y'|default:'-' }}</strong></small>
+            {% if object.in_staff_index %}
+                <small class="profile__header__subtitle">Staff member</small>
+            {% endif %}
+            <small class="profile__header__subtitle">{% if object.in_staff_index %}Moved in{% else %}Tenant since{% endif %} <strong>{{ object.date_moved_in|date:'jS F Y'|default:'-' }}</strong></small>
             <small class="profile__header__subtitle">Find them on <strong>{{ object.location|default:'-' }}</strong></small>
         </div>
         <div class="row">
@@ -19,6 +22,12 @@
                 <p>{{ object.bio|default:'Nothing here yet'|urlize|linebreaks }}</p>
                 <p><a href="{% url 'message_form' object.id %}" title="Send {{ object.first_name }} a message" class="btn btn-primary">Send {{ object.first_name }} a message</a></p>
             </div>
+            {% if object.in_staff_index %}
+                <dl class="col-md-6 col-lg-5 dl-horizontal profile__list">
+                    <dt>Bootstrap role</dt>
+                    <dd>{{ object.staff_role|default:'-' }}</dd>
+                </dl>
+            {% endif %}
             <dl class="col-md-6 col-lg-5 dl-horizontal profile__list">
                 <dt><span class="glyphicon glyphicon-globe"></span></dt>
                 <dd>{{ object.website|default:'-'|urlize }}</dd>
