@@ -5988,6 +5988,9 @@ fieldset[disabled] .btn-primary.active {
   float: left;
   margin-right: 10px;
 }
+.profile-header__title {
+  margin-top: 0;
+}
 .profile-header__subtitle {
   display: block;
   width: 100%;

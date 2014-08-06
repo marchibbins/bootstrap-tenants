@@ -10,7 +10,7 @@
             <div class="profile-header__image">
                 {% avatar object 125 %}
             </div>
-            <h1>{{ object.get_full_name }}</h1>
+            <h1 class="profile-header__title">{{ object.get_full_name }}</h1>
             {% if object.in_staff_index %}
                 <small class="profile-header__subtitle">Staff member</small>
             {% endif %}
@@ -20,7 +20,7 @@
         <div class="row">
             <div class="col-md-6 col-lg-7">
                 <p>{{ object.bio|default:'Nothing here yet'|urlize|linebreaks }}</p>
-                <p><a href="{% url 'message_form' object.id %}" title="Send {{ object.first_name }} a message" class="btn btn-primary">Send a message</a></p>
+                <p><a class="btn btn-primary" href="{% url 'message_form' object.id %}" title="Send {{ object.first_name }} a message"><span class="glyphicon glyphicon-envelope"></span> Send a message</a></p>
             </div>
             {% if object.in_staff_index %}
                 <dl class="col-md-6 col-lg-5 dl-horizontal profile-list">
