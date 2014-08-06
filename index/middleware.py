@@ -23,7 +23,7 @@ class SetLastVisitMiddleware(object):
         """
         Sets new date if User is within locations and not visiting the admin.
         """
-        if request.path.startswith(reverse('admin:index')) == False:
+        if request.user and request.path.startswith(reverse('admin:index')) == False:
             # Last use of website.
             if request.user.is_authenticated():
                 user = CustomUser.objects.get(pk=request.user.pk)
