@@ -1,3 +1,4 @@
+from avatar.util import invalidate_cache
 from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.contrib.sites.models import Site
@@ -54,6 +55,11 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     class Meta:
         verbose_name = 'user'
         verbose_name_plural = 'users'
+
+    def save(self, force_insert=False, force_update=False, *args, **kwargs):
+        # Always invalidate avatar cache, rather than check change in staff status, since this is infrequent
+        invalidate_cache(self)
+        super(CustomUser, self).save(force_insert, force_update, *args, **kwargs)
 
     def get_full_name(self):
         """
