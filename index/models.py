@@ -37,8 +37,11 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     last_visit = models.DateTimeField('last visited', null=True, blank=True)
     last_on_site = models.DateTimeField('last time in building', null=True, blank=True)
 
-    is_in_index = models.BooleanField('displayed in index', default=True,
+    in_tenant_index = models.BooleanField('displayed in tenant index', default=True,
         help_text='Designates whether this user should be shown in the tenant index list. Unselect this to remove users from index list.')
+
+    in_staff_index = models.BooleanField('displayed in staff index', default=False,
+        help_text='Designates whether this user should be shown in the staff index list, as a staff member of Bootstrap.')
 
     objects = CustomUserManager()
 

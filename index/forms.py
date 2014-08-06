@@ -81,8 +81,8 @@ class CustomUserUpdateForm(forms.ModelForm):
         super(CustomUserUpdateForm, self).__init__(*args, **kargs)
 
         # Update description for (non-staff) users
-        self.fields['is_in_index'].label = 'Show me in the tenant index'
-        self.fields['is_in_index'].help_text = ('Deselect to remove yourself '
+        self.fields['in_tenant_index'].label = 'Show me in the tenant index'
+        self.fields['in_tenant_index'].help_text = ('Deselect to remove yourself '
             'from the list. You\'ll always be able to use this site and browse '
             'the list regardless. <br/> Note that only logged users authorised by '
             'Bootstrap will ever be able to see the list anyway.')

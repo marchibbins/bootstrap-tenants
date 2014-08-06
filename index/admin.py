@@ -16,7 +16,7 @@ class CustomUserAdmin(UserAdmin):
             'fields': ('email', 'first_name', 'last_name', 'password')
         }),
         ('Information', {
-            'fields': ('bio', 'website', 'company', 'industries', 'location', 'date_moved_in', 'birthday', 'is_in_index')
+            'fields': ('bio', 'website', 'company', 'industries', 'location', 'date_moved_in', 'birthday', 'in_tenant_index', 'in_staff_index')
         }),
         ('Permissions', {
             'fields': ('is_staff', 'is_active', 'is_superuser', 'groups', 'user_permissions')
@@ -32,7 +32,7 @@ class CustomUserAdmin(UserAdmin):
             'fields': ('email', 'first_name', 'last_name', 'password1', 'password2')
         }),
         ('Information', {
-            'fields': ('bio', 'company', 'industries', 'location', 'date_moved_in', 'birthday', 'is_in_index')
+            'fields': ('bio', 'company', 'industries', 'location', 'date_moved_in', 'birthday', 'in_tenant_index', 'in_staff_index')
         }),
     )
 
@@ -40,8 +40,8 @@ class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
     add_form_template = 'user/admin/add_form.html'
 
-    list_display = ('email', 'first_name', 'last_name', 'company', 'get_industries', 'location', 'date_moved_in', 'is_in_index', 'is_staff', 'is_active', 'is_superuser')
-    list_filter = ('industries', 'location', 'is_in_index', 'is_staff', 'is_active', 'is_superuser', 'groups')
+    list_display = ('email', 'first_name', 'last_name', 'company', 'get_industries', 'location', 'date_moved_in', 'in_tenant_index', 'in_staff_index', 'is_staff', 'is_active', 'is_superuser')
+    list_filter = ('industries', 'location', 'in_tenant_index', 'in_staff_index', 'is_staff', 'is_active', 'is_superuser', 'groups')
     search_fields = ('email', 'first_name', 'last_name', 'location__building')
     ordering = ('last_name', 'email')
 
