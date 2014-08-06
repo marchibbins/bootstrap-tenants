@@ -5,7 +5,7 @@ from django.contrib import admin
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import RedirectView
-from index.views import MessageFormView, MessageSentView, LoginView, LogoutView, UserDetailView, UserListView, UserUpdateView
+from index.views import MessageFormView, MessageSentView, LoginView, LogoutView, UserDetailView, UserListView, UserStaffListView, UserUpdateView
 from password_reset.views import Recover, RecoverDone, Reset, ResetDone
 
 
@@ -16,6 +16,10 @@ urlpatterns = patterns('',
     url(r'^$',
         login_required(UserListView.as_view()),
         name='user_list'),
+
+    url(r'^staff$',
+        login_required(UserStaffListView.as_view()),
+        name='staff_list'),
 
     url(r'^profile/(?P<pk>\d+)$',
         login_required(UserDetailView.as_view()),

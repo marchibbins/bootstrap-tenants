@@ -180,12 +180,18 @@ class UserListView(ListView):
     
     template_name = 'user/list.html'
 
+    def get_base_queryset(self):
+        """
+        Returns only Users set to display in tentant list.
+        """
+        return CustomUser.objects.public()
+
     def get_queryset(self):
         """
         Returns ordered queryset based on GET params.
         Stores filter combination on instance for template context.
         """
-        queryset = CustomUser.objects.public()
+        queryset = self.get_base_queryset()
         self.filters = {
             'querystring': '?'
         }
@@ -233,6 +239,17 @@ class UserListView(ListView):
         context['industries'] = Industry.objects.filter(customuser__isnull=False).distinct()
         context['locations'] = Location.objects.filter(customuser__isnull=False).distinct()
         return context
+
+
+class UserStaffListView(UserListView):
+
+    """ Render detail view for a User. """
+
+    def get_base_queryset(self):
+        """
+        Returns only Users set to display in tentant list.
+        """
+        return CustomUser.objects.staff()
 
 
 class UserDetailView(DetailView):

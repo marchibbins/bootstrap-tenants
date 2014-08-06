@@ -45,3 +45,9 @@ class CustomUserManager(BaseUserManager):
         Filters Users displayed publically in index.
         """
         return self.get_queryset().filter(is_in_index=True)
+
+    def staff(self):
+        """
+        Filters Users displayed publically in index.
+        """
+        return self.get_queryset().filter(is_staff=True)
