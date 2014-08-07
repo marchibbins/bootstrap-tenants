@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.admin.models import LogEntry
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.views import login
@@ -54,9 +55,23 @@ class CustomUserAdmin(UserAdmin):
     get_industries.short_description = 'Industries'
 
 
+class LogEntryAdmin(admin.ModelAdmin):
+
+    """ Admin for LogEntry. """
+
+    list_display = ('__unicode__', 'action_time', 'user', 'get_content_type',)
+
+    def get_content_type(self, obj):
+        return obj.content_type.name.title()
+
+    get_content_type.short_description = 'Content type'
+    get_content_type.admin_order_field = 'content_type'
+
+
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(Industry)
 admin.site.register(Location)
+admin.site.register(LogEntry, LogEntryAdmin)
 
 
 def admin_permission(request):
