@@ -176,7 +176,7 @@ class UserListView(ListView):
 
     orderable_columns = ('first_name', 'last_name', 'company', 'location', 'date_moved_in')
     orderable_default = 'last_name'
-    paginate_by = 10
+    paginate_by = 20
     
     template_name = 'user/list.html'
 
