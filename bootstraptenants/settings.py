@@ -57,6 +57,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'index.middleware.SetLastVisitMiddleware',
+    'index.middleware.DomainRedirectMiddleware',
 )
 
 ROOT_URLCONF = 'bootstraptenants.urls'

@@ -1,7 +1,25 @@
 from django.conf import settings
+from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
+from django.http import HttpResponsePermanentRedirect
 from django.utils.timezone import now
 from index.models import CustomUser
+
+
+class DomainRedirectMiddleware(object):
+
+    """ Handles domain forwarding for multiple sites. """
+
+    def process_request(self, request):
+        """
+        Forward any request is made for a site other than the current.
+        """
+        site = Site.objects.get_current()
+        if request.get_host() == site.domain:
+            return None
+
+        url = '%s://%s' % (request.is_secure() and 'https' or 'http', site.domain)
+        return HttpResponsePermanentRedirect(url)
 
 
 class SetLastVisitMiddleware(object):
