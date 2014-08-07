@@ -50,7 +50,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    'index.middleware.DomainRedirectMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -58,6 +57,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'index.middleware.SetLastVisitMiddleware',
+    'index.middleware.DisallowedHostMiddleware',
 )
 
 ROOT_URLCONF = 'bootstraptenants.urls'
