@@ -51,9 +51,14 @@ label, dt, strong {
 }
 
 .navbar-brand {
-	font-weight: normal;
-	margin-bottom: 0;
-	margin-top: 0;
+	background: transparent url(../../images/bootstraplogo.jpg) center -5px no-repeat;
+	background-size: 30px;
+	height: 34px;
+	margin-top: 8px;
+	overflow: hidden;
+	padding-left: 35px;
+	text-indent: -9999px;
+	width: 20px;
 }
 
 @media (min-width: @screen-md-min) {
@@ -66,10 +71,9 @@ label, dt, strong {
 		width: @sidebar-width;
 
 		.navbar-brand {
-			background: transparent url('../../images/bootstraplogo.jpg') 10px 0 no-repeat;
-			display: block;
+			background-position: 10px 0;
+			background-size: inherit;
 			height: 100%;
-			text-indent: -9999em;
 			width: 100%;
 		}
 	}
@@ -87,11 +91,13 @@ label, dt, strong {
 }
 
 .nav--user {
-	@media (max-width: @screen-xs-max) {
-		border-top: 1px solid @dropdown-border;
-	}
+	border-top: 1px solid @dropdown-border;
+	padding-top: 10px;
 
 	@media (min-width: @screen-sm-min) {
+		border: none;
+		padding-top: 0;
+
 		.glyphicon-user {
 			display: none;
 		}
