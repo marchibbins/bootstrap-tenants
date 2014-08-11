@@ -7,41 +7,57 @@
     <script type="text/javascript" src="{% static 'dist/vendor/modernizr/modernizr.min.js' %}"></script>
 </head>
 <body>
-    <nav class="custom-navbar navbar" role="navigation">
+    <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
-              <h1><a class="navbar-brand" href="/">Bootstrap</a></h1>
-            </div>  
-            <ul class="nav navbar-nav navbar-right">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-main">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <h1 class="navbar-brand"><a href="/">Bootstrap</a></h1>
+            </div>
+            <div class="collapse navbar-collapse" id="nav-main">
                 {% if user.is_authenticated %}
-                    <li><a href="{% url 'user_detail' user.id %}" title="View your profile">{{ user.get_full_name }}</a></li>
-                    <li><a href="{% url 'user_update' %}" title="Edit your profile details">Edit profile</a></li>
-                    <li><a href="{% url 'avatar_change' %}" title="Change your profile image">Change avatar</a></li>
-                    <li>
-                        <form action="{% url 'logout' %}" method="post" class="navbar-form" role="form">
-                            {% csrf_token %}
-                            <input type="submit" class="btn btn-default" value="Logout">
-                        </form>
-                    </li>
+                    <ul class="nav navbar-nav">
+                        <li><a href="{% url 'user_list' %}" title="User list">Tenants</a></li>
+                        <li><a href="{% url 'staff_list' %}" title="Staff list">Staff</a></li>
+                        <li><a href="{% url 'message_form' %}" title="Send us a message">Suggestions</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right nav--user">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-user">
+                                    <span class="hidden">View More</span>
+                                </span>
+                                <span>Gareth Foote</span>
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{% url 'user_detail' user.id %}" title="View your profile">View profile</a></li>
+                                <li><a href="{% url 'user_update' %}" title="Edit your profile details">Edit profile</a></li>
+                                <li><a href="{% url 'avatar_change' %}" title="Change your profile image">Change avatar</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <form action="{% url 'logout' %}" method="post" class="navbar-form navbar-form--logout" role="form">
+                                {% csrf_token %}
+                                <input type="submit" class="btn btn-default" value="Logout">
+                            </form>
+                        </li>
+                    </ul>
                 {% else %}
-                    <li><a href="{% url 'login' %}" title="Log in">Login</a></li>
+                    <ul class="nav navbar-nav navbar-right nav--user">
+                        <li><a href="{% url 'login' %}" title="Log in">You must be logged in to use this site</a></li>
+                    </ul>
                 {% endif %}
-            </ul>
+            </div>
         </div>
     </nav>
-    <div class="sidebar-nav">
-        <ul class="nav navbar-nav">
-            {% if user.is_authenticated %}
-            <li><a href="/" title="Your homepage">Tenants</a></li>
-            <li><a href="{% url 'staff_list' %}" title="Staff list">Staff</a></li>
-            <li><a href="{% url 'message_form' %}" title="Send us a message">Suggestions</a></li>
-            {% endif %}
-        </ul>
-    </div>
 
     <div class="content">
-    {% block content %}
-    {% endblock %}
+        {% block content %}{% endblock %}
     </div>
 
     <script type="text/javascript" src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>

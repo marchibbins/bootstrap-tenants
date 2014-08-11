@@ -3637,7 +3637,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 @media (min-width: 768px) {
   .navbar {
-    border-radius: 4px;
+    border-radius: 0;
   }
 }
 @media (min-width: 768px) {
@@ -3928,33 +3928,33 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-default {
-  background-color: #f8f8f8;
-  border-color: #e7e7e7;
+  background-color: #ffffff;
+  border-color: #dddddd;
 }
 .navbar-default .navbar-brand {
-  color: #777777;
+  color: #24367e;
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
-  color: #5e5e5e;
+  color: #192556;
   background-color: transparent;
 }
 .navbar-default .navbar-text {
   color: #777777;
 }
 .navbar-default .navbar-nav > li > a {
-  color: #777777;
+  color: #24367e;
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-  color: #333333;
+  color: #131c42;
   background-color: transparent;
 }
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
   color: #555555;
-  background-color: #e7e7e7;
+  background-color: #eeeeee;
 }
 .navbar-default .navbar-nav > .disabled > a,
 .navbar-default .navbar-nav > .disabled > a:hover,
@@ -3970,32 +3970,32 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   background-color: #dddddd;
 }
 .navbar-default .navbar-toggle .icon-bar {
-  background-color: #888888;
+  background-color: #131c42;
 }
 .navbar-default .navbar-collapse,
 .navbar-default .navbar-form {
-  border-color: #e7e7e7;
+  border-color: #dddddd;
 }
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
-  background-color: #e7e7e7;
+  background-color: #eeeeee;
   color: #555555;
 }
 @media (max-width: 767px) {
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
-    color: #777777;
+    color: #24367e;
   }
   .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
   .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
-    color: #333333;
+    color: #131c42;
     background-color: transparent;
   }
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
     color: #555555;
-    background-color: #e7e7e7;
+    background-color: #eeeeee;
   }
   .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a,
   .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:hover,
@@ -4005,10 +4005,10 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-default .navbar-link {
-  color: #777777;
+  color: #24367e;
 }
 .navbar-default .navbar-link:hover {
-  color: #333333;
+  color: #131c42;
 }
 .navbar-inverse {
   background-color: #222222;
@@ -5846,46 +5846,44 @@ fieldset[disabled] .btn-primary.active {
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
-.custom-navbar {
-  position: static;
+.navbar-brand {
+  font-weight: normal;
   margin-bottom: 0;
-  border: 0;
-}
-.custom-navbar .navbar-header h1 {
   margin-top: 0;
-  /*padding-left: 100px;*/
 }
-.custom-navbar .container-fluid .navbar-brand {
-  margin-left: 0;
+@media (max-width: 767px) {
+  .nav--user {
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
+  }
 }
-.custom-navbar .navbar-brand {
-  text-indent: -9999em;
-  background: transparent url('../../images/bootstraplogo.jpg') no-repeat;
-  width: 160px;
-  height: 175px;
-  float: left;
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 1;
+@media (min-width: 768px) {
+  .nav--user .glyphicon-user {
+    display: none;
+  }
 }
-.content {
-  margin-left: 160px;
-  border-top: 1px solid #dae3e9;
-  border-left: 1px solid #dae3e9;
-  border-bottom: 1px solid #dae3e9;
-  /*box-shadow: -3px 3px 3px -2px #f1f1f3;*/
-  border-radius: 5px 0px 0px 5px;
-  padding-top: 22px;
+.nav--user .dropdown-menu a {
+  font-weight: inherit;
 }
-.sidebar-nav {
-  position: absolute;
-  width: 160px;
-  padding-top: 12.5em;
-}
-.sidebar-nav li,
-.sidebar-nav a {
-  width: 100%;
+@media (max-width: 767px) {
+  .navbar-form--logout {
+    border: none;
+    margin: 0;
+    padding-top: 0;
+  }
+  .navbar-form--logout .btn {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    color: #24367e;
+    font-weight: inherit;
+    outline: none;
+    padding: 0;
+    -webkit-appearance: none;
+  }
+  .navbar-form--logout .btn:hover,
+  .navbar-form--logout .btn:focus {
+    color: #131c42;
+  }
 }
 .custom-table > tbody > tr > td.row-constrain {
   padding: 0;

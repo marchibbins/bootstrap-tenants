@@ -23,7 +23,6 @@ body {
 
 
 // ------- TWITTER BOOTSTRAP OVERRIDES -----
-
 label, dt, strong {
   font-weight: normal;
 }
@@ -45,53 +44,50 @@ label, dt, strong {
 }
 
 // ------- HEADER -------
-.custom-navbar {
-	position: static;
+.navbar-brand {
+	font-weight: normal;
 	margin-bottom: 0;
-	border: 0;
-}
-
-.custom-navbar .navbar-header h1 {
 	margin-top: 0;
-	/*padding-left: 100px;*/
-}
-	
-.custom-navbar .container-fluid .navbar-brand {
-	margin-left: 0;
 }
 
-.custom-navbar .navbar-brand {
-	text-indent: -9999em;
-	background: transparent url('../../images/bootstraplogo.jpg') no-repeat;
-	width: @sidebar-width;
-	height: 175px;
-	float: left;
-	position: absolute;
-	left: 0;
-	top: 0;
-	z-index: 1;
+.nav--user {
+	@media (max-width: @screen-xs-max) {
+		border-top: 1px solid @dropdown-border;
+	}
+
+	@media (min-width: @screen-sm-min) {
+		.glyphicon-user {
+			display: none;
+		}
+	}
+
+	.dropdown-menu a {
+		font-weight: inherit;
+	}
 }
 
-// ------- LAYOUT -------
-.content {
-	margin-left: @sidebar-width;
-	border-top: 1px solid #dae3e9;
-	border-left: 1px solid #dae3e9;
-	border-bottom: 1px solid #dae3e9;
-	/*box-shadow: -3px 3px 3px -2px #f1f1f3;*/
-	border-radius: 5px 0px 0px 5px;
-	padding-top: @line-height-computed;
-}
+.navbar-form--logout {
+	@media (max-width: @screen-xs-max) {
+		border: none;
+		margin: 0;
+		padding-top: 0;
 
-// ------- SIDEBAR NAV -------
-.sidebar-nav {
-	position: absolute;
-	width: @sidebar-width;
-	padding-top: 12.5em;
-}
+		.btn {
+			background-color: transparent;
+			border: none;
+			box-shadow: none;
+			color: @navbar-default-link-color;
+			font-weight: inherit;
+			outline: none;
+			padding: 0;
+			-webkit-appearance: none;
 
-.sidebar-nav li, .sidebar-nav a {
-	width: 100%;
+			&:hover,
+			&:focus {
+				color: @navbar-default-link-hover-color;
+			}
+		}
+	}
 }
 
 // ------- TABLE -------
