@@ -20,7 +20,7 @@
             </div>
             <div class="collapse navbar-collapse" id="nav-main">
                 {% if user.is_authenticated %}
-                    <ul class="nav navbar-nav">
+                    <ul class="nav navbar-nav nav--main">
                         <li><a href="{% url 'user_list' %}" title="User list">Tenants</a></li>
                         <li><a href="{% url 'staff_list' %}" title="Staff list">Staff</a></li>
                         <li><a href="{% url 'message_form' %}" title="Send us a message">Suggestions</a></li>
@@ -31,7 +31,7 @@
                                 <span class="glyphicon glyphicon-user">
                                     <span class="hidden">View More</span>
                                 </span>
-                                <span>Gareth Foote</span>
+                                <span>{{ user.get_full_name }}</span>
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">

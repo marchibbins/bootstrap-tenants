@@ -733,7 +733,7 @@ pre code {
 }
 @media (min-width: 768px) {
   .container {
-    width: 590px;
+    width: 750px;
   }
 }
 @media (min-width: 992px) {
@@ -3632,7 +3632,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar {
   position: relative;
   min-height: 50px;
-  margin-bottom: 22px;
+  margin-bottom: 0;
   border: 1px solid transparent;
 }
 @media (min-width: 768px) {
@@ -5846,10 +5846,41 @@ fieldset[disabled] .btn-primary.active {
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
+.navbar {
+  border-left: none;
+  border-right: none;
+  border-top: none;
+}
 .navbar-brand {
   font-weight: normal;
   margin-bottom: 0;
   margin-top: 0;
+}
+@media (min-width: 992px) {
+  .navbar-header {
+    background-color: #ffffff;
+    height: 175px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 160px;
+  }
+  .navbar-header .navbar-brand {
+    background: transparent url('../../images/bootstraplogo.jpg') 10px 0 no-repeat;
+    display: block;
+    height: 100%;
+    text-indent: -9999em;
+    width: 100%;
+  }
+  .nav--main {
+    left: 0;
+    position: absolute;
+    top: 265px;
+    width: 160px;
+  }
+  .nav--main > li {
+    float: none;
+  }
 }
 @media (max-width: 767px) {
   .nav--user {
@@ -5863,6 +5894,18 @@ fieldset[disabled] .btn-primary.active {
 }
 .nav--user .dropdown-menu a {
   font-weight: inherit;
+}
+.content {
+  padding-top: 22px;
+}
+@media (min-width: 992px) {
+  .content {
+    border-left: 1px solid #ddd;
+    margin-left: 160px;
+  }
+}
+.content .page-header {
+  margin-top: 22px;
 }
 @media (max-width: 767px) {
   .navbar-form--logout {

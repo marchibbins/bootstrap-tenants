@@ -44,10 +44,46 @@ label, dt, strong {
 }
 
 // ------- HEADER -------
+.navbar {
+	border-left: none;
+	border-right: none;
+	border-top: none;
+}
+
 .navbar-brand {
 	font-weight: normal;
 	margin-bottom: 0;
 	margin-top: 0;
+}
+
+@media (min-width: @screen-md-min) {
+	.navbar-header {
+		background-color: @body-bg;
+		height: 175px;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: @sidebar-width;
+
+		.navbar-brand {
+			background: transparent url('../../images/bootstraplogo.jpg') 10px 0 no-repeat;
+			display: block;
+			height: 100%;
+			text-indent: -9999em;
+			width: 100%;
+		}
+	}
+
+	.nav--main {
+		left: 0;
+		position: absolute;
+		top: @sidebar-link-top;
+		width: @sidebar-width;
+
+		> li {
+			float: none;
+		}
+	}
 }
 
 .nav--user {
@@ -63,6 +99,20 @@ label, dt, strong {
 
 	.dropdown-menu a {
 		font-weight: inherit;
+	}
+}
+
+
+.content {
+	padding-top: @line-height-computed;
+
+	@media (min-width: @screen-md-min) {
+		border-left: 1px solid #ddd;
+		margin-left: @sidebar-width;
+	}
+
+	.page-header {
+		margin-top: @line-height-computed;
 	}
 }
 
