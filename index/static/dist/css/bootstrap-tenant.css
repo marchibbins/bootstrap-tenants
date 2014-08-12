@@ -6018,6 +6018,16 @@ fieldset[disabled] .btn-primary.active {
 .custom-table__col {
   min-width: 105px;
 }
+@media (min-width: 768px) {
+  .custom-table__col--location {
+    min-width: 170px;
+  }
+}
+@media (min-width: 1200px) {
+  .custom-table__col--location {
+    min-width: 240px;
+  }
+}
 .custom-table__col--date {
   min-width: 130px;
 }

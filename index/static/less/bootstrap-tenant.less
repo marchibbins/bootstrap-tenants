@@ -255,6 +255,16 @@ label, dt, strong {
 	min-width: 105px;
 }
 
+.custom-table__col--location {
+	@media (min-width: @screen-sm-min) {
+		min-width: 170px;
+	}
+
+	@media (min-width: @screen-lg-min) {
+		min-width: 240px;
+	}
+}
+
 .custom-table__col--date {
 	min-width: 130px;
 }
@@ -264,7 +274,7 @@ label, dt, strong {
 	width: 40px;
 }
 
-@media (min-width: 480px) {
+@media (min-width: @screen-xs-min) {
 	.custom-table__col--industry,
 	.custom-table__col--role {
 		display: table-cell !important;
@@ -311,7 +321,7 @@ label, dt, strong {
 .profile__location {
 	margin-bottom: @line-height-computed / 2;
 
-	@media (min-width: 480px) {
+	@media (min-width: @screen-xs-min) {
 		min-height: 40px;
 
 		.location-icon {
