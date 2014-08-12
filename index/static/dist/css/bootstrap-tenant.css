@@ -5935,6 +5935,15 @@ fieldset[disabled] .btn-primary.active {
     color: #131c42;
   }
 }
+.filter-control {
+  max-width: 175px;
+}
+@media (max-width: 767px) {
+  .filter-control {
+    max-width: 380px;
+    margin-bottom: 4px;
+  }
+}
 .custom-table .table {
   margin-bottom: 0;
   background-color: transparent;

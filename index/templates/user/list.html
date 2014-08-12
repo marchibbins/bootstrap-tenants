@@ -9,7 +9,7 @@
         <span>Filter by:</span>
         <div class="form-group">
             <label class="sr-only" for="industry">Industry</label>
-            <select class="form-control" name="industry" id="industry">
+            <select class="form-control filter-control" name="industry" id="industry">
                 <option value="">All industries</option>
                 {% for industry in industries %}
                     <option value="{{ industry.id }}" {% if selected_industry == industry.id %}selected{% endif %}>{{ industry }}</option>
@@ -17,7 +17,7 @@
             </select>
 
             <label class="sr-only" for="location">Location</label>
-            <select class="form-control" name="location" id="location">
+            <select class="form-control filter-control" name="location" id="location">
                 <option value="">All locations</option>
                 {% for location in locations %}
                     <option value="{{ location.id }}" {% if selected_location == location.id %}selected{% endif %}>{{ location }}</option>
@@ -25,7 +25,7 @@
             </select>
 
             <label class="sr-only" for="search">Name or company</label>
-            <input type="search" class="form-control" name="search" id="search" value="{{ search_term }}" placeholder="Name or company&hellip;">
+            <input type="search" class="form-control filter-control" name="search" id="search" value="{{ search_term }}" placeholder="Name or company&hellip;">
 
             <input type="hidden" name="order_by" value="{{ order_by }}">
             <input type="hidden" name="order" value="{{ order }}">
