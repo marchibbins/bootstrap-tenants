@@ -1,6 +1,5 @@
 from django.conf import settings
 from django.contrib.sites.models import Site
-from django.core.exceptions import DisallowedHost
 from django.core.urlresolvers import reverse
 from django.http import HttpResponsePermanentRedirect
 from django.utils.timezone import now
@@ -11,16 +10,16 @@ class DisallowedHostMiddleware(object):
 
     """ Handles domain forwarding for disallowed hosts. """
 
-    def process_exception(self, request, exception):
+    def process_request(self, request):
         """
-        Redirect to current site domain on exception.
+        Check whether host is current site, redirect if not.
         """
-        if not isinstance(exception, DisallowedHost):
-            return None
-
         site = Site.objects.get_current()
-        url = '%s://%s' % (request.is_secure() and 'https' or 'http', site.domain)
-        return HttpResponsePermanentRedirect(url)
+        if request.get_host() == site.domain:
+            return None
+        else:
+            url = '%s://%s' % (request.is_secure() and 'https' or 'http', site.domain)
+            return HttpResponsePermanentRedirect(url)
 
 
 class SetLastVisitMiddleware(object):

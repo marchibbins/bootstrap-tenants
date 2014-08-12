@@ -50,6 +50,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'index.middleware.DisallowedHostMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -57,7 +58,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'index.middleware.SetLastVisitMiddleware',
-    'index.middleware.DisallowedHostMiddleware',
 )
 
 ROOT_URLCONF = 'bootstraptenants.urls'
@@ -117,9 +117,7 @@ AVATAR_AUTO_GENERATE_SIZES = (30, 125,)
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers
-ALLOWED_HOSTS = [
-    os.environ.get('ALLOWED_HOST', '*')
-]
+ALLOWED_HOSTS = ['*']
 
 # Email
 EMAIL_HOST = os.environ.get('EMAIL_HOST', '')
