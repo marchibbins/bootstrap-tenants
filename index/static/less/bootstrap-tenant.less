@@ -148,11 +148,15 @@ label, dt, strong {
 
 // ------- FILTER -------
 .filter-control {
-	max-width: 175px;
+	max-width: 160px;
 
 	@media (max-width: @screen-xs-max) {
 		max-width: 380px;
 		margin-bottom: 4px;
+	}
+
+	@media (min-width: @screen-lg-min) {
+		max-width: 240px;
 	}
 }
 

@@ -5936,12 +5936,17 @@ fieldset[disabled] .btn-primary.active {
   }
 }
 .filter-control {
-  max-width: 175px;
+  max-width: 160px;
 }
 @media (max-width: 767px) {
   .filter-control {
     max-width: 380px;
     margin-bottom: 4px;
+  }
+}
+@media (min-width: 1200px) {
+  .filter-control {
+    max-width: 240px;
   }
 }
 .custom-table .table {
