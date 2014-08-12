@@ -41,98 +41,132 @@
         <table class="custom-table table">
             <thead>
                 <tr>
-                    <th class="{% if 'first_name' in order_by %}ordered{% endif %}">
+                    <th class="{% if 'first_name' in order_by %}ordered{% endif %} custom-table__col">
                         <a href="{{ querystring }}&amp;order_by=first_name{% if 'first_name' in order_by and 'asc' in order %}&amp;order=desc{% elif 'first_name' in order_by and 'desc' in order %}&amp;order=asc{% endif %}" title="Sort by first name">
                             First name
-                            <span class="direction desc{% if 'first_name' in order_by and 'desc' in order %} ordered{% endif %}">▾</span>
-                            <span class="direction asc{% if 'first_name' in order_by and 'asc' in order %} ordered{% endif %}">▴</span>
+                            {% if 'first_name' in order_by %}
+                                <span class="direction ordered">{% if 'desc' in order %}▾{% else %}▴{% endif %}</span>
+                            {% endif %}
                         </a>
                     </th>
-                    <th class="{% if 'last_name' in order_by %}ordered{% endif %}">
+                    <th class="{% if 'last_name' in order_by %}ordered{% endif %} custom-table__col">
                         <a href="{{ querystring }}&amp;order_by=last_name{% if 'last_name' in order_by and 'asc' in order %}&amp;order=desc{% elif 'last_name' in order_by and 'desc' in order %}&amp;order=asc{% endif %}" title="Sort by last name">
                             Last name
-                            <span class="direction desc{% if 'last_name' in order_by and 'desc' in order %} ordered{% endif %}">▾</span>
-                            <span class="direction asc{% if 'last_name' in order_by and 'asc' in order %} ordered{% endif %}">▴</span>
+                            {% if 'last_name' in order_by %}
+                                <span class="direction ordered">{% if 'desc' in order %}▾{% else %}▴{% endif %}</span>
+                            {% endif %}
                         </a>                    
                     </th>
                     {% if staff_list %}
-                        <th>Role</th>
+                        <th class="custom-table__col custom-table__col--role hidden-xs">Role</th>
                     {% else %}
-                        <th class="{% if 'company' in order_by %}ordered{% endif %}">
+                        <th class="{% if 'company' in order_by %}ordered{% endif %} custom-table__col hidden-xs">
                             <a href="{{ querystring }}&amp;order_by=company{% if 'company' in order_by and 'asc' in order %}&amp;order=desc{% elif 'company' in order_by and 'desc' in order %}&amp;order=asc{% endif %}" title="Sort by last name">
                                 Company
-                                <span class="direction desc{% if 'company' in order_by and 'desc' in order %} ordered{% endif %}">▾</span>
-                                <span class="direction asc{% if 'company' in order_by and 'asc' in order %} ordered{% endif %}">▴</span>
+                                {% if 'company' in order_by %}
+                                    <span class="direction ordered">{% if 'desc' in order %}▾{% else %}▴{% endif %}</span>
+                                {% endif %}
                             </a>
                         </th>
-                        <th>Industry/sector</th>
+                        <th class="custom-table__col custom-table__col--industry hidden-xs">Industry/sector</th>
                     {% endif %}
-                    <th class="{% if 'location' in order_by %}ordered{% endif %}">
+                    <th class="{% if 'location' in order_by %}ordered{% endif %} custom-table__col custom-table__col--location hidden-xs">
                         <a href="{{ querystring }}&amp;order_by=location{% if 'location' in order_by and 'asc' in order %}&amp;order=desc{% elif 'location' in order_by and 'desc' in order %}&amp;order=asc{% endif %}" title="Sort by last name">
                             Location
-                            <span class="direction desc{% if 'location' in order_by and 'desc' in order %} ordered{% endif %}">▾</span>
-                            <span class="direction asc{% if 'location' in order_by and 'asc' in order %} ordered{% endif %}">▴</span>
+                            {% if 'location' in order_by %}
+                                <span class="direction ordered">{% if 'desc' in order %}▾{% else %}▴{% endif %}</span>
+                            {% endif %}
                         </a>
                     </th>
-                    <th class="{% if 'date_moved_in' in order_by %}ordered{% endif %} column__date-moved-in">
+                    <th class="{% if 'date_moved_in' in order_by %}ordered{% endif %} custom-table__col custom-table__col--date visible-lg">
                         <a href="{{ querystring }}&amp;order_by=date_moved_in{% if 'date_moved_in' in order_by and 'asc' in order %}&amp;order=desc{% elif 'date_moved_in' in order_by and 'desc' in order %}&amp;order=asc{% endif %}" title="Sort by last name">
                             Date moved in
-                            <span class="direction desc{% if 'date_moved_in' in order_by and 'desc' in order %} ordered{% endif %}">▾</span>
-                            <span class="direction asc{% if 'date_moved_in' in order_by and 'asc' in order %} ordered{% endif %}">▴</span>
+                            {% if 'date_moved_in' in order_by %}
+                                <span class="direction ordered">{% if 'desc' in order %}▾{% else %}▴{% endif %}</span>
+                            {% endif %}
                         </a>
                     </th>
-                    <th><span class="hidden">View profile</span></th>
+                    <th class="custom-table__col custom-table__col--link"><span class="hidden">View profile</span></th>
                 </tr>
             </thead>
             <tbody>
                 {% for object in object_list %}
                     <tr class="collapsed{% if forloop.counter|divisibleby:"2" %} active{% endif %}" data-target="#profile-{{ object.id }}" data-toggle="collapse">
-                        <td class="{% if 'first_name' in order_by %}emphasise{% endif %}">
+                        <td class="{% if 'first_name' in order_by %}emphasise{% endif %} custom-table__col">
                             {{ object.first_name }}
                         </td>
-                        <td class="{% if 'last_name' in order_by %}emphasise{% endif %}">
+                        <td class="{% if 'last_name' in order_by %}emphasise{% endif %} custom-table__col">
                             {{ object.last_name }}
                         </td>
                         {% if staff_list %}
-                            <td>
+                            <td class="custom-table__col custom-table__col--role hidden-xs">
                                 {{ object.staff_role|default:'&ndash;' }}
                             </td>
                         {% else %}
-                            <td class="{% if 'company' in order_by %}emphasise{% endif %}">
+                            <td class="{% if 'company' in order_by %}emphasise{% endif %} custom-table__col hidden-xs">
                                 {{ object.company|default:'&ndash;' }}
                             </td>
-                            <td>
-                                {{ object.industries.all|join:', '|default:'&ndash;' }}
+                            <td class="custom-table__col custom-table__col--industry hidden-xs">
+                                {{ object.industries.all|join:' / '|default:'&ndash;' }}
                             </td>
                         {% endif %}
-                        <td class="{% if 'location' in order_by %}emphasise{% endif %}">
+                        <td class="{% if 'location' in order_by %}emphasise{% endif %} custom-table__col custom-table__col--location hidden-xs">
                             {% if object.location.image_location %}
-                            <img width="30" src="{% static 'images/' %}{{object.location.image_location}}.jpg">
+                                <img class="location-icon" width="40" src="{% static 'images/' %}{{ object.location.image_location }}.jpg">
                             {% endif %}
                             {{ object.location|default:'&ndash;' }}
                         </td>
-                        <td>
+                        <td class="custom-table__col custom-table__col--date visible-lg">
                             <time datetime="{% if object.date_moved_in %}{{ object.date_moved_in|date:'c' }}{% else %}&ndash;{% endif %}">{% if object.date_moved_in %}{{ object.date_moved_in|date:'jS F Y' }}{% else %}&ndash;{% endif %}</date>
                         </td>
-                        <td>
+                        <td class="custom-table__col custom-table__col--link">
                             <a class="fallback-sr-only" title="View Profile" href="{% url 'user_detail' object.id %}">View profile</a>
                             <span class="glyphicon glyphicon-collapse-up collapsed">
                                 <span class="hidden">View More</span>
                             </span>
                         </td>
                     </tr>
-                    <tr class="extra collapsed{% if forloop.counter|divisibleby:"2" %} active{% endif %}" data-target="#profile-{{ object.id }}" data-toggle="collapse">
-                        <td colspan="8" class="row-constrain">
-                            <div id="profile-{{ object.id }}" class="collapse">
-                                <div class="extra row">
-                                    <div class="extra__profile col-md-4">
-                                        {% avatar object 125 %}
-                                        <p>{{ object.bio|default:"Nothing here yet."|truncatewords:30|urlize }}</p>
+                    <tr class="collapsed{% if forloop.counter|divisibleby:"2" %} active{% endif %}" data-target="#profile-{{ object.id }}" data-toggle="collapse">
+                        <td colspan="8">
+                            <div id="profile-{{ object.id }}" class="profile collapse">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <img class="profile__avatar" src="{% avatar_url object 125 %}" width="125" height="125">
+                                        {% if object.location %}
+                                            <div class="profile__location visible-xs">
+                                                {% if object.location.image_location %}
+                                                    <img class="location-icon hidden-xs" width="40" src="{% static 'images/' %}{{ object.location.image_location }}.jpg">
+                                                {% endif %}
+                                                {{ object.location }}
+                                            </div>
+                                        {% endif %}
+                                        {% if staff_list %}
+                                            {% if object.staff_role %}
+                                                <div class="profile__role visible-xs">{{ object.staff_role }}</div>
+                                            {% endif %}
+                                        {% else %}
+                                            {% if object.industries.count %}
+                                                <div class="profile__industry visible-xs">{{ object.industries.all|join:' / ' }}</div>
+                                            {% endif %}
+                                        {% endif %}
+                                        <div class="profile__actions">
+                                            <a class="js-nested-link btn btn-primary" href="{% url 'message_form' object.id %}" title="Send {{ object.first_name }} a message">
+                                                <span class="glyphicon glyphicon-envelope hidden-xs"></span>
+                                                Send <span class="hidden-xs">a</span> message
+                                            </a>
+                                            <a class="js-nested-link btn btn-primary" href="{% url 'user_detail' object.id %}">
+                                                <span class="glyphicon glyphicon-user hidden-xs"></span>
+                                                View <span class="hidden-xs">full</span> profile
+                                            </a>
+                                        </div>
                                     </div>
-                                    <div class="extra__contact col-md-8">
-                                        <p class="">Last seen online <time datetime="{% if object.last_login %}{{ object.last_login|date:"c" }}{% else %}&ndash;{% endif %}"> {% if object.online_now %}just now{% else %}{{ object.last_visit|timesince|default:"-" }} ago{% endif %}</time></p>
-                                        <p><a class="js-nested-link btn btn-primary" href="{% url 'message_form' object.id %}" title="Send {{ object.first_name }} a message"><span class="glyphicon glyphicon-envelope"></span> Send a message</a></p>
-                                        <p><a class="js-nested-link btn btn-primary" href="{% url 'user_detail' object.id %}"><span class="glyphicon glyphicon-user"></span> View full profile</a></p>
+                                    <div class="col-md-5">
+                                        {% if object.bio %}
+                                            <p class="profile__bio hidden-xs">{{ object.bio|truncatewords:30|urlize }}</p>
+                                        {% endif %}
+                                        {% if object.last_visit %}
+                                            <div class="profile__online hidden-xs">Last seen online <time datetime="{% if object.last_login %}{{ object.last_login|date:"c" }}{% else %}&ndash;{% endif %}"> {% if object.online_now %}just now{% else %}{{ object.last_visit|timesince|default:"-" }} ago{% endif %}</time>.</div>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>

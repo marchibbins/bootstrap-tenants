@@ -5935,10 +5935,6 @@ fieldset[disabled] .btn-primary.active {
     color: #131c42;
   }
 }
-.custom-table > tbody > tr > td.row-constrain {
-  padding: 0;
-  border-top: 0 none;
-}
 .custom-table .table {
   margin-bottom: 0;
   background-color: transparent;
@@ -5978,9 +5974,6 @@ fieldset[disabled] .btn-primary.active {
 .custom-table > thead > tr > th.ordered .direction.ordered {
   opacity: 1;
 }
-.custom-table > tbody > tr.extra > td > div {
-  padding: 0 15px;
-}
 .custom-table > tbody > tr > td {
   vertical-align: middle;
   border-top: 0;
@@ -6008,29 +6001,70 @@ fieldset[disabled] .btn-primary.active {
 .custom-table .collapsed .glyphicon-collapse-up:before {
   content: "\e159";
 }
-.column__date-moved-in {
-  width: 180px;
+.custom-table__col {
+  min-width: 105px;
 }
-.column__bio {
-  width: 60%;
+.custom-table__col--date {
+  min-width: 130px;
 }
-.column__last-seen {
-  width: 150px;
+.custom-table__col--link {
+  min-width: 0;
+  width: 40px;
 }
-.extra {
-  padding: 15px;
+@media (min-width: 480px) {
+  .custom-table__col--industry,
+  .custom-table__col--role {
+    display: table-cell !important;
+  }
+  .profile__industry,
+  .profile__role {
+    display: none !important;
+  }
 }
-.extra__profile img {
+.profile__avatar {
   float: left;
-  padding: 0 15px 15px 0;
+  margin-right: 10px;
+  margin-bottom: 22px / 2;
 }
-.extra__contact time {
+.profile__industry,
+.profile__role,
+.profile__online {
+  margin-bottom: 22px / 2;
+}
+.profile__online time {
   font-weight: normal;
 }
-.extra__contact a {
-  width: 200px;
-  display: block;
-  clear: left;
+.profile__actions {
+  margin-bottom: 22px / 2;
+}
+@media (max-width: 440px) {
+  .profile__actions {
+    clear: left;
+  }
+}
+@media (min-width: 1200px) {
+  .profile__actions {
+    width: 360px;
+  }
+}
+.profile__actions .btn {
+  margin-bottom: 4px;
+}
+.profile__location {
+  margin-bottom: 22px / 2;
+}
+@media (min-width: 480px) {
+  .profile__location {
+    min-height: 40px;
+  }
+  .profile__location .location-icon {
+    display: block !important;
+  }
+}
+.location-icon {
+  float: left;
+  margin-bottom: 22px / 2;
+  margin-right: 10px;
 }
 .profile-header__image {
   float: left;

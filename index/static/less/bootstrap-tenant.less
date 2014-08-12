@@ -147,11 +147,6 @@ label, dt, strong {
 }
 
 // ------- TABLE -------
-.custom-table>tbody>tr>td.row-constrain {
-	padding:0;
-	border-top: 0 none;
-}
-
 .custom-table .table {
 	margin-bottom:0;
 	background-color: transparent;
@@ -206,10 +201,6 @@ label, dt, strong {
 	}
 }
 
-.custom-table>tbody>tr.extra>td>div {
-	padding: 0 15px;
-}
-
 .custom-table>tbody>tr>td {
 	vertical-align: middle; 
 	border-top: 0;
@@ -246,41 +237,82 @@ label, dt, strong {
 	&:before { content: "\e159"; }
 }
 
-.column__date-moved-in {
-	width: 180px;
+.custom-table__col {
+	min-width: 105px;
 }
 
-.column__bio {
-	width: 60%;
+.custom-table__col--date {
+	min-width: 130px;
 }
 
-.column__last-seen {
-	width: 150px;
+.custom-table__col--link {
+	min-width: 0;
+	width: 40px;
 }
 
-.extra {
-	padding: 15px;
-}
-
-.extra__profile img {
-	float: left;
-	padding: 0 15px 15px 0;
-}
-
-.extra__contact {
-	time {
-		font-weight: normal;
+@media (min-width: 480px) {
+	.custom-table__col--industry,
+	.custom-table__col--role {
+		display: table-cell !important;
 	}
-	a {
-		width: 200px;
-		display: block;
+
+	.profile__industry,
+	.profile__role {
+		display: none !important;
+	}
+}
+
+.profile__avatar {
+	float: left;
+	margin-right: 10px;
+	margin-bottom: @line-height-computed / 2;
+}
+
+.profile__industry,
+.profile__role,
+.profile__online {
+	margin-bottom: @line-height-computed / 2;
+}
+
+.profile__online time {
+	font-weight: normal;
+}
+
+.profile__actions {
+	margin-bottom: @line-height-computed / 2;
+
+	@media (max-width: 440px) {
 		clear: left;
 	}
+
+	@media (min-width: @screen-lg-min) {
+		width: 360px;
+	}
+
+	.btn {
+		margin-bottom: 4px;
+	}
 }
 
+.profile__location {
+	margin-bottom: @line-height-computed / 2;
+
+	@media (min-width: 480px) {
+		min-height: 40px;
+
+		.location-icon {
+			display: block !important;
+		}
+	}
+}
+
+.location-icon {
+	float: left;
+	margin-bottom: @line-height-computed / 2;
+	margin-right: 10px;
+}
 
 // ------- PROFILE -------
-
 .profile-header__image {
 	float: left;
 	margin-right: 10px;
@@ -297,7 +329,6 @@ label, dt, strong {
 }
 
 .profile-list {
-
 	ul {
 		list-style: none;
 	}
