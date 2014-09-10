@@ -29,8 +29,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField('active', default=True,
         help_text='Designates whether this user should be treated as active. Unselect this instead of deleting accounts.')
 
-    bio = models.TextField('bio', null=True, blank=True)
-    website = models.URLField('website', null=True, blank=True)
+    bio = models.TextField('bio', null=True, blank=True, help_text='Introduce yourself...')
+    website = models.URLField('website', null=True, blank=True, help_text='Start with http://...')
     company = models.CharField('company', max_length=50, null=True, blank=True)
     date_moved_in = models.DateField('date moved in', null=True, blank=True, help_text='DD/MM/YYYY')
     industries = models.ManyToManyField('Industry', null=True, blank=True)
