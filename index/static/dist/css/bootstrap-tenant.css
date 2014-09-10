@@ -6110,4 +6110,8 @@ fieldset[disabled] .btn-primary.active {
   padding: 0;
   margin: 0;
 }
+ul#id_industries {
+  padding-left: 0;
+  list-style: none;
+}
 /*# sourceMappingURL=bootstrap-tenant.css.map */

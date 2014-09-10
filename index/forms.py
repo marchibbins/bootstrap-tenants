@@ -104,5 +104,6 @@ class CustomUserUpdateForm(forms.ModelForm):
             'industries', 'location', 'additional_location', 'birthday',
             'staff_role', 'in_staff_index', 'in_tenant_index')
         widgets = {
-            'birthday': DayMonthWidget
+            'birthday': DayMonthWidget,
+            'industries': forms.CheckboxSelectMultiple(),
         }
