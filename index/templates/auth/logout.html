@@ -3,18 +3,21 @@
 {% block title %}{{ block.super }} | Logout{% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="container-fluid">
     <div class="page-header">
         <h1>Logout</h1>
     </div>
-    <p>Are you sure you want to logout?</p>
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-6">
+            <p>Are you sure you want to logout?</p>
+            <form action="{% url 'logout' %}" method="post" class="form" role="form">
+                {% csrf_token %}
 
-    <form action="{% url 'logout' %}" method="post" class="form" role="form">
-        {% csrf_token %}
-
-        <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Logout">
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Logout">
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
 </div>
 {% endblock %}

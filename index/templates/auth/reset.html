@@ -4,24 +4,28 @@
 {% block title %}{{ block.super }} | Reset password{% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="container-fluid">
     <div class="page-header">
         <h1>{% block page_title %}Reset password{% endblock %}</h1>
     </div>
-    {% if invalid %}
-        <p>Sorry, this password reset link is invalid. You can still <a href="{% url 'password_reset_recover' %}">request a new one</a>.</p>
-    {% else %}
-        <p>Please choose your new password.</p>
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-6">
+            {% if invalid %}
+                <p>Sorry, this password reset link is invalid. You can still <a href="{% url 'password_reset_recover' %}">request a new one</a>.</p>
+            {% else %}
+                <p>Please choose your new password.</p>
 
-        <form action="{% url 'password_reset_reset' token %}" method="post" class="form" role="form">
-            {% csrf_token %}
+                <form action="{% url 'password_reset_reset' token %}" method="post" class="form" role="form">
+                    {% csrf_token %}
 
-            {{ form|bootstrap }}
+                    {{ form|bootstrap }}
 
-            <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Set password">
-            </div>
-        </form>
-    {% endif %}
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary" value="Set password">
+                    </div>
+                </form>
+            {% endif %}
+        </div>
+    </div>
 </div>
 {% endblock %}

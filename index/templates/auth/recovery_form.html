@@ -4,18 +4,22 @@
 {% block title %}{{ block.super }} | Recover password{% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="container-fluid">
     <div class="page-header">
         <h1>Recover password</h1>
     </div>
-    <form action="{{ url }}" method="post" class="form" role="form">
-        {% csrf_token %}
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-6">
+            <form action="{{ url }}" method="post" class="form" role="form">
+                {% csrf_token %}
 
-        {{ form|bootstrap }}
+                {{ form|bootstrap }}
 
-        <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Recover password">
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Recover password">
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
 </div>
 {% endblock %}
