@@ -101,7 +101,7 @@ class CustomUserUpdateForm(forms.ModelForm):
     class Meta:
         model = CustomUser
         fields = ('email', 'first_name', 'last_name', 'bio', 'website', 'company', 'date_moved_in',
-            'industries', 'location', 'birthday', 'staff_role', 'in_staff_index', 'in_tenant_index')
+            'industries', 'location', 'additional_location', 'birthday', 'staff_role', 'in_staff_index', 'in_tenant_index')
         widgets = {
             'birthday': DayMonthWidget
         }

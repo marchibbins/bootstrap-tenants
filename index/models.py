@@ -35,6 +35,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     date_moved_in = models.DateField('date moved in', null=True, blank=True, help_text='DD/MM/YYYY')
     industries = models.ManyToManyField('Industry', null=True, blank=True)
     location = models.ForeignKey('Location', null=True, blank=True)
+    additional_location = models.CharField('Additional location info', max_length=255, null=True, blank=True, help_text='Describe where to find you, e.g. "By the door".')
     birthday = models.DateField('birthday', null=True, blank=True, help_text='This won\'t be shown on your public profile.')
     last_visit = models.DateTimeField('last visited', null=True, blank=True)
     last_on_site = models.DateTimeField('last time in building', null=True, blank=True)
