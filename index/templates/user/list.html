@@ -5,7 +5,7 @@
 
 {% block content %}
 <div class="container-fluid">
-    <form action="{% url 'user_list' %}" method="get" class="form-inline" role="form">
+    <form action="{% if staff_list %}{% url 'staff_list' %}{% else %}{% url 'user_list' %}{% endif %}" method="get" class="form-inline" role="form">
         <span>Filter by:</span>
         <div class="form-group">
             <label class="sr-only" for="industry">Industry</label>
@@ -32,7 +32,7 @@
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Filter</button>
-            <a href="{% url 'user_list' %}?order_by={{ order_by }}&amp;order={{ order }}" title="Reset filter options" class="btn btn-default">Reset</a>
+            <a href="{% if staff_list %}{% url 'staff_list' %}{% else %}{% url 'user_list' %}{% endif %}?order_by={{ order_by }}&amp;order={{ order }}" title="Reset filter options" class="btn btn-default">Reset</a>
         </div>
     </form>
     <hr>
