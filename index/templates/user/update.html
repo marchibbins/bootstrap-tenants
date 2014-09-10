@@ -13,7 +13,32 @@
             <form action="{% url 'user_update' %}" method="post" class="form" role="form">
                 {% csrf_token %}
 
-                {{ form|bootstrap }}
+                {{ form.first_name|bootstrap }}
+                {{ form.last_name|bootstrap }}
+
+                <hr>
+
+                {{ form.industries|bootstrap }}
+                {{ form.location|bootstrap }}
+                {{ form.additional_location|bootstrap }}
+
+                <hr>
+
+                {{ form.company|bootstrap }}
+                {{ form.bio|bootstrap }}
+                {% if form.staff_role %}
+                    {{ form.staff_role|bootstrap }}
+                {% endif %}
+
+                <hr>
+
+                {{ form.website|bootstrap }}
+                {{ form.birthday|bootstrap }}
+
+                {% if form.in_staff_index %}
+                    {{ form.in_staff_index|bootstrap }}
+                {% endif %}
+                {{ form.in_tenant_index|bootstrap }}
 
                 <div class="form-group">
                     <input type="submit" class="btn btn-primary" value="Update profile">
