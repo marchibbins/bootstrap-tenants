@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'password_reset',
     'bootstrapform',
     'avatar',
+    'south',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
