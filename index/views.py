@@ -236,8 +236,8 @@ class UserListView(ListView):
         """
         context = super(UserListView, self).get_context_data(**kwargs)
         context.update(self.filters)
-        context['industries'] = Industry.objects.filter(customuser__isnull=False).distinct()
-        context['locations'] = Location.objects.filter(customuser__isnull=False).distinct()
+        context['industries'] = Industry.objects.filter(customuser__in_tenant_index=True).distinct()
+        context['locations'] = Location.objects.filter(customuser__in_tenant_index=True).distinct()
         return context
 
 
@@ -255,7 +255,10 @@ class UserStaffListView(UserListView):
         """
         Adds Industry and Location objects for filter options.
         """
-        context = super(UserStaffListView, self).get_context_data(**kwargs)
+        context = super(UserListView, self).get_context_data(**kwargs)
+        context.update(self.filters)
+        context['industries'] = Industry.objects.filter(customuser__in_staff_index=True).distinct()
+        context['locations'] = Location.objects.filter(customuser__in_staff_index=True).distinct()
         context['staff_list'] = True
         return context
 
